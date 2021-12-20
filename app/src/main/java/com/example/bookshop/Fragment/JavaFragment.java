@@ -70,6 +70,7 @@ public class JavaFragment extends Fragment {
     private void GetData() {
         //get data
         Cursor cursor = database.Getdata("SELECT * FROM SANPHAM WHERE IDDANHMUC = 3");
+        sanPhamDTOArrayList.clear();
         while (cursor.moveToNext())
         {
             sanPhamDTOArrayList.add(new SanPhamDTO(

@@ -175,12 +175,12 @@ public class GioHangFragment extends Fragment {
                 GetData();
                 Tongtien();
                 Toast.makeText(getActivity(),"Thanh toán thành công",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(),HomeActivity.class));
 
             }
         }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getActivity(),"ssssss",Toast.LENGTH_LONG).show();
             }
         });
         builder.show();

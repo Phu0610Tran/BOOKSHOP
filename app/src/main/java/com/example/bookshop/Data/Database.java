@@ -8,10 +8,12 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.text.Editable;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.bookshop.DTO.BinhLuan;
 import com.example.bookshop.DTO.SanPhamDTO;
 import com.example.bookshop.DTO.TaiKhoanDTO;
 
@@ -84,7 +86,27 @@ public class Database extends SQLiteOpenHelper {
         statement.bindBlob(1,hinh);
         statement.executeInsert();
     }
+    // BL
+    public void ThemBL(int IDTK, int IDSP, String NOIDUNG, String THOIGIAN){
+        QueryData("INSERT INTO BINHLUAN (IDTK,IDSP,NOIDUNG,THOIGIAN) VALUES (" +IDTK + ",'" +
+                IDSP + "','" + NOIDUNG+"','" + THOIGIAN + "')");
+    }
+    public ArrayList<BinhLuan> LayBinhLuan(int IDSP){
+        ArrayList<BinhLuan> list = new ArrayList<>();
+        Cursor tro = Getdata("SELECT A.IDTK,B.HINHANH,A.NOIDUNG,A.THOIGIAN FROM BINHLUAN A,TAIKHOAN B WHERE A.IDTK = B.IDTAIKHOAN AND A.IDSP ='" + IDSP +"'");
+        while (tro.moveToNext()){
+            list.add(new BinhLuan(
+                    tro.getInt(0),
+                    tro.getBlob(1),
+                    tro.getString(2),
+                    tro.getString(3)
+            ));
+        }
 
+        return list;
+    }
+
+    //-------------------------
     public void INSERT_DOAN(String ten,byte[] hinh,int soluong,int  Gia,int danhmuc,int spmoi ) throws SQLiteException {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues cv = new  ContentValues();

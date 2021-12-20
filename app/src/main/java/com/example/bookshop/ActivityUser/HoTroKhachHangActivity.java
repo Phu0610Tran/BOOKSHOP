@@ -90,7 +90,7 @@ public class HoTroKhachHangActivity extends AppCompatActivity {
         chatsModalArrayList.add(new ChatsModal(message, USER_KEY));
         chatRVAdapter.notifyDataSetChanged();
 
-        String url = "http://api.brainshop.ai/get?bid=160564&key=DZDqBwRAsjpq8RI4&uid=[uid]&msg="+message;
+        String url = "http://api.brainshop.ai/get?bid=161491&key=2uPzAmBeTdgpetHv&uid=[uid]&msg="+message;
         String BASE_URL = "http://api.brainshop.ai/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

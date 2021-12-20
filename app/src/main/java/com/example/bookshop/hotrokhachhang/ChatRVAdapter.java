@@ -1,14 +1,18 @@
 package com.example.bookshop.hotrokhachhang;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.R;
 
 import java.util.ArrayList;
@@ -75,14 +79,21 @@ public class ChatRVAdapter extends RecyclerView.Adapter{
 
     public static class UserViewHolder extends RecyclerView.ViewHolder{
         TextView userTV;
+        ImageView imguser;
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             userTV = itemView.findViewById(R.id.idTVUser);
+            imguser = itemView.findViewById(R.id.imguser);
+            if(LoginActivity.taiKhoanDTO.getMATK() != -1){
+                Bitmap bitmap = BitmapFactory.decodeByteArray(LoginActivity.taiKhoanDTO.getHINHANH(),0,(LoginActivity.taiKhoanDTO.getHINHANH().length));
+                imguser.setImageBitmap(bitmap);
+            }
         }
     }
 
     public static class BotViewHolder extends RecyclerView.ViewHolder{
         TextView botMsgTV;
+
         public BotViewHolder(@NonNull View itemView) {
             super(itemView);
             botMsgTV = itemView.findViewById(R.id.idTVBot);

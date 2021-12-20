@@ -93,13 +93,13 @@ public class QL_ThemSanPham extends AppCompatActivity {
         quaylai_QLSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(QL_ThemSanPham.this, HomeAdmin.class));
+                onBackPressed();
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(QL_ThemSanPham.this, HomeAdmin.class));
+                onBackPressed();
             }
         });
     }

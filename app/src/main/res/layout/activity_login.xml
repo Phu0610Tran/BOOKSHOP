@@ -8,20 +8,25 @@
     android:background="#CBEBEF"
     tools:context=".ActivityUser.LoginActivity">
 
-    <ImageButton
-        android:id="@+id/ibtnExit"
-        android:layout_width="@dimen/size40dp"
-        android:layout_height="30dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/quaylai"
-        android:background="@null"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:layout_margin="10dp"
+            android:id="@+id/ibtnExit"
+            android:layout_width="@dimen/size40dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/quaylai"
+            android:background="@null"/>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
-        android:layout_gravity="center"
-        android:src="@drawable/logo" />
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:src="@drawable/bm1" />
+    </FrameLayout>
 
 
     <LinearLayout

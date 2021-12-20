@@ -10,14 +10,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.bookshop.Adapter.UserAdapter;
+import com.example.bookshop.Adapter.SanPhamAdapter;
+import com.example.bookshop.Adapter.TimKiemAdapter;
+import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Fragment.PythonFragment;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -25,28 +36,55 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class TimKiem extends AppCompatActivity {
-
-    private RecyclerView rcvUsers;
-    private UserAdapter userAdapter;
-    private SearchView searchView;
-
-    //----------------------voice-----------
     private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
-
-    ImageButton voiceBtn;
-    //----------------------voice-----------
+    EditText edt_tk;
+    ListView listview_tk;
+    ImageButton img_search_Tk,img_voice_Tk;
+    ArrayList<SanPhamDTO> sanPhamDTOArrayList;
+    TimKiemAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tim_kiem);
-        rcvUsers = (RecyclerView) findViewById(R.id.rcv_users);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcvUsers.setLayoutManager(linearLayoutManager);
-        userAdapter = new UserAdapter(this, TrangChuFragment.database.TIMKIEM());
-        rcvUsers.setAdapter(userAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rcvUsers.addItemDecoration(itemDecoration);
-        //------------------------------
+
+        Anhxa();
+        listview_tk = findViewById(R.id.listview_tk);
+        sanPhamDTOArrayList = new ArrayList<>();
+        adapter = new TimKiemAdapter(TimKiem.this, R.layout.timkiem, sanPhamDTOArrayList);
+        listview_tk.setAdapter(adapter);
+        listview_tk.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(TimKiem.this, Products_information_activity.class);
+                intent.putExtra("idtk",i);
+                startActivity(intent);
+
+            }
+        });
+
+
+        edt_tk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                GetDataALL();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                GetData(edt_tk.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        img_voice_Tk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speak();
+            }
+        });
     }
     private MenuItem speak() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -71,71 +109,51 @@ public class TimKiem extends AppCompatActivity {
             case REQUEST_CODE_SPEECH_INPUT:{
                 if (resultCode == RESULT_OK && null != data){
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    searchView.setQuery(result.get(0),false);
+                    edt_tk.setText(result.get(0));
                 }
                 break;
             }
         }
     }
 
-    //-----------------------------------------------------------------
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                userAdapter.getFilter().filter(query);
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                userAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-//        menu.add("Search")
-//                .setIcon(R.drawable.ic_action_voice)
-//                .setActionView(searchView)
-//                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-//        speak();
-//        searchView = (SearchView) menu.findItem(R.id.voiceBtn).getActionView();
-//        searchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                menu.add("Search")
-//                        .setIcon(R.drawable.ic_action_voice)
-//                        .setActionView(searchView)
-//                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-//                speak();
-//            }
-//        });
-        return true;
-    }
-    //---------------
-    // ---------------test
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.voiceBtn:
-                speak();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    private void GetData(String ten) {
+        //get data
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM WHERE TENSANPHAM LIKE '%" + ten +"%'" );
+        sanPhamDTOArrayList.clear();
+        while (cursor.moveToNext())
+        {
+            sanPhamDTOArrayList.add(new SanPhamDTO(
+                    cursor.getInt(0),
+                    cursor.getBlob(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4)
+            ));
         }
+        adapter.notifyDataSetChanged();
     }
-    //------------------------------test
-    @Override
-    public void onBackPressed() {
-        if(!searchView.isIconified()){
-            searchView.setIconified(true);
-            return;
+    private void GetDataALL() {
+        //get data
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM ");
+        sanPhamDTOArrayList.clear();
+        while (cursor.moveToNext())
+        {
+            sanPhamDTOArrayList.add(new SanPhamDTO(
+                    cursor.getInt(0),
+                    cursor.getBlob(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4)
+            ));
         }
-        super.onBackPressed();
+        adapter.notifyDataSetChanged();
     }
+
+    private void Anhxa() {
+        edt_tk = findViewById(R.id.edt_tk);
+        img_search_Tk = findViewById(R.id.img_search_Tk);
+        img_voice_Tk = findViewById(R.id.img_voice_Tk);
+    }
+
 }

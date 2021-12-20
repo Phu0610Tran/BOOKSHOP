@@ -15,11 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bookshop.ActivityAdmin.QL_SuaTaiKhoan;
+import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.SanPhamAdminAdapter;
 import com.example.bookshop.Adapter.TaiKhoanAdminAdapter;
+import com.example.bookshop.DTO.Category;
 import com.example.bookshop.DTO.SanPhamDTO;
 import com.example.bookshop.DTO.TaiKhoanDTO;
 import com.example.bookshop.Fragment.TrangChuFragment;
@@ -32,7 +35,9 @@ public class QLTaikhoanFragment extends Fragment {
 
 
     View view;
+
     GridView gridviewQLTaiKhoan;
+
     ArrayList<TaiKhoanDTO> taiKhoanDTOArrayList;
     TaiKhoanAdminAdapter adapter;
 
@@ -55,6 +60,9 @@ public class QLTaikhoanFragment extends Fragment {
        view = inflater.inflate(R.layout.fragment_q_l_taikhoan, container, false);
         gridviewQLTaiKhoan = (GridView) view.findViewById(R.id.gridviewQLTaiKhoan);
         taiKhoanDTOArrayList = new ArrayList<>();
+
+
+
         adapter = new TaiKhoanAdminAdapter(QLTaikhoanFragment.this, R.layout.taikhoan_admin, taiKhoanDTOArrayList);
         gridviewQLTaiKhoan.setAdapter(adapter);
         gridviewQLTaiKhoan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -124,4 +132,6 @@ public class QLTaikhoanFragment extends Fragment {
                 return super.onContextItemSelected(item);
         }
     }
+
+
 }

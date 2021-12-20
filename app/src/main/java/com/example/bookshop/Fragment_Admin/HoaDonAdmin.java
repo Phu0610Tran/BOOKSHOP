@@ -1,8 +1,7 @@
-package com.example.bookshop.ActivityAdmin;
+package com.example.bookshop.Fragment_Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,12 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookshop.ActivityUser.ChiTietLichSu;
-import com.example.bookshop.ActivityUser.LoginActivity;
-import com.example.bookshop.ActivityUser.lichsuActivity;
+import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.HoaDonAdapter;
+import com.example.bookshop.DTO.Category;
 import com.example.bookshop.DTO.HoaDon;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.Fragment.TrangChuFragment;
@@ -27,6 +28,12 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class HoaDonAdmin extends AppCompatActivity {
+
+    Spinner spnAddTheloai_TK;
+    ArrayList<Category> listCategory;
+    ArrayList<Category> list;
+    CategoryAdapter categoryAdapter;
+    int Danhmuc;
 
     ListView Listview_Lichsu;
     ArrayList<HoaDon> hoaDonArrayList;
@@ -42,6 +49,32 @@ public class HoaDonAdmin extends AppCompatActivity {
         TrangChuFragment.database = new Database(HoaDonAdmin.this,"BookShop",null,2);
         AnhXa();
         Listview_Lichsu = (ListView) findViewById(R.id.listview_danhsachhoadon_lichsu);
+        spnAddTheloai_TK = findViewById(R.id.spnAddTheloai_TK);
+        listCategory = getListCategory();
+        categoryAdapter = new CategoryAdapter(HoaDonAdmin.this, R.layout.item_select, listCategory);
+        spnAddTheloai_TK.setAdapter(categoryAdapter);
+        Danhmuc = 0;
+        spnAddTheloai_TK.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Danhmuc = categoryAdapter.getItem(position).getIDcategory();
+                GetData();
+                GetTienAlone();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
+
 
         hoaDonArrayList = new ArrayList<>();
         adapter = new HoaDonAdapter(HoaDonAdmin.this, R.layout.danhsach_lichsu, hoaDonArrayList);
@@ -58,8 +91,15 @@ public class HoaDonAdmin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        GetTien();
         GetData();
+    }
+
+    @Override
+    protected void onStart() {
+        GetTien();
+        GetData();
+        super.onStart();
     }
 
     private void AnhXa() {
@@ -69,7 +109,7 @@ public class HoaDonAdmin extends AppCompatActivity {
         tongtien_HD = findViewById(R.id.tongtien_HD);
         title_qlhd.setText("Thống kê Doanh Thu");
         tongchi = findViewById(R.id.tongchi);
-        tongchi.setText(" Tổng Doanh Thu ");
+        tongchi.setText(" Tổng Doanh Thu: ");
         ibtnExit_lichsu = findViewById(R.id.ibtnExit_lichsu);
         ibtnExit_lichsu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +119,26 @@ public class HoaDonAdmin extends AppCompatActivity {
         });
     }
 
-    private void GetData() {
-        //get data
+    private void GetTien()
+    {
         Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON ");
         cursor1.moveToNext();
         tongtien_HD.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"));
 
+    }
+    private void GetTienAlone()
+    {
+        Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc);
+        cursor1.moveToNext();
+        Toast.makeText(HoaDonAdmin.this, "Tổng tiền : " + String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"), Toast.LENGTH_LONG).show();
 
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON ");
+    }
+    private void GetData() {
+        //get data
+
+
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc);
+//        Toast.makeText(HoaDonAdmin.this, "sads : " + Danhmuc, Toast.LENGTH_SHORT).show();
         hoaDonArrayList.clear();
         while (cursor.moveToNext())
         {
@@ -100,5 +152,21 @@ public class HoaDonAdmin extends AppCompatActivity {
             ));
         }
         adapter.notifyDataSetChanged();
+    }
+    private ArrayList<Category> getListCategory() {
+
+        Cursor cursor =  TrangChuFragment.database.Getdata("SELECT * FROM TAIKHOAN ");
+        list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            list.add(new Category(
+                            cursor.getString(1),
+                            cursor.getInt(0)
+                    )
+            );
+        }
+
+
+
+        return list;
     }
 }

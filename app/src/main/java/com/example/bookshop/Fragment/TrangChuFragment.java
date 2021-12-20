@@ -56,7 +56,7 @@ public class TrangChuFragment extends Fragment {
         ActionViewFlipper();
         gridView_SanPham = (GridView) view.findViewById(R.id.gridviewSanPham);
         sanPhamDTOArrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(TrangChuFragment.this, R.layout.product_layout, sanPhamDTOArrayList);
+        adapter = new SanPhamAdapter(TrangChuFragment.this, R.layout.productnew_layout, sanPhamDTOArrayList);
         gridView_SanPham.setAdapter(adapter);
         gridView_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

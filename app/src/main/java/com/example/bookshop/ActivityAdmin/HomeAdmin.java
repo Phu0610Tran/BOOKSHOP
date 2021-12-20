@@ -12,13 +12,14 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 
+import com.example.bookshop.Fragment_Admin.HoaDonAdmin;
 import com.example.bookshop.Fragment_Admin.QLGopyFragment;
-import com.example.bookshop.Fragment_Admin.DoanhThuFragment;
 import com.example.bookshop.Fragment_Admin.QLSanphamFragment;
 import com.example.bookshop.Fragment_Admin.QLTaikhoanFragment;
 import com.example.bookshop.ActivityUser.LoginActivity;
@@ -56,7 +57,12 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
 
     @Override
     protected void onStart() {
-
+        Menu menu = navigationView.getMenu();
+        if(LoginActivity.taiKhoanDTO.getMATK() == -1){
+            menu.findItem(R.id.nav_logout).setVisible(false);
+        }else {
+            menu.findItem(R.id.nav_login).setVisible(false);
+        }
         super.onStart();
     }
 
@@ -125,7 +131,7 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
                 currentFragment = FRAGMENT_QLTAIKHOAN;
             }
         }else if (id == R.id.nav_ql_hoadon) {
-            startActivity(new Intent(HomeAdmin.this,HoaDonAdmin.class));
+            startActivity(new Intent(HomeAdmin.this, HoaDonAdmin.class));
         }else if (id == R.id.nav_ql_gopy) {
             if (FRAGMENT_QLGOPY != currentFragment) {
                 replaceFragment(new QLGopyFragment());

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/xam"
+    android:background="#9DDCE4"
     android:orientation="vertical"
     tools:context=".ActivityUser.InforUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/vang_nhat">
+        android:background="#FF9800">
 
         <ImageButton
             android:id="@+id/ibtnExit"
@@ -111,7 +111,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/size30dp"
-            android:backgroundTint="#19CF20"
+            android:backgroundTint="#FF9800"
             android:hint="Xác Nhận"
             android:textColorHint="@color/black"
             android:textSize="16dp"

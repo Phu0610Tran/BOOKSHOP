@@ -58,7 +58,7 @@
                 <item
                     android:icon="@drawable/login"
                     android:id="@+id/nav_login"
-                    android:title="@string/DangNhap" />
+                    android:title="Đăng Nhập" />
                 <item
                     android:icon="@drawable/logout"
                     android:id="@+id/nav_logout"

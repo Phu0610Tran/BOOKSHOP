@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import com.example.bookshop.DTO.TaiKhoanDTO;
 import com.example.bookshop.Fragment.GioHangFragment;
 import com.example.bookshop.Fragment.CFragment;
 import com.example.bookshop.Fragment.GopYFragment;
+import com.example.bookshop.Fragment.JavaFragment;
 import com.example.bookshop.Fragment.PythonFragment;
 import com.example.bookshop.Fragment.WebFragment;
 import com.example.bookshop.Fragment.AndroidFragment;
@@ -61,6 +63,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+
     ImageView imagegiohang,timkiem_home;
 
     // Drawer
@@ -121,25 +124,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else {
             menu.findItem(R.id.nav_login).setVisible(false);
         }
+        demSL();
         super.onStart();
     }
 
     private void HienThiTen() {
         View view = navigationView.inflateHeaderView(R.layout.header);
         txt_TenTaiKhoan = view.findViewById(R.id.txtTennguoidung);
-
+        img_user_home = view.findViewById(R.id.img_user_home);
 
         txt_TenTaiKhoan.setText(LoginActivity.taiKhoanDTO.getTENTK());
-//        if (LoginActivity.taiKhoanDTO.getHINHANH() == null){
-//
-//        }else
-//        {
-//            byte[] hinhAnh = LoginActivity.taiKhoanDTO.getHINHANH();
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
-//            img_user_home.setImageBitmap(bitmap);
+
+        if (LoginActivity.taiKhoanDTO.getHINHANH() != null){
+            byte[] hinhAnh = LoginActivity.taiKhoanDTO.getHINHANH();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
+            img_user_home.setImageBitmap(bitmap);
 //            Toast.makeText(HomeActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
-//
-//        }
+        }
     }
 
     private void AnhXa() {
@@ -223,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }else if (id == R.id.nav_Java) {
             if (FRAGMENT_JAVA != currentFragment) {
-                replaceFragment(new WebFragment());
+                replaceFragment(new JavaFragment());
                 currentFragment = FRAGMENT_JAVA;
             }
 

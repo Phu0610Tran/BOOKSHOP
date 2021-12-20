@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:background="@color/white">
+
+            android:background="#9DDCE4">
 
             <de.hdodenhof.circleimageview.CircleImageView
 
@@ -44,7 +45,7 @@
                 android:text="User"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="#FFC107">
+                android:textColor="#151515">
             </TextView>
 
         </LinearLayout>
@@ -76,6 +77,7 @@
                     android:layout_weight="1.1"
                     android:paddingLeft="@dimen/size20dp"
                     android:gravity="left |center"
+                    android:textStyle="bold"
                     android:text="Mật khẩu và bảo mật"
                     android:textSize="@dimen/size20dp"
                     android:textColor="#FFFFFF"/>
@@ -104,6 +106,7 @@
                     android:paddingLeft="@dimen/size20dp"
                     android:gravity="left |center"
                     android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:text="Dịch vụ"
                     android:textSize="@dimen/size20dp"
                     />
@@ -132,6 +135,7 @@
                     android:textColor="#FFFFFF"
                     android:text="Lịch sử giao dịch"
                     android:paddingLeft="@dimen/size20dp"
+                    android:textStyle="bold"
                     android:gravity="left |center"
                     android:textSize="@dimen/size20dp"
                      />
@@ -165,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1.1"
-
+                    android:textStyle="bold"
                     android:text="Trung Tâm Hổ Trợ"
                     android:textSize="@dimen/size20dp"
                     android:paddingLeft="@dimen/size20dp"
@@ -194,7 +198,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1.1"
-
+                    android:textStyle="bold"
                     android:text="Thông Tin Ứng Dụng"
                     android:textSize="@dimen/size20dp"
                     android:paddingLeft="@dimen/size20dp"
@@ -227,7 +231,7 @@
                 android:layout_weight="1.1"
                 android:paddingLeft="@dimen/size20dp"
                 android:gravity="left |center"
-
+                android:textStyle="bold"
                 android:text="Cài đặt"
                 android:textSize="@dimen/size20dp"
                 android:textColor="#FFFFFF"/>
