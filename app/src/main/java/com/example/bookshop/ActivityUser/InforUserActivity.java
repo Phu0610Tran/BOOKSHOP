@@ -20,8 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.bookshop.ActivityAdmin.QL_SuaSanPham;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -112,24 +111,24 @@ public class InforUserActivity extends AppCompatActivity {
 
     private void GetData() {
         //get data
-        int id = LoginActivity.taiKhoanDTO.getMATK();
-        TaiKhoanDTO taiKhoanDTO = TrangChuFragment.database.Load(id);
-        String tentaikhoan = taiKhoanDTO.getTENTK();
-        int sdt = taiKhoanDTO.getSDT();
-        String email = taiKhoanDTO.getEMAIL();
-        String diachi = taiKhoanDTO.getDIACHI();
+        int id = LoginActivity.taiKhoan.getMATK();
+        TaiKhoan taiKhoan = TrangChuFragment.database.Load(id);
+        String tentaikhoan = taiKhoan.getTENTK();
+        int sdt = taiKhoan.getSDT();
+        String email = taiKhoan.getEMAIL();
+        String diachi = taiKhoan.getDIACHI();
         enableControl();
-        if (taiKhoanDTO.getHINHANH() == null){
+        if (taiKhoan.getHINHANH() == null){
             img_user_cn.setImageResource(R.drawable.user);
         }else
         {
-            byte[] hinhAnh = taiKhoanDTO.getHINHANH();
+            byte[] hinhAnh = taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_cn.setImageBitmap(bitmap);
 //            Toast.makeText(InforUserActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
 
         }
-        IDTAIKHOAN = taiKhoanDTO.getMATK();
+        IDTAIKHOAN = taiKhoan.getMATK();
 
 
         edtTaikhoan.setText(tentaikhoan);
@@ -169,7 +168,7 @@ public class InforUserActivity extends AppCompatActivity {
                 }
                 else{
                     btnCapnhat.setText("Cập nhật");
-                    TrangChuFragment.database.CapNhatTaiKhoan(LoginActivity.taiKhoanDTO.getMATK(), Integer.parseInt(edtSdt.getText().toString().trim()),
+                    TrangChuFragment.database.CapNhatTaiKhoan(LoginActivity.taiKhoan.getMATK(), Integer.parseInt(edtSdt.getText().toString().trim()),
                            edtEmail.getText().toString(), edtDiachi.getText().toString());
                     Toast.makeText(InforUserActivity.this, "Cập nhật thành công !", Toast.LENGTH_SHORT).show();
                     onBackPressed();

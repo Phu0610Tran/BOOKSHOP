@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.bookshop.DTO.CTHoaDon;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.CTHoaDon;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -79,9 +79,9 @@ public class CTHoaDonAdapter extends BaseAdapter {
         holder.txtthanhtien.setText("Thành tiền : " + String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cthoaDon.getTHANHTIEN())) + " VNĐ");
         id = cthoaDon.getIDCTHOADON();
 
-        SanPhamDTO sanPhamDTO = TrangChuFragment.database.SANPHAM(cthoaDon.getIDSANPHAM());
+        SanPham sanPham = TrangChuFragment.database.SANPHAM(cthoaDon.getIDSANPHAM());
         // chuyen byte[] -> ve bitmap
-        byte[] hinhAnh = sanPhamDTO.getImageSP();
+        byte[] hinhAnh = sanPham.getImageSP();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
         holder.img_HinhAnh.setImageBitmap(bitmap);
 

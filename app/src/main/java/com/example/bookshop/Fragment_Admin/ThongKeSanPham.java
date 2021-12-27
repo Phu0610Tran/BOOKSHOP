@@ -20,13 +20,11 @@ import android.widget.Toast;
 
 import com.example.bookshop.ActivityAdmin.QL_SuaSanPham;
 import com.example.bookshop.Adapter.SanPhamAdminAdapter;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class ThongKeSanPham extends Fragment {
@@ -34,7 +32,7 @@ public class ThongKeSanPham extends Fragment {
     private View view;
     GridView gridView_SanPham;
     TextView soluongtonkho;
-    ArrayList<SanPhamDTO> sanPhamDTOArrayList;
+    ArrayList<SanPham> sanPhamArrayList;
     SanPhamAdminAdapter adapter;
     public ThongKeSanPham() {
     }
@@ -52,8 +50,8 @@ public class ThongKeSanPham extends Fragment {
         view = inflater.inflate(R.layout.fragment_blank, container, false);
         soluongtonkho = view.findViewById(R.id.soluongtonkho);
         gridView_SanPham = (GridView) view.findViewById(R.id.gridviewQLSanPham);
-        sanPhamDTOArrayList = new ArrayList<>();
-        adapter = new SanPhamAdminAdapter(ThongKeSanPham.this, R.layout.product_sanpham_admin, sanPhamDTOArrayList);
+        sanPhamArrayList = new ArrayList<>();
+        adapter = new SanPhamAdminAdapter(ThongKeSanPham.this, R.layout.product_sanpham_admin, sanPhamArrayList);
         gridView_SanPham.setAdapter(adapter);
         gridView_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,10 +82,10 @@ public class ThongKeSanPham extends Fragment {
 
 
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM WHERE SOLUONG < 50 ");
-        sanPhamDTOArrayList.clear();
+        sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
-            sanPhamDTOArrayList.add(new SanPhamDTO(
+            sanPhamArrayList.add(new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
@@ -113,9 +111,9 @@ public class ThongKeSanPham extends Fragment {
         switch (item.getItemId())
         {
             case R.id.menu_delete_item:
-                SanPhamDTO sanPhamDTO = SanPhamAdminAdapter.sanPhamDTOList.get(info.position);
+                SanPham sanPham = SanPhamAdminAdapter.sanPhamList.get(info.position);
                 TrangChuFragment.database.DELETE_SANPHAM(
-                        sanPhamDTO.getMaSP()
+                        sanPham.getMaSP()
                 );
 
                 Toast.makeText(getActivity(),"Xóa thành công",Toast.LENGTH_LONG).show();

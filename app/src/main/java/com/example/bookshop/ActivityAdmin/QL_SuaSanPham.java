@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.bookshop.Adapter.SanPhamAdminAdapter;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -38,7 +38,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
     ImageView imgHinh,quaylai_QLSP;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
-    SanPhamDTO sanPhamDTO;
+    SanPham sanPham;
     int id,MASP;
 
     @Override
@@ -114,14 +114,14 @@ public class QL_SuaSanPham extends AppCompatActivity {
     }
 
     private void Getdata() {
-        sanPhamDTO = SanPhamAdminAdapter.sanPhamDTOList.get(id);
-        MASP = sanPhamDTO.getMaSP();
-        editTen.setText(sanPhamDTO.getTenSP());
-        edt_GiaSP.setText(String.valueOf(sanPhamDTO.getGiaSP()));
-        edtDanhMuc.setText(String.valueOf(sanPhamDTO.getIDDANHMUC()));
-        edtSoLuong.setText(String.valueOf(sanPhamDTO.getSl_SP()));
-        edtSPmoi.setText(String.valueOf(sanPhamDTO.getSPNEW()));
-        byte[] hinhAnh = sanPhamDTO.getImageSP();
+        sanPham = SanPhamAdminAdapter.sanPhamList.get(id);
+        MASP = sanPham.getMaSP();
+        editTen.setText(sanPham.getTenSP());
+        edt_GiaSP.setText(String.valueOf(sanPham.getGiaSP()));
+        edtDanhMuc.setText(String.valueOf(sanPham.getIDDANHMUC()));
+        edtSoLuong.setText(String.valueOf(sanPham.getSl_SP()));
+        edtSPmoi.setText(String.valueOf(sanPham.getSPNEW()));
+        byte[] hinhAnh = sanPham.getImageSP();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
         imgHinh.setImageBitmap(bitmap);
     }

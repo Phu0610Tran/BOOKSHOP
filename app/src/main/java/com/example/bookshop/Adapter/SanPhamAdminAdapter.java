@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Data.CreateDatabase;
 import com.example.bookshop.R;
 
@@ -26,7 +26,7 @@ public class SanPhamAdminAdapter extends BaseAdapter {
 
     private Fragment context;
     private int layout;
-    public static List<SanPhamDTO> sanPhamDTOList;
+    public static List<SanPham> sanPhamList;
     int id;
 
     public SanPhamAdminAdapter(Context context){
@@ -34,16 +34,16 @@ public class SanPhamAdminAdapter extends BaseAdapter {
         database = createDatabase.open();
     }
 
-    public SanPhamAdminAdapter(Fragment context, int layout, List<SanPhamDTO> sanPhamDTOList) {
+    public SanPhamAdminAdapter(Fragment context, int layout, List<SanPham> sanPhamList) {
         this.context = context;
         this.layout = layout;
-        this.sanPhamDTOList = sanPhamDTOList;
+        this.sanPhamList = sanPhamList;
     }
 
 
     @Override
     public int getCount() {
-        return sanPhamDTOList.size();
+        return sanPhamList.size();
     }
 
     @Override
@@ -83,17 +83,17 @@ public class SanPhamAdminAdapter extends BaseAdapter {
             holder = (SanPhamAdminAdapter.ViewHolder) view.getTag();
         }
 
-        SanPhamDTO sanPhamDTO = sanPhamDTOList.get(i);
-        String gia = String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPhamDTO.getGiaSP())) + " VNĐ";
-        holder.txt_TenSP.setText(sanPhamDTO.getTenSP());
+        SanPham sanPham = sanPhamList.get(i);
+        String gia = String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPham.getGiaSP())) + " VNĐ";
+        holder.txt_TenSP.setText(sanPham.getTenSP());
         holder.txt_GiaSP.setText("Giá : "+ gia);
-        holder.txt_SoLuong.setText("Số Lượng : " + String.valueOf(sanPhamDTO.getSl_SP()));
-        holder.txt_DanhMuc.setText("Danh Mục : " +String.valueOf(sanPhamDTO.getIDDANHMUC()));
-        holder.txt_SPnew.setText("Trạng Thái : " +String.valueOf(sanPhamDTO.getSPNEW()));
-        id = sanPhamDTO.getMaSP();
+        holder.txt_SoLuong.setText("Số Lượng : " + String.valueOf(sanPham.getSl_SP()));
+        holder.txt_DanhMuc.setText("Danh Mục : " +String.valueOf(sanPham.getIDDANHMUC()));
+        holder.txt_SPnew.setText("Trạng Thái : " +String.valueOf(sanPham.getSPNEW()));
+        id = sanPham.getMaSP();
 
         // chuyen byte[] -> ve bitmap
-        byte[] hinhAnh = sanPhamDTO.getImageSP();
+        byte[] hinhAnh = sanPham.getImageSP();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
         holder.img_HinhAnh.setImageBitmap(bitmap);
 

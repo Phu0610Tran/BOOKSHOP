@@ -21,8 +21,8 @@ import android.widget.Toast;
 import com.example.bookshop.ActivityAdmin.QL_SuaSanPham;
 import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.SanPhamAdminAdapter;
-import com.example.bookshop.DTO.Category;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.Category;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -34,7 +34,7 @@ public class QLSanphamFragment extends Fragment {
     ArrayList<Category> listCategory;
     Spinner spnTheloai;
     GridView gridView_SanPham;
-    ArrayList<SanPhamDTO> sanPhamDTOArrayList;
+    ArrayList<SanPham> sanPhamArrayList;
     SanPhamAdminAdapter adapter;
     CategoryAdapter categoryAdapter;
     int Danhmuc;
@@ -72,8 +72,8 @@ public class QLSanphamFragment extends Fragment {
         });
 
 
-        sanPhamDTOArrayList = new ArrayList<>();
-        adapter = new SanPhamAdminAdapter(QLSanphamFragment.this, R.layout.product_sanpham_admin, sanPhamDTOArrayList);
+        sanPhamArrayList = new ArrayList<>();
+        adapter = new SanPhamAdminAdapter(QLSanphamFragment.this, R.layout.product_sanpham_admin, sanPhamArrayList);
         gridView_SanPham.setAdapter(adapter);
         gridView_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -112,10 +112,10 @@ public class QLSanphamFragment extends Fragment {
         }
 
         Cursor cursor = TrangChuFragment.database.Getdata(sql);
-        sanPhamDTOArrayList.clear();
+        sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
-            sanPhamDTOArrayList.add(new SanPhamDTO(
+            sanPhamArrayList.add(new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
@@ -141,9 +141,9 @@ public class QLSanphamFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.menu_delete_item:
-                SanPhamDTO sanPhamDTO = SanPhamAdminAdapter.sanPhamDTOList.get(info.position);
+                SanPham sanPham = SanPhamAdminAdapter.sanPhamList.get(info.position);
                 TrangChuFragment.database.DELETE_SANPHAM(
-                        sanPhamDTO.getMaSP()
+                        sanPham.getMaSP()
                 );
 
                 Toast.makeText(getActivity(),"Xóa thành công",Toast.LENGTH_LONG).show();

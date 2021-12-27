@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,8 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bookshop.ActivityAdmin.HomeAdmin;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.Fragment.GioHangFragment;
 import com.example.bookshop.Fragment.CFragment;
 import com.example.bookshop.Fragment.GopYFragment;
@@ -107,9 +104,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void demSL() {
-        if(LoginActivity.taiKhoanDTO.getMATK() != -1){
+        if(LoginActivity.taiKhoan.getMATK() != -1){
             Cursor cursor = TrangChuFragment.database.Getdata("SELECT SUM ( SOLUONG ) FROM GIOHANG WHERE IDTK = "
-                    + LoginActivity.taiKhoanDTO.getMATK());
+                    + LoginActivity.taiKhoan.getMATK());
             cursor.moveToNext();
             count_giohang.setText(String.valueOf(cursor.getInt(0)));
         }
@@ -119,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         Menu menu = navigationView.getMenu();
-        if(LoginActivity.taiKhoanDTO.getMATK() == -1){
+        if(LoginActivity.taiKhoan.getMATK() == -1){
             menu.findItem(R.id.nav_logout).setVisible(false);
         }else {
             menu.findItem(R.id.nav_login).setVisible(false);
@@ -133,10 +130,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         txt_TenTaiKhoan = view.findViewById(R.id.txtTennguoidung);
         img_user_home = view.findViewById(R.id.img_user_home);
 
-        txt_TenTaiKhoan.setText(LoginActivity.taiKhoanDTO.getTENTK());
+        txt_TenTaiKhoan.setText(LoginActivity.taiKhoan.getTENTK());
 
-        if (LoginActivity.taiKhoanDTO.getHINHANH() != null){
-            byte[] hinhAnh = LoginActivity.taiKhoanDTO.getHINHANH();
+        if (LoginActivity.taiKhoan.getHINHANH() != null){
+            byte[] hinhAnh = LoginActivity.taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_home.setImageBitmap(bitmap);
 //            Toast.makeText(HomeActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
@@ -190,7 +187,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }else if (id == R.id.nav_logout) {
             Intent intent = new Intent(this, HomeActivity.class);
-            LoginActivity.taiKhoanDTO = new TaiKhoanDTO();
+            LoginActivity.taiKhoan = new TaiKhoan();
             startActivity(intent);
         }else if (id == R.id.nav_home) {
             if (FRAGMENT_HOME != currentFragment) {
@@ -234,7 +231,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 currentFragment = FRAGMENT_PYTHON;
             }
         }else if (id == R.id.nav_profile) {
-            if(LoginActivity.taiKhoanDTO.getMATK() != -1)
+            if(LoginActivity.taiKhoan.getMATK() != -1)
             {
                 if (FRAGMENT_NGUOIDUNG != currentFragment) {
                     replaceFragment(new UserFragment());

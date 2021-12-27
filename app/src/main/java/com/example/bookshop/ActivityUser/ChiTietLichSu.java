@@ -9,12 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bookshop.Adapter.CTHoaDonAdapter;
 import com.example.bookshop.Adapter.HoaDonAdapter;
-import com.example.bookshop.DTO.CTHoaDon;
-import com.example.bookshop.DTO.HoaDon;
+import com.example.bookshop.Models.CTHoaDon;
+import com.example.bookshop.Models.HoaDon;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;

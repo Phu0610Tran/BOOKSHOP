@@ -15,16 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bookshop.ActivityAdmin.QL_SuaTaiKhoan;
-import com.example.bookshop.Adapter.CategoryAdapter;
-import com.example.bookshop.Adapter.SanPhamAdminAdapter;
 import com.example.bookshop.Adapter.TaiKhoanAdminAdapter;
-import com.example.bookshop.DTO.Category;
-import com.example.bookshop.DTO.SanPhamDTO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -38,7 +33,7 @@ public class QLTaikhoanFragment extends Fragment {
 
     GridView gridviewQLTaiKhoan;
 
-    ArrayList<TaiKhoanDTO> taiKhoanDTOArrayList;
+    ArrayList<TaiKhoan> taiKhoanArrayList;
     TaiKhoanAdminAdapter adapter;
 
     public QLTaikhoanFragment() {
@@ -59,11 +54,11 @@ public class QLTaikhoanFragment extends Fragment {
                              Bundle savedInstanceState) {
        view = inflater.inflate(R.layout.fragment_q_l_taikhoan, container, false);
         gridviewQLTaiKhoan = (GridView) view.findViewById(R.id.gridviewQLTaiKhoan);
-        taiKhoanDTOArrayList = new ArrayList<>();
+        taiKhoanArrayList = new ArrayList<>();
 
 
 
-        adapter = new TaiKhoanAdminAdapter(QLTaikhoanFragment.this, R.layout.taikhoan_admin, taiKhoanDTOArrayList);
+        adapter = new TaiKhoanAdminAdapter(QLTaikhoanFragment.this, R.layout.taikhoan_admin, taiKhoanArrayList);
         gridviewQLTaiKhoan.setAdapter(adapter);
         gridviewQLTaiKhoan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -89,10 +84,10 @@ public class QLTaikhoanFragment extends Fragment {
 
     private void GetData() {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM TAIKHOAN ");
-        taiKhoanDTOArrayList.clear();
+        taiKhoanArrayList.clear();
         while (cursor.moveToNext())
         {
-            taiKhoanDTOArrayList.add(new TaiKhoanDTO(
+            taiKhoanArrayList.add(new TaiKhoan(
                     cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
@@ -120,9 +115,9 @@ public class QLTaikhoanFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.menu_delete_item:
-                TaiKhoanDTO taiKhoanDTO = TaiKhoanAdminAdapter.taiKhoanDTOList.get(info.position);
+                TaiKhoan taiKhoan = TaiKhoanAdminAdapter.taiKhoanList.get(info.position);
                 TrangChuFragment.database.DELETE_TAIKHOAN(
-                        taiKhoanDTO.getMATK()
+                        taiKhoan.getMATK()
                 );
 
                 Toast.makeText(getActivity(),"Xóa thành công",Toast.LENGTH_LONG).show();

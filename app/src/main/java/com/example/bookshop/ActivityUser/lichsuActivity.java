@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.bookshop.Adapter.HoaDonAdapter;
-import com.example.bookshop.DTO.HoaDon;
+import com.example.bookshop.Models.HoaDon;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
@@ -78,12 +78,12 @@ public class lichsuActivity extends AppCompatActivity {
     private void GetData() {
         //get data
         Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON WHERE IDTAIKHOAN = "
-                + LoginActivity.taiKhoanDTO.getMATK());
+                + LoginActivity.taiKhoan.getMATK());
         cursor1.moveToNext();
         tongtien_HD.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"));
 
 
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + LoginActivity.taiKhoanDTO.getMATK());
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + LoginActivity.taiKhoan.getMATK());
         hoaDonArrayList.clear();
         while (cursor.moveToNext())
         {
@@ -99,7 +99,7 @@ public class lichsuActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
 
-        if (LoginActivity.taiKhoanDTO.getMATK() == -1)
+        if (LoginActivity.taiKhoan.getMATK() == -1)
         {
             txtthongbao.setText(" Bạn hãy đăng nhập để có thể xem hóa đơn !");
         }else if (hoaDonArrayList.isEmpty()){

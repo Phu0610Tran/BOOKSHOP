@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.bookshop.DTO.BinhLuan;
+import com.example.bookshop.Models.BinhLuan;
 import com.example.bookshop.R;
 
 import java.util.ArrayList;

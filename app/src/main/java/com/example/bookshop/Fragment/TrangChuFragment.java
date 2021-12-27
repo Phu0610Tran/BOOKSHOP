@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshop.Adapter.SanPhamAdapter;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.ActivityUser.Products_information_activity;
 import com.example.bookshop.R;
@@ -33,7 +33,7 @@ public class TrangChuFragment extends Fragment {
     public static Database database;
     GridView gridView_SanPham;
     RecyclerView recyclerView;
-    ArrayList<SanPhamDTO> sanPhamDTOArrayList;
+    ArrayList<SanPham> sanPhamArrayList;
     SanPhamAdapter adapter;
 
 
@@ -55,8 +55,8 @@ public class TrangChuFragment extends Fragment {
         Anhxa();
         ActionViewFlipper();
         gridView_SanPham = (GridView) view.findViewById(R.id.gridviewSanPham);
-        sanPhamDTOArrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(TrangChuFragment.this, R.layout.productnew_layout, sanPhamDTOArrayList);
+        sanPhamArrayList = new ArrayList<>();
+        adapter = new SanPhamAdapter(TrangChuFragment.this, R.layout.productnew_layout, sanPhamArrayList);
         gridView_SanPham.setAdapter(adapter);
         gridView_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -75,7 +75,7 @@ public class TrangChuFragment extends Fragment {
 
 
 //        Cursor cursor = TrangChuFragment.database.Getdata("SELECT SUM ( SOLUONG ) FROM GIOHANG WHERE IDTK = "
-//                + LoginActivity.taiKhoanDTO.getMATK());
+//                + LoginActivity.taiKhoan.getMATK());
 //        cursor.moveToNext();
 //        int tong = cursor.getInt(0);
 //        txt_count_giohang.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(tong) + " VNĐ"));
@@ -120,15 +120,16 @@ public class TrangChuFragment extends Fragment {
     private void GetData() {
         //get data
         Cursor cursor = database.Getdata("SELECT * FROM SANPHAM WHERE SPNEW = 1");
-        sanPhamDTOArrayList.clear();
+        sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
-            sanPhamDTOArrayList.add(new SanPhamDTO(
+            sanPhamArrayList.add(new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getString(5)
             ));
         }
         adapter.notifyDataSetChanged();

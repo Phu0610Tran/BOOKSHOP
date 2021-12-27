@@ -22,8 +22,8 @@ import android.widget.Toast;
 import com.example.bookshop.Adapter.BinhLuanAdapter;
 import com.example.bookshop.Adapter.SanPhamAdapter;
 import com.example.bookshop.Adapter.TimKiemAdapter;
-import com.example.bookshop.DTO.BinhLuan;
-import com.example.bookshop.DTO.SanPhamDTO;
+import com.example.bookshop.Models.BinhLuan;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -36,9 +36,9 @@ import java.util.Locale;
 
 public class Products_information_activity extends AppCompatActivity {
 
-    SanPhamDTO sanPhamDTO;
-    TextView name,price,content;
-    ImageView imgHinh;
+    SanPham sanPham;
+    TextView name,price,content,noidung_ctsp;
+    ImageView imgHinh,img_hethang;
     EditText editTextSL;
     Button btnaddcart,btn_GuiBl;
     ImageButton btn_quaylai;
@@ -52,13 +52,13 @@ public class Products_information_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         if(idtk==2){
-            sanPhamDTO = SanPhamAdapter.sanPhamDTOList.get(id);
+            sanPham = SanPhamAdapter.sanPhamList.get(id);
         }else
         {
-            sanPhamDTO = TimKiemAdapter.sanPhamDTOList.get(idtk);
+            sanPham = TimKiemAdapter.sanPhamList.get(idtk);
         }
 
-        listBL = TrangChuFragment.database.LayBinhLuan(sanPhamDTO.getMaSP());
+        listBL = TrangChuFragment.database.LayBinhLuan(sanPham.getMaSP());
 
         binhLuanAdapter = new BinhLuanAdapter(listBL);
         recV_chatbox.setAdapter(binhLuanAdapter);
@@ -98,32 +98,35 @@ public class Products_information_activity extends AppCompatActivity {
                 int SL = Integer.parseInt(editTextSL.getText().toString());
 
                 if(idtk==2){
-                    sanPhamDTO = SanPhamAdapter.sanPhamDTOList.get(id);
+                    sanPham = SanPhamAdapter.sanPhamList.get(id);
                 }else
                 {
-                    sanPhamDTO = TimKiemAdapter.sanPhamDTOList.get(idtk);
+                    sanPham = TimKiemAdapter.sanPhamList.get(idtk);
                 }
 
 
-                if(LoginActivity.taiKhoanDTO.getMATK() == -1)
+                if(LoginActivity.taiKhoan.getMATK() == -1)
                 {
                     Toast.makeText(Products_information_activity.this, "Bạn phải đăng nhập để mua hàng !", Toast.LENGTH_SHORT).show();
-                }else if( SL > sanPhamDTO.getSl_SP() ){
-                    Toast.makeText(Products_information_activity.this, "Hàng trong kho chỉ còn : " + (sanPhamDTO.getSl_SP()- 1) + " sản phẩm ", Toast.LENGTH_SHORT).show();
+                }else if(  sanPham.getSl_SP() == 1 ){
+                    Toast.makeText(Products_information_activity.this, " Sản phẩm hiện đã hết hàng !  " , Toast.LENGTH_SHORT).show();
+
+                }else if( SL > (sanPham.getSl_SP() - 1) ){
+                    Toast.makeText(Products_information_activity.this, "Hàng trong kho chỉ còn : " + (sanPham.getSl_SP()- 1) + " sản phẩm ", Toast.LENGTH_SHORT).show();
 
                 }else if(  SL == 0 ){
-                    Toast.makeText(Products_information_activity.this, " Số lượng không hợp lệ  " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Products_information_activity.this, " Số lượng không hợp lệ !  " , Toast.LENGTH_SHORT).show();
 
                 }
                 else
                 {
                     TrangChuFragment.database.SPGH(
-                            LoginActivity.taiKhoanDTO.getMATK(),
+                            LoginActivity.taiKhoan.getMATK(),
                             hinhAnh,
-                            sanPhamDTO.getMaSP(),
-                            sanPhamDTO.getTenSP(),
+                            sanPham.getMaSP(),
+                            sanPham.getTenSP(),
                             SL,
-                            SL * sanPhamDTO.getGiaSP()
+                            SL * sanPham.getGiaSP()
                     );
                     Toast.makeText(getApplicationContext()," Đã thêm vào giỏ hàng !",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Products_information_activity.this, HomeActivity.class);
@@ -146,21 +149,21 @@ public class Products_information_activity extends AppCompatActivity {
         btn_GuiBl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LoginActivity.taiKhoanDTO.getMATK() == -1) {
+                if (LoginActivity.taiKhoan.getMATK() == -1) {
                     Toast.makeText(Products_information_activity.this, "Bạn chưa đăng nhập !", Toast.LENGTH_LONG).show();
                 } else {
                     if (edt_noidungbl_sanpham.getText().length() > 0); {
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
                         String currentDateandTime = sdf.format(new Date());
                         if(idtk==2){
-                            sanPhamDTO = SanPhamAdapter.sanPhamDTOList.get(id);
+                            sanPham = SanPhamAdapter.sanPhamList.get(id);
                         }else
                         {
-                            sanPhamDTO = TimKiemAdapter.sanPhamDTOList.get(idtk);
+                            sanPham = TimKiemAdapter.sanPhamList.get(idtk);
                         }
-                        TrangChuFragment.database.ThemBL(LoginActivity.taiKhoanDTO.getMATK(),sanPhamDTO.getMaSP(),edt_noidungbl_sanpham.getText().toString(),currentDateandTime);
+                        TrangChuFragment.database.ThemBL(LoginActivity.taiKhoan.getMATK(), sanPham.getMaSP(),edt_noidungbl_sanpham.getText().toString(),currentDateandTime);
                         listBL.add(0, new BinhLuan(
-                                LoginActivity.taiKhoanDTO.getMATK(),LoginActivity.taiKhoanDTO.getHINHANH(),
+                                LoginActivity.taiKhoan.getMATK(),LoginActivity.taiKhoan.getHINHANH(),
                                 edt_noidungbl_sanpham.getText().toString(),currentDateandTime
                         ));
                         Log.e("Tag",String.valueOf(listBL.size()));
@@ -174,12 +177,13 @@ public class Products_information_activity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        img_hethang = findViewById(R.id.img_hethang);
+        noidung_ctsp = findViewById(R.id.noidung_ctsp);
         btn_GuiBl = (Button) findViewById(R.id.btn_GuiBl);
         scrollV =(NestedScrollView) findViewById(R.id.scrollV);
         edt_noidungbl_sanpham = findViewById(R.id.edt_noidungbl_sanpham);
         name = (TextView) findViewById(R.id.product_name_CT);
-        price = (TextView) findViewById(R.id.product_content_CT);
-        content = (TextView) findViewById(R.id.product_price_CT);
+        price = (TextView) findViewById(R.id.product_price_CT);
         imgHinh = (ImageView) findViewById(R.id.product_image_CT);
         btnaddcart= (Button) findViewById(R.id.btnadd_addtocart_CT);
         editTextSL = (EditText) findViewById(R.id.product_SL_CT);
@@ -190,17 +194,21 @@ public class Products_information_activity extends AppCompatActivity {
     private void GetDataSP() {
         //get data
         if(idtk==2){
-            sanPhamDTO = SanPhamAdapter.sanPhamDTOList.get(id);
+            sanPham = SanPhamAdapter.sanPhamList.get(id);
         }else
         {
-            sanPhamDTO = TimKiemAdapter.sanPhamDTOList.get(idtk);
+            sanPham = TimKiemAdapter.sanPhamList.get(idtk);
         }
-        String ten = sanPhamDTO.getTenSP();
-        String mota = sanPhamDTO.getMotaSP();
+        if(sanPham.getSl_SP() == 1){
+            img_hethang.setImageResource(R.drawable.hethang);
+        }
+        String ten = sanPham.getTenSP();
+//        String mota = sanPham.getMotaSP();
         name.setText(ten);
-        content.setText(mota);
-        price.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPhamDTO.getGiaSP()) + " VNĐ"));
-        byte[] hinhAnh = sanPhamDTO.getImageSP();
+//        content.setText(mota);
+        noidung_ctsp.setText(sanPham.getMotaSP());
+        price.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPham.getGiaSP()) + " VNĐ"));
+        byte[] hinhAnh = sanPham.getImageSP();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
         imgHinh.setImageBitmap(bitmap);
 

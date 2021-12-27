@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.bookshop.DTO.GioHang;
+import com.example.bookshop.Models.GioHang;
 import com.example.bookshop.R;
 
 import java.text.NumberFormat;

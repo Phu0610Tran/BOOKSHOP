@@ -10,10 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.bookshop.DTO.SanPhamDTO;
-import com.example.bookshop.Data.CreateDatabase;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.R;
 
 import java.text.NumberFormat;
@@ -24,20 +21,20 @@ public class TimKiemAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    public static List<SanPhamDTO> sanPhamDTOList;
+    public static List<SanPham> sanPhamList;
     int id;
 
 
-    public TimKiemAdapter(Context context, int layout, List<SanPhamDTO> sanPhamDTOList) {
+    public TimKiemAdapter(Context context, int layout, List<SanPham> sanPhamList) {
         this.context = context;
         this.layout = layout;
-        this.sanPhamDTOList = sanPhamDTOList;
+        this.sanPhamList = sanPhamList;
     }
 
 
     @Override
     public int getCount() {
-        return sanPhamDTOList.size();
+        return sanPhamList.size();
     }
 
     @Override
@@ -75,15 +72,15 @@ public class TimKiemAdapter extends BaseAdapter {
             holder = (TimKiemAdapter.ViewHolder) view.getTag();
         }
 
-        SanPhamDTO sanPhamDTO = sanPhamDTOList.get(i);
-        String gia = String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPhamDTO.getGiaSP())) + " VNĐ";
-        holder.txt_TenSP.setText(sanPhamDTO.getTenSP());
+        SanPham sanPham = sanPhamList.get(i);
+        String gia = String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(sanPham.getGiaSP())) + " VNĐ";
+        holder.txt_TenSP.setText(sanPham.getTenSP());
         holder.txt_GiaSP.setText(gia);
-        holder.txtSL.setText("Sản Phẩm : " + String.valueOf(sanPhamDTO.getSl_SP()));
-        id = sanPhamDTO.getMaSP();
+        holder.txtSL.setText("Sản Phẩm : " + String.valueOf(sanPham.getSl_SP()));
+        id = sanPham.getMaSP();
 
         // chuyen byte[] -> ve bitmap
-        byte[] hinhAnh = sanPhamDTO.getImageSP();
+        byte[] hinhAnh = sanPham.getImageSP();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
         holder.img_HinhAnh.setImageBitmap(bitmap);
 

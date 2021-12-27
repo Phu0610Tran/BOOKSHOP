@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.bookshop.DTO.Category;
+import com.example.bookshop.Models.Category;
 import com.example.bookshop.R;
 
 import java.util.List;

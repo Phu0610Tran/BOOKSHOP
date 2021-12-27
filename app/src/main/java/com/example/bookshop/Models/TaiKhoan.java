@@ -1,8 +1,6 @@
-package com.example.bookshop.DTO;
+package com.example.bookshop.Models;
 
-import java.sql.Blob;
-
-public class TaiKhoanDTO {
+public class TaiKhoan {
     int MATK;
     String TENTK;
     String MATKHAU;
@@ -21,7 +19,7 @@ public class TaiKhoanDTO {
         this.HINHANH = HINHANH;
     }
 
-    public TaiKhoanDTO(int MATK, String TENTK, String MATKHAU, int SDT, String EMAIL, String NGAYSINH, int MAQUYEN, String DIACHI, byte[] HINHANH) {
+    public TaiKhoan(int MATK, String TENTK, String MATKHAU, int SDT, String EMAIL, String NGAYSINH, int MAQUYEN, String DIACHI, byte[] HINHANH) {
         this.MATK = MATK;
         this.TENTK = TENTK;
         this.MATKHAU = MATKHAU;
@@ -33,11 +31,11 @@ public class TaiKhoanDTO {
         this.HINHANH = HINHANH;
     }
 
-    public TaiKhoanDTO() {
+    public TaiKhoan() {
         MATK=-1;
     }
 
-//    public TaiKhoanDTO(int MATK, String TENTK, String MATKHAU, int SDT, String EMAIL, String NGAYSINH, int MAQUYEN, String DIACHI) {
+//    public TaiKhoan(int MATK, String TENTK, String MATKHAU, int SDT, String EMAIL, String NGAYSINH, int MAQUYEN, String DIACHI) {
 //        this.MATK = MATK;
 //        this.TENTK = TENTK;
 //        this.MATKHAU = MATKHAU;

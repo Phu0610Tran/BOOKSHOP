@@ -2,33 +2,23 @@ package com.example.bookshop.ActivityUser;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.bookshop.Adapter.SanPhamAdapter;
 import com.example.bookshop.Adapter.TimKiemAdapter;
-import com.example.bookshop.DTO.SanPhamDTO;
-import com.example.bookshop.Fragment.PythonFragment;
+import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -40,7 +30,7 @@ public class TimKiem extends AppCompatActivity {
     EditText edt_tk;
     ListView listview_tk;
     ImageButton img_search_Tk,img_voice_Tk;
-    ArrayList<SanPhamDTO> sanPhamDTOArrayList;
+    ArrayList<SanPham> sanPhamArrayList;
     TimKiemAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +39,8 @@ public class TimKiem extends AppCompatActivity {
 
         Anhxa();
         listview_tk = findViewById(R.id.listview_tk);
-        sanPhamDTOArrayList = new ArrayList<>();
-        adapter = new TimKiemAdapter(TimKiem.this, R.layout.timkiem, sanPhamDTOArrayList);
+        sanPhamArrayList = new ArrayList<>();
+        adapter = new TimKiemAdapter(TimKiem.this, R.layout.timkiem, sanPhamArrayList);
         listview_tk.setAdapter(adapter);
         listview_tk.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,15 +110,16 @@ public class TimKiem extends AppCompatActivity {
     private void GetData(String ten) {
         //get data
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM WHERE TENSANPHAM LIKE '%" + ten +"%'" );
-        sanPhamDTOArrayList.clear();
+        sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
-            sanPhamDTOArrayList.add(new SanPhamDTO(
+            sanPhamArrayList.add(new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getString(5)
             ));
         }
         adapter.notifyDataSetChanged();
@@ -136,15 +127,16 @@ public class TimKiem extends AppCompatActivity {
     private void GetDataALL() {
         //get data
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM ");
-        sanPhamDTOArrayList.clear();
+        sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
-            sanPhamDTOArrayList.add(new SanPhamDTO(
+            sanPhamArrayList.add(new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getString(5)
             ));
         }
         adapter.notifyDataSetChanged();

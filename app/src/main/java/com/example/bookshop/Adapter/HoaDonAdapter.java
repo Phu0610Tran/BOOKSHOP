@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.bookshop.DTO.HoaDon;
+import com.example.bookshop.Models.HoaDon;
 import com.example.bookshop.R;
 
 import java.text.NumberFormat;

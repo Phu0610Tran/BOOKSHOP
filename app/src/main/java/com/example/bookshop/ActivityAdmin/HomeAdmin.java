@@ -58,7 +58,7 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
     @Override
     protected void onStart() {
         Menu menu = navigationView.getMenu();
-        if(LoginActivity.taiKhoanDTO.getMATK() == -1){
+        if(LoginActivity.taiKhoan.getMATK() == -1){
             menu.findItem(R.id.nav_logout).setVisible(false);
         }else {
             menu.findItem(R.id.nav_login).setVisible(false);
@@ -73,7 +73,7 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
         txt_TenTaiKhoan = view.findViewById(R.id.txtTennguoidung);
 
         Intent intent = getIntent();
-        txt_TenTaiKhoan.setText(LoginActivity.taiKhoanDTO.getTENTK());
+        txt_TenTaiKhoan.setText(LoginActivity.taiKhoan.getTENTK());
     }
 
     private void AnhXa() {

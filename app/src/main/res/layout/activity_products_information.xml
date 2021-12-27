@@ -44,18 +44,32 @@
 
             <LinearLayout
                 android:background="#9DDCE4"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
 
                 android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/product_image_CT"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/logo"/>
+                    <ImageView
+                        android:scaleType="fitXY"
+                        android:id="@+id/img_hethang"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:background="@null"/>
 
-                <ImageView
-                    android:id="@+id/product_image_CT"
-                    android:layout_width="150dp"
-                    android:layout_height="250dp"
-                    android:layout_gravity="left"
-                    android:src="@drawable/logo"/>
+                </FrameLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,14 +97,6 @@
 
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/product_content_CT"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Product Contents"
-                        android:textSize="14sp" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -126,6 +132,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin sản phẩm"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/noidung_ctsp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin sản phẩm"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="20dp"
                     android:id="@+id/layoutBinhLuan_playvideo"

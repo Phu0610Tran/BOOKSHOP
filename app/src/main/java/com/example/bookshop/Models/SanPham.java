@@ -1,6 +1,6 @@
-package com.example.bookshop.DTO;
+package com.example.bookshop.Models;
 
-public class SanPhamDTO {
+public class SanPham {
 
     int MaSP;
     byte[] ImageSP;
@@ -27,7 +27,7 @@ public class SanPhamDTO {
         this.SPNEW = SPNEW;
     }
 
-    public SanPhamDTO(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP, int IDDANHMUC, int SPNEW) {
+    public SanPham(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP, int IDDANHMUC, int SPNEW) {
         MaSP = maSP;
         ImageSP = imageSP;
         TenSP = tenSP;
@@ -36,12 +36,13 @@ public class SanPhamDTO {
         this.IDDANHMUC = IDDANHMUC;
         this.SPNEW = SPNEW;
     }
-    public SanPhamDTO(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP) {
+    public SanPham(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP,String motaSP) {
         MaSP = maSP;
         ImageSP = imageSP;
         TenSP = tenSP;
         GiaSP = giaSP;
         Sl_SP = sl_SP;
+        this.MotaSP = motaSP;
     }
 
     public int getMaSP() {

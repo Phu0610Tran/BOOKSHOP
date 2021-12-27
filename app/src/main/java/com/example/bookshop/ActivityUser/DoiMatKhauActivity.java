@@ -35,9 +35,9 @@ public class DoiMatKhauActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(edtMatkhaucu.getText().length() !=0 && edtMatkhaumoi.getText().length() != 0 && edtNhaplaimatkhaumoi.getText().length() != 0){
-                    if(TrangChuFragment.database.isMatKhau(LoginActivity.taiKhoanDTO.getMATK(), edtMatkhaucu.getText().toString())){
+                    if(TrangChuFragment.database.isMatKhau(LoginActivity.taiKhoan.getMATK(), edtMatkhaucu.getText().toString())){
                         if(edtMatkhaumoi.getText().toString().equals(edtNhaplaimatkhaumoi.getText().toString())){
-                            TrangChuFragment.database.CapNhatMatKhau(LoginActivity.taiKhoanDTO.getMATK(), edtMatkhaumoi.getText().toString());
+                            TrangChuFragment.database.CapNhatMatKhau(LoginActivity.taiKhoan.getMATK(), edtMatkhaumoi.getText().toString());
                             Toast.makeText(DoiMatKhauActivity.this,"Đổi mật khẩu thành công !",Toast.LENGTH_LONG).show();
                             onBackPressed();
                         } else {

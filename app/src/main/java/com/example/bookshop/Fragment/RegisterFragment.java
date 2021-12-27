@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookshop.Data.TaiKhoanDAO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.R;
 
@@ -78,14 +78,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
                 } else if (sMatKhau == null || sMatKhau.equals("")) {
                     Toast.makeText(getActivity(), "Vui lòng nhập mật khẩu !", Toast.LENGTH_SHORT).show();
                 } else {
-                    TaiKhoanDTO taiKhoanDTO = new TaiKhoanDTO();
-                    taiKhoanDTO.setTENTK(sTaiKhoan);
-                    taiKhoanDTO.setMATKHAU(sMatKhau);
-                    taiKhoanDTO.setNGAYSINH(sNgaySinh);
-                    taiKhoanDTO.setSDT(sSDT);
-                    taiKhoanDTO.setEMAIL(sEmail);
+                    TaiKhoan taiKhoan = new TaiKhoan();
+                    taiKhoan.setTENTK(sTaiKhoan);
+                    taiKhoan.setMATKHAU(sMatKhau);
+                    taiKhoan.setNGAYSINH(sNgaySinh);
+                    taiKhoan.setSDT(sSDT);
+                    taiKhoan.setEMAIL(sEmail);
 
-                    long kiemtra = taiKhoanDAO.ThemTaiKhoan(taiKhoanDTO);
+                    long kiemtra = taiKhoanDAO.ThemTaiKhoan(taiKhoan);
                     if (kiemtra != 0){
                         Toast.makeText(getActivity(), "Thêm thành công !", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getActivity(), LoginActivity.class);

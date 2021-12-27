@@ -84,8 +84,8 @@ public class ChatRVAdapter extends RecyclerView.Adapter{
             super(itemView);
             userTV = itemView.findViewById(R.id.idTVUser);
             imguser = itemView.findViewById(R.id.imguser);
-            if(LoginActivity.taiKhoanDTO.getMATK() != -1){
-                Bitmap bitmap = BitmapFactory.decodeByteArray(LoginActivity.taiKhoanDTO.getHINHANH(),0,(LoginActivity.taiKhoanDTO.getHINHANH().length));
+            if(LoginActivity.taiKhoan.getMATK() != -1){
+                Bitmap bitmap = BitmapFactory.decodeByteArray(LoginActivity.taiKhoan.getHINHANH(),0,(LoginActivity.taiKhoan.getHINHANH().length));
                 imguser.setImageBitmap(bitmap);
             }
         }

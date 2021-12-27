@@ -22,7 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookshop.Adapter.GioHangAdapter;
-import com.example.bookshop.DTO.GioHang;
+import com.example.bookshop.Models.GioHang;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.ActivityUser.HomeActivity;
 import com.example.bookshop.ActivityUser.LoginActivity;
@@ -95,7 +95,7 @@ public class GioHangFragment extends Fragment {
 
     private void Tongtien() {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT SUM ( THANHTIEN ) FROM GIOHANG WHERE IDTK = "
-                + LoginActivity.taiKhoanDTO.getMATK());
+                + LoginActivity.taiKhoan.getMATK());
         cursor.moveToNext();
         tong = cursor.getInt(0);
         tongthanhtien.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(tong) + " VNĐ"));
@@ -114,7 +114,7 @@ public class GioHangFragment extends Fragment {
     private void GetData() {
         //get data
 
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM GIOHANG WHERE IDTK = " + LoginActivity.taiKhoanDTO.getMATK());
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM GIOHANG WHERE IDTK = " + LoginActivity.taiKhoan.getMATK());
         sanPhamArrayList.clear();
         while (cursor.moveToNext())
         {
@@ -131,7 +131,7 @@ public class GioHangFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
 
-        if (LoginActivity.taiKhoanDTO.getMATK() == -1)
+        if (LoginActivity.taiKhoan.getMATK() == -1)
         {
             txtthongbao.setText(" Bạn hãy đăng nhập để có thể mua hàng !");
         }else if (sanPhamArrayList.isEmpty()){
@@ -145,7 +145,7 @@ public class GioHangFragment extends Fragment {
         View view = inflater.inflate(R.layout.dialog_thanhtoan,null);
         final EditText diachi = view.findViewById(R.id.diachi_thanhtoan);
         final EditText ghichu= view.findViewById(R.id.ghichu_thanhtoan);
-
+        diachi.setText(LoginActivity.taiKhoan.getDIACHI());
         builder.setView(view);
         builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
@@ -170,8 +170,8 @@ public class GioHangFragment extends Fragment {
                     TrangChuFragment.database.UPDATE_SOLUONG(themhoadon.getIDSP(),themhoadon.getSOLUONG());
 
                 }
-                TrangChuFragment.database.INSERT_HOADON(tong,idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoanDTO.getMATK());
-                TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoanDTO.getMATK());
+                TrangChuFragment.database.INSERT_HOADON(tong,idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK());
+                TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoan.getMATK());
                 GetData();
                 Tongtien();
                 Toast.makeText(getActivity(),"Thanh toán thành công",Toast.LENGTH_LONG).show();

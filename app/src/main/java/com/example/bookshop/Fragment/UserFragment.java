@@ -17,7 +17,7 @@ import com.example.bookshop.ActivityUser.HoTroKhachHangActivity;
 import com.example.bookshop.ActivityUser.InforUserActivity;
 import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.Data.TaiKhoanDAO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.R;
 import com.example.bookshop.ActivityUser.lichsuActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -52,12 +52,12 @@ public class UserFragment extends Fragment {
 
         AnhXa();
         taiKhoanDAO = new TaiKhoanDAO(getActivity());
-        txt_Tentaikhoan.setText(LoginActivity.taiKhoanDTO.getTENTK());
-        if (LoginActivity.taiKhoanDTO.getHINHANH() == null){
+        txt_Tentaikhoan.setText(LoginActivity.taiKhoan.getTENTK());
+        if (LoginActivity.taiKhoan.getHINHANH() == null){
             img_user_cn.setImageResource(R.drawable.user);
         }else
         {
-            byte[] hinhAnh = LoginActivity.taiKhoanDTO.getHINHANH();
+            byte[] hinhAnh = LoginActivity.taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_cn.setImageBitmap(bitmap);
 //            Toast.makeText(InforUserActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
@@ -69,14 +69,14 @@ public class UserFragment extends Fragment {
     @Override
     public void onStart() {
 
-        TaiKhoanDTO kiemtra = taiKhoanDAO.KiemTraDangNhap(LoginActivity.taiKhoanDTO.getTENTK(),
-                LoginActivity.taiKhoanDTO.getMATKHAU());
-        LoginActivity.taiKhoanDTO = kiemtra;
-        if (LoginActivity.taiKhoanDTO.getHINHANH() == null){
+        TaiKhoan kiemtra = taiKhoanDAO.KiemTraDangNhap(LoginActivity.taiKhoan.getTENTK(),
+                LoginActivity.taiKhoan.getMATKHAU());
+        LoginActivity.taiKhoan = kiemtra;
+        if (LoginActivity.taiKhoan.getHINHANH() == null){
             img_user_cn.setImageResource(R.drawable.user);
         }else
         {
-            byte[] hinhAnh = LoginActivity.taiKhoanDTO.getHINHANH();
+            byte[] hinhAnh = LoginActivity.taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_cn.setImageBitmap(bitmap);
 //            Toast.makeText(InforUserActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
@@ -101,7 +101,7 @@ public class UserFragment extends Fragment {
         txt_Baomat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (LoginActivity.taiKhoanDTO.getMATK() == -1)
+                if (LoginActivity.taiKhoan.getMATK() == -1)
                 {
                     Toast.makeText(getActivity(), "Bạn chưa đăng nhập !", Toast.LENGTH_LONG).show();
                 }
@@ -115,7 +115,7 @@ public class UserFragment extends Fragment {
         txt_lichsu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (LoginActivity.taiKhoanDTO.getMATK() == -1)
+                if (LoginActivity.taiKhoan.getMATK() == -1)
                 {
                     Toast.makeText(getActivity(), "Bạn chưa đăng nhập !", Toast.LENGTH_LONG).show();
                 }

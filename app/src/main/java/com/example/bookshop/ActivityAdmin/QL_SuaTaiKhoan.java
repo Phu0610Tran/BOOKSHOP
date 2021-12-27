@@ -21,10 +21,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bookshop.ActivityUser.HomeActivity;
-import com.example.bookshop.Adapter.SanPhamAdminAdapter;
 import com.example.bookshop.Adapter.TaiKhoanAdminAdapter;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -38,7 +36,7 @@ public class QL_SuaTaiKhoan extends AppCompatActivity {
     ImageView imageViewHinh_QLTK,quaylai_qltk;
     Button buttonAdd_QLTK,buttonHuy_QLTK;
     ImageButton imageButtonCamera_QLTK,imageButtonFolder_QLTK;
-    TaiKhoanDTO taiKhoanDTO;
+    TaiKhoan taiKhoan;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
     int id,MATK;
@@ -165,24 +163,24 @@ public class QL_SuaTaiKhoan extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
     private void Getdata() {
-        taiKhoanDTO = TaiKhoanAdminAdapter.taiKhoanDTOList.get(id);
-        MATK = taiKhoanDTO.getMATK();
-        edt_TenTaiKhoan_QLTK.setText(taiKhoanDTO.getTENTK());
-        edt_MatKhau_QLTK.setText(taiKhoanDTO.getMATKHAU());
-        edt_SDT_QLTK.setText(String.valueOf(taiKhoanDTO.getSDT()));
-        edt_Email_QLTK.setText(taiKhoanDTO.getEMAIL());
-        edt_NgaySinh_QLTK.setText(taiKhoanDTO.getNGAYSINH());
-        edt_LoaiTK_QLTK.setText(String.valueOf(taiKhoanDTO.getMAQUYEN()));
-        edt_DiaChi_QLTK.setText(taiKhoanDTO.getDIACHI());
+        taiKhoan = TaiKhoanAdminAdapter.taiKhoanList.get(id);
+        MATK = taiKhoan.getMATK();
+        edt_TenTaiKhoan_QLTK.setText(taiKhoan.getTENTK());
+        edt_MatKhau_QLTK.setText(taiKhoan.getMATKHAU());
+        edt_SDT_QLTK.setText(String.valueOf(taiKhoan.getSDT()));
+        edt_Email_QLTK.setText(taiKhoan.getEMAIL());
+        edt_NgaySinh_QLTK.setText(taiKhoan.getNGAYSINH());
+        edt_LoaiTK_QLTK.setText(String.valueOf(taiKhoan.getMAQUYEN()));
+        edt_DiaChi_QLTK.setText(taiKhoan.getDIACHI());
 
 
-        if(taiKhoanDTO.getHINHANH() == null)
+        if(taiKhoan.getHINHANH() == null)
         {
             imageViewHinh_QLTK.setImageResource(R.drawable.user);
         }
         else
         {
-            byte[] hinhAnh = taiKhoanDTO.getHINHANH();
+            byte[] hinhAnh = taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
             imageViewHinh_QLTK.setImageBitmap(bitmap);
         }

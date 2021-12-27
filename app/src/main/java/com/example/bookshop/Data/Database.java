@@ -7,15 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.text.Editable;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.bookshop.DTO.BinhLuan;
-import com.example.bookshop.DTO.SanPhamDTO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.BinhLuan;
+import com.example.bookshop.Models.SanPham;
+import com.example.bookshop.Models.TaiKhoan;
 
 import java.util.ArrayList;
 
@@ -252,33 +249,35 @@ public class Database extends SQLiteOpenHelper {
             ;
         }
     }
-    public SanPhamDTO SANPHAM(int IDSP){
+    public SanPham SANPHAM(int IDSP){
         Cursor cursor = Getdata("SELECT * FROM SANPHAM WHERE IDSP = " + IDSP );
         while (cursor.moveToNext()) {
-            return new SanPhamDTO(
+            return new SanPham(
                     cursor.getInt(0),
                     cursor.getBlob(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getString(5)
             );
 
         }
         return null;
     }
 
-    public ArrayList<SanPhamDTO> TIMKIEM(){
-        ArrayList<SanPhamDTO> doAnArrayList = new ArrayList<>();
+    public ArrayList<SanPham> TIMKIEM(){
+        ArrayList<SanPham> doAnArrayList = new ArrayList<>();
         String truyvan = "SELECT * FROM SANPHAM ";
         Cursor cursor = Getdata(truyvan);
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()){
-                doAnArrayList.add(new SanPhamDTO(
+                doAnArrayList.add(new SanPham(
                         cursor.getInt(0),
                         cursor.getBlob(1),
                         cursor.getString(2),
                         cursor.getInt(3),
-                        cursor.getInt(4)
+                        cursor.getInt(4),
+                        cursor.getString(5)
                 ));
             }
             return doAnArrayList;
@@ -335,11 +334,11 @@ public class Database extends SQLiteOpenHelper {
         return false;
     }
 
-    public TaiKhoanDTO Load(int IDTK)
+    public TaiKhoan Load(int IDTK)
     {
         Cursor cursor = Getdata("SELECT * FROM TAIKHOAN WHERE IDTAIKHOAN = " + IDTK );
         while (cursor.moveToNext()) {
-            return new TaiKhoanDTO(
+            return new TaiKhoan(
                     cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),

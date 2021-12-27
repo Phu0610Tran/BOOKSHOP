@@ -1,4 +1,4 @@
-package com.example.bookshop.DTO;
+package com.example.bookshop.Models;
 
 public class BinhLuan {
     Integer TaiKhoanBL;

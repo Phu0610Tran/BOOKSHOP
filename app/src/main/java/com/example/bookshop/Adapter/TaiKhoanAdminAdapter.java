@@ -13,33 +13,29 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.bookshop.DTO.SanPhamDTO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
-import com.example.bookshop.Data.CreateDatabase;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.R;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class TaiKhoanAdminAdapter extends BaseAdapter {
     SQLiteDatabase database;
 
     private Fragment context;
     private int layout;
-    public static List<TaiKhoanDTO> taiKhoanDTOList;
+    public static List<TaiKhoan> taiKhoanList;
     int id;
 
 
-    public TaiKhoanAdminAdapter(Fragment context, int layout, List<TaiKhoanDTO> taiKhoanDTOList) {
+    public TaiKhoanAdminAdapter(Fragment context, int layout, List<TaiKhoan> taiKhoanList) {
         this.context = context;
         this.layout = layout;
-        this.taiKhoanDTOList = taiKhoanDTOList;
+        this.taiKhoanList = taiKhoanList;
     }
 
     @Override
     public int getCount() {
-        return taiKhoanDTOList.size();
+        return taiKhoanList.size();
     }
 
     @Override
@@ -84,18 +80,18 @@ public class TaiKhoanAdminAdapter extends BaseAdapter {
             holder = (TaiKhoanAdminAdapter.ViewHolder) view.getTag();
         }
 
-        TaiKhoanDTO taiKhoanDTO = taiKhoanDTOList.get(i);
-        holder.txtTentk_qltk.setText("Tên : " + taiKhoanDTO.getTENTK());
-        holder.txt_mk_qltk.setText(String.valueOf(taiKhoanDTO.getMATKHAU()));
-        holder.txt_sdt_qltk.setText("SDT : " + String.valueOf(taiKhoanDTO.getSDT()));
-        holder.txt_ngaysinh_qltk.setText(taiKhoanDTO.getNGAYSINH());
-        holder.txt_loaitk_qltk.setText(String.valueOf(taiKhoanDTO.getMAQUYEN()));
-        holder.txt_diachi_qltk.setText(taiKhoanDTO.getDIACHI());
-        holder.txt_email_qltk.setText(taiKhoanDTO.getEMAIL());
-        id = taiKhoanDTO.getMATK();
+        TaiKhoan taiKhoan = taiKhoanList.get(i);
+        holder.txtTentk_qltk.setText("Tên : " + taiKhoan.getTENTK());
+        holder.txt_mk_qltk.setText(String.valueOf(taiKhoan.getMATKHAU()));
+        holder.txt_sdt_qltk.setText("SDT : " + String.valueOf(taiKhoan.getSDT()));
+        holder.txt_ngaysinh_qltk.setText(taiKhoan.getNGAYSINH());
+        holder.txt_loaitk_qltk.setText(String.valueOf(taiKhoan.getMAQUYEN()));
+        holder.txt_diachi_qltk.setText(taiKhoan.getDIACHI());
+        holder.txt_email_qltk.setText(taiKhoan.getEMAIL());
+        id = taiKhoan.getMATK();
 
         // chuyen byte[] -> ve bitmap
-        byte[] hinhAnh = taiKhoanDTO.getHINHANH();
+        byte[] hinhAnh = taiKhoan.getHINHANH();
         Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
         holder.img_user_qltk.setImageBitmap(bitmap);
 

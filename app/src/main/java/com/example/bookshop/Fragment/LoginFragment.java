@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookshop.ActivityAdmin.HomeAdmin;
 import com.example.bookshop.Data.TaiKhoanDAO;
-import com.example.bookshop.DTO.TaiKhoanDTO;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.ActivityUser.HomeActivity;
 import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.R;
@@ -77,14 +77,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     private void setBtn_Login(){
         String sTentaikhoan = edt_TK.getText().toString();
         String sMatkhau = edt_MK.getText().toString();
-        TaiKhoanDTO kiemtra = taiKhoanDAO.KiemTraDangNhap(sTentaikhoan, sMatkhau);
+        TaiKhoan kiemtra = taiKhoanDAO.KiemTraDangNhap(sTentaikhoan, sMatkhau);
 
         mUsername = sTentaikhoan;
 
         if (kiemtra != null){
-            LoginActivity.taiKhoanDTO = kiemtra;
-//            Toast.makeText(getActivity(), "Đăng nhập thành công ! " +LoginActivity.taiKhoanDTO.getMAQUYEN() , Toast.LENGTH_LONG).show();
-            if(LoginActivity.taiKhoanDTO.getMAQUYEN()==1)
+            LoginActivity.taiKhoan = kiemtra;
+//            Toast.makeText(getActivity(), "Đăng nhập thành công ! " +LoginActivity.taiKhoan.getMAQUYEN() , Toast.LENGTH_LONG).show();
+            if(LoginActivity.taiKhoan.getMAQUYEN()==1)
 
             {
                 Intent iTrangchu = new Intent(getActivity(), HomeActivity.class);

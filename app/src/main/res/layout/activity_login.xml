@@ -25,7 +25,7 @@
             android:layout_height="250dp"
             android:scaleType="fitXY"
             android:layout_gravity="center"
-            android:src="@drawable/bm1" />
+            android:src="@drawable/logo" />
     </FrameLayout>
 
 
