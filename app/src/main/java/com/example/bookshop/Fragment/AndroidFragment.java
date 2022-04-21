@@ -64,7 +64,6 @@ public class AndroidFragment extends Fragment {
         registerForContextMenu(gridView_SanPham);
 
         GetData();
-
         return view;
     }
 

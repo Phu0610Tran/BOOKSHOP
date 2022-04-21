@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="65dp">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/khungvang_avata"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_hinhbanbe"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/avata_mau1" />
+        </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/ten_banbe"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="cau1"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/custom_banbe"/>
+        <TextView
+            android:id="@+id/diem_banbe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_gravity="center_horizontal"
+            android:text="Số dt"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

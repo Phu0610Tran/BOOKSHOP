@@ -5,9 +5,11 @@ public class Category {
     private int IDcategory;
 
 
+
     public Category(String name, int IDcategory) {
         this.name = name;
         this.IDcategory = IDcategory;
+
     }
 
     public int getIDcategory() {

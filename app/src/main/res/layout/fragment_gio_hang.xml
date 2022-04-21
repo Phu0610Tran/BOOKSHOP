@@ -21,14 +21,13 @@
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="620dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:gravity="center"
 
             android:layout_height="50dp"
@@ -37,7 +36,7 @@
         <TextView
             android:id="@+id/tongthanhtien"
             android:layout_width="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:gravity="center"
             android:layout_height="50dp"
             android:layout_marginLeft="130dp"
@@ -53,18 +52,18 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/tieptucmuahang"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="Tiếp tục mua hàng"
             />
         <Button
             android:id="@+id/thanhtoan_giohang"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="Thanh Toán"
             />
     </LinearLayout>

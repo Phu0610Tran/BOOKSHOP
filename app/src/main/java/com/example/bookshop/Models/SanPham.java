@@ -11,21 +11,8 @@ public class SanPham {
     int IDDANHMUC;
     int SPNEW;
 
-    public int getIDDANHMUC() {
-        return IDDANHMUC;
-    }
 
-    public void setIDDANHMUC(int IDDANHMUC) {
-        this.IDDANHMUC = IDDANHMUC;
-    }
 
-    public int getSPNEW() {
-        return SPNEW;
-    }
-
-    public void setSPNEW(int SPNEW) {
-        this.SPNEW = SPNEW;
-    }
 
     public SanPham(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP, int IDDANHMUC, int SPNEW) {
         MaSP = maSP;
@@ -44,7 +31,21 @@ public class SanPham {
         Sl_SP = sl_SP;
         this.MotaSP = motaSP;
     }
+    public int getIDDANHMUC() {
+        return IDDANHMUC;
+    }
 
+    public void setIDDANHMUC(int IDDANHMUC) {
+        this.IDDANHMUC = IDDANHMUC;
+    }
+
+    public int getSPNEW() {
+        return SPNEW;
+    }
+
+    public void setSPNEW(int SPNEW) {
+        this.SPNEW = SPNEW;
+    }
     public int getMaSP() {
         return MaSP;
     }

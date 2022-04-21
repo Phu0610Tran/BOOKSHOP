@@ -10,8 +10,8 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:text="Thể Loại"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

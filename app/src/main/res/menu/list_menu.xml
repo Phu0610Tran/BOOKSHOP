@@ -42,6 +42,17 @@
             </group>
         </menu>
     </item>
+    <item android:title="Sự Kiện">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/game"
+                    android:id="@+id/nav_voucher"
+                    android:title="Săn Voucher" />
+
+            </group>
+        </menu>
+    </item>
 
     <item android:title="@string/user">
         <menu>

@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +22,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.GioHangAdapter;
+import com.example.bookshop.Fragment_Admin.HoaDonAdmin;
+import com.example.bookshop.Models.Category;
 import com.example.bookshop.Models.GioHang;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.ActivityUser.HomeActivity;
 import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -35,15 +40,22 @@ import java.util.Locale;
 
 public class GioHangFragment extends Fragment {
 
+
+
+    ArrayList<Category> listCategory;
+    ArrayList<Category> list;
+    CategoryAdapter categoryAdapter;
     private View view;
     ListView Listview_SanPham;
     ArrayList<GioHang> sanPhamArrayList;
     GioHangAdapter adapter;
     Button btn_tieptuc,btn_thanhtoan;
     TextView txtthongbao,tongthanhtien;
-    int tong;
+    double tong;
     int idcthd = 0;
-
+    int Voucher = 0;
+    double phantram=0;
+    TextView saukhuyenmai,truockhuyenmai,tiengiam;
     public GioHangFragment() {
         // Required empty public constructor
     }
@@ -69,7 +81,85 @@ public class GioHangFragment extends Fragment {
         btn_thanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showdialog();
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity(), R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(
+                        R.layout.dialog_thanhtoan, view.findViewById(R.id.dialog_thanhtoan_ne)
+                );
+
+                Button btn_xacnhan_thanhtoan = bottomSheetView.findViewById(R.id.btn_xacnhan_thanhtoan);
+                EditText diachi = bottomSheetView.findViewById(R.id.diachi_thanhtoan);
+                EditText ghichu = bottomSheetView.findViewById(R.id.ghichu_thanhtoan);
+                Spinner spinner_Voucher = bottomSheetView.findViewById(R.id.spinner_Voucher);
+                saukhuyenmai = bottomSheetView.findViewById(R.id.saukhuyenmai);
+                truockhuyenmai = bottomSheetView.findViewById(R.id.truockhuyenmai);
+                tiengiam = bottomSheetView.findViewById(R.id.tiengiam);
+                //---------------------Test-----------------------
+                listCategory = getListCategory();
+                categoryAdapter = new CategoryAdapter(getActivity(), R.layout.item_select, listCategory);
+                spinner_Voucher.setAdapter(categoryAdapter);
+
+                spinner_Voucher.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        Voucher = categoryAdapter.getItem(position).getIDcategory();
+                        if (Voucher == 1){
+                            phantram = 0.1;
+                        }
+                        else if (Voucher == 2)
+                        {
+                            phantram = 0.2;
+                        }
+                        else if (Voucher == 3)
+                        {
+                            phantram = 0.3;
+                        }
+                        truockhuyenmai.setText("Tiền trước khuyến mãi : " + String.valueOf(tong));
+                        tiengiam.setText("Tiền được giảm : " + String.valueOf(tong*phantram));
+                        saukhuyenmai.setText("Tổng Tiền : " + String.valueOf(tong - tong*phantram));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                diachi.setText(LoginActivity.taiKhoan.getDIACHI());
+                btn_xacnhan_thanhtoan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(TrangChuFragment.database.HoaDonChuaCoTrongHD()){
+                            idcthd = 1;
+                        }
+                        else {
+                            Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDCTHOADON FROM CHITIETHOADON ORDER BY IDCTHOADON DESC");
+                            cursor.moveToNext();
+                            idcthd = cursor.getInt(0) + 1;
+                        }
+
+
+
+                        for (int position = 0; position<GioHangAdapter.sanPhamGioHangList.size();position++)
+                        {
+                            GioHang themhoadon = GioHangAdapter.sanPhamGioHangList.get(position);
+                            TrangChuFragment.database.INSERT_CTHOADON(idcthd, themhoadon.getIDTK(), themhoadon.getIDSP(), themhoadon.getTENSANPHAM(),
+                                    themhoadon.getSOLUONG(), themhoadon.getTHANHTIEN());
+                            TrangChuFragment.database.UPDATE_SOLUONG(themhoadon.getIDSP(),themhoadon.getSOLUONG());
+
+                        }
+                        TrangChuFragment.database.INSERT_HOADON(tong - tong*phantram,idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK());
+                        TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoan.getMATK());
+                        TrangChuFragment.database.UPDATE_VOUCHER(LoginActivity.taiKhoan.getMATK(),Voucher);
+                        GetData();
+                        Tongtien();
+                        Toast.makeText(getActivity(),"Thanh toán thành công",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getActivity(),HomeActivity.class));
+                    }
+                });
+
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
             }
         });
         btn_tieptuc.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +197,6 @@ public class GioHangFragment extends Fragment {
         tongthanhtien = (TextView) view.findViewById(R.id.tongthanhtien);
         btn_tieptuc = (Button) view.findViewById(R.id.tieptucmuahang);
         btn_thanhtoan = (Button) view.findViewById(R.id.thanhtoan_giohang);
-
-
     }
 
     private void GetData() {
@@ -138,53 +226,46 @@ public class GioHangFragment extends Fragment {
             txtthongbao.setText(" Bạn chưa mua hàng !");
         }
     }
-    private void showdialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_thanhtoan,null);
-        final EditText diachi = view.findViewById(R.id.diachi_thanhtoan);
-        final EditText ghichu= view.findViewById(R.id.ghichu_thanhtoan);
-        diachi.setText(LoginActivity.taiKhoan.getDIACHI());
-        builder.setView(view);
-        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+    private ArrayList<Category> getListCategory() {
 
-                if(TrangChuFragment.database.HoaDonChuaCoTrongHD()){
-                    idcthd = 1;
-                }
-                else {
-                    Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDCTHOADON FROM CHITIETHOADON ORDER BY IDCTHOADON DESC");
-                    cursor.moveToNext();
-                    idcthd = cursor.getInt(0) + 1;
-                }
-
-
-
-                for (int position = 0; position<GioHangAdapter.sanPhamGioHangList.size();position++)
-                {
-                    GioHang themhoadon = GioHangAdapter.sanPhamGioHangList.get(position);
-                    TrangChuFragment.database.INSERT_CTHOADON(idcthd, themhoadon.getIDTK(), themhoadon.getIDSP(), themhoadon.getTENSANPHAM(),
-                            themhoadon.getSOLUONG(), themhoadon.getTHANHTIEN());
-                    TrangChuFragment.database.UPDATE_SOLUONG(themhoadon.getIDSP(),themhoadon.getSOLUONG());
-
-                }
-                TrangChuFragment.database.INSERT_HOADON(tong,idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK());
-                TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoan.getMATK());
-                GetData();
-                Tongtien();
-                Toast.makeText(getActivity(),"Thanh toán thành công",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getActivity(),HomeActivity.class));
-
+        Cursor cursor =  TrangChuFragment.database.Getdata("SELECT VOUCHER FROM VONGCHINH WHERE IDTK = " +
+                LoginActivity.taiKhoan.getMATK() + " ORDER BY VOUCHER DESC " );
+        list = new ArrayList<>();
+        list.clear();
+        String namevoucher = null;
+        int IDVC;
+        while (cursor.moveToNext()){
+            if (cursor.getInt(0)==1)
+            {
+                namevoucher = " Voucher 10% ";
+//                IDVC = cursor.getInt(0);
             }
-        }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            else if(cursor.getInt(0)==2)
+            {
+                namevoucher = " Voucher 20% ";
+//                IDVC = cursor.getInt(0);
             }
-        });
-        builder.show();
+            else if (cursor.getInt(0) == 3)
+            {
+                namevoucher = " Voucher 30% ";
+//                IDVC = cursor.getInt(0);
+            }
+            else if (cursor.getInt(0) == 0){
+                return list;
+            }
+            list.add(new Category(
+                            namevoucher,
+                            cursor.getInt(0)
+                    )
+            );
+        }
+
+
+
+        return list;
     }
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -216,4 +297,5 @@ public class GioHangFragment extends Fragment {
                 return super.onContextItemSelected(item);
         }
     }
+
 }

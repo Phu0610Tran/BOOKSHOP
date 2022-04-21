@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_choingay"
+    android:padding="10dp"
+    android:gravity="center"
+    tools:context=".TracnghiemActivity">
+
+    <ImageView
+        android:id="@+id/quaylai_tng"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:padding="10dp"
+        android:layout_gravity="right"
+        android:src="@drawable/quaylai" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="70dp">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/khung_avata" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_tk_tng"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/avata_mau1" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/ten_tk_tng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_btn"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:text="Trần Trọng Phú"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/diem_tk_tng"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="9970"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/tv_content_question"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_btn"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:text="noi dung"
+                android:textColor="#3F51B5"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_answer1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="cau1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/custom_cau"/>
+            <TextView
+                android:id="@+id/tv_answer2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="cau2"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/custom_cau"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_answer3"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="cau3"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+
+                android:background="@drawable/custom_cau"/>
+            <TextView
+                android:id="@+id/tv_answer4"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="cau4"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/custom_cau"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

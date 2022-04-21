@@ -10,12 +10,55 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label=" "
+        android:icon="@drawable/bookshop"
+        android:label="BOOKSHOP"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/bookshop"
         android:supportsRtl="true"
         android:theme="@style/Theme.BOOKSHOP">
+        <activity
+            android:name=".TimKiemBanBe_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Animation_Vong3"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".ChoiNgayVong3"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".ChoiNgayVong2"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".Animation_Vong2"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".TracnghiemActivity"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".ChoiNgayActivity"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".HuongDan_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".BanBeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Animation_Vong1"
+            android:exported="true"
+            android:screenOrientation="userLandscape"/>
+        <activity
+            android:name=".XepHang_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".VuiCungTaiChinhActivity"
+            android:exported="true" />
         <activity
             android:name=".ActivityUser.TimKiem"
             android:exported="true" />

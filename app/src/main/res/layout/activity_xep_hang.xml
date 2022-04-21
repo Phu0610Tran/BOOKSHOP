@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bxh_bg"
+    tools:context=".XepHang_Activity">
+    <ImageView
+        android:id="@+id/quaylai_bxh"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:padding="10dp"
+        android:layout_gravity="left"
+        android:src="@drawable/quaylai" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="BẢNG XẾP HẠNG"
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        />
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="65dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="3"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/tamgiaccamxuong" />
+        <ImageView
+            android:layout_marginTop="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/khung_avata" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_bxh_top3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avata_mau1" />
+
+        <TextView
+            android:id="@+id/ten_bxh_top3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:text="Trọng Phú"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/diem_bxh_top3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9999"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="135dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="65dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/tamgiacvanglen"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:layout_marginTop="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/khung_avata" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_bxh_top2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avata_mau1" />
+
+        <TextView
+            android:id="@+id/ten_bxh_top2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:text="Trọng Phú"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+        <TextView
+            android:id="@+id/diem_bxh_top2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9999"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="135dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/vuongmien" />
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/khung_avata" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_bxh_top1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avata_mau1" />
+
+        <TextView
+            android:id="@+id/ten_bxh_top1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:text="Trọng Phú"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/diem_bxh_top1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="155dp"
+            android:text="9999"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="@drawable/khung_bxh"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:text="4"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/khungvang_avata"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_bxh_top4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/avata_mau1" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/ten_bxh_top4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Trần Trọng Phú"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/diem_bxh_top4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="right"
+                android:text="9999 Điểm"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/khung_bxh"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:text="5"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <ImageView
+
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/khungvang_avata"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_bxh_top5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/avata_mau1" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/ten_bxh_top5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Trần Trọng Phú"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/diem_bxh_top5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="right"
+                android:text="9999 Điểm"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/khung_bxh"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:text="6"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/khungvang_avata"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_bxh_top6"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/avata_mau1" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/ten_bxh_top6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Trần Trọng Phú"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/diem_bxh_top6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="right"
+                android:text="9999 Điểm"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/khung_bxh"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:text="7"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/khungvang_avata"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_bxh_top7"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/avata_mau1" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/ten_bxh_top7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Trần Trọng Phú"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/diem_bxh_top7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="right"
+                android:text="9999 Điểm"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

@@ -23,37 +23,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bookshop.Models.TaiKhoan;
-import com.example.bookshop.Fragment.GioHangFragment;
+import com.example.bookshop.Fragment.AndroidFragment;
 import com.example.bookshop.Fragment.CFragment;
+import com.example.bookshop.Fragment.GioHangFragment;
 import com.example.bookshop.Fragment.GopYFragment;
 import com.example.bookshop.Fragment.JavaFragment;
 import com.example.bookshop.Fragment.PythonFragment;
-import com.example.bookshop.Fragment.WebFragment;
-import com.example.bookshop.Fragment.AndroidFragment;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.Fragment.UserFragment;
+import com.example.bookshop.Fragment.WebFragment;
+import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.R;
+import com.example.bookshop.VuiCungTaiChinhActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private static final int FRAGMENT_HOME = 1;
-    private static final int FRAGMENT_ANDROID = 2;
-    private static final int FRAGMENT_CONTACT = 3;
-    private static final int FRAGMENT_FEEDBACK = 4;
-
-    private static final int FRAGMENT_C = 5;
-    private static final int FRAGMENT_WED = 6;
-    private static final int FRAGMENT_JAVA = 7;
-    private static final int FRAGMENT_PYTHON = 8;
-    private static final int FRAGMENT_NGUOIDUNG = 9;
-    private static final int FRAGMENT_GIOHANG = 10;/**/
-
-
-    private int currentFragment = FRAGMENT_HOME;
 
     // Drawer
     CircleImageView img_user_home;
@@ -118,8 +105,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navigationView.getMenu();
         if(LoginActivity.taiKhoan.getMATK() == -1){
             menu.findItem(R.id.nav_logout).setVisible(false);
+            menu.findItem(R.id.nav_voucher).setVisible(false);
         }else {
             menu.findItem(R.id.nav_login).setVisible(false);
+            menu.findItem(R.id.nav_voucher).setVisible(true);
         }
         demSL();
         super.onStart();
@@ -136,7 +125,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             byte[] hinhAnh = LoginActivity.taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_home.setImageBitmap(bitmap);
-//            Toast.makeText(HomeActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -190,63 +178,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             LoginActivity.taiKhoan = new TaiKhoan();
             startActivity(intent);
         }else if (id == R.id.nav_home) {
-            if (FRAGMENT_HOME != currentFragment) {
                 replaceFragment(new TrangChuFragment());
-                currentFragment = FRAGMENT_HOME;
-            }
         }else if (id == R.id.nav_contact) {
-            if (FRAGMENT_CONTACT != currentFragment) {
-                replaceFragment(new TrangChuFragment());
-                currentFragment = FRAGMENT_HOME;
-            }
-        }else if (id == R.id.nav_Feedback) {
-            if (FRAGMENT_FEEDBACK != currentFragment) {
-                replaceFragment(new GopYFragment());
-                currentFragment = FRAGMENT_HOME;
-            }
-        }else if (id == R.id.nav_Android) {
-            if (FRAGMENT_ANDROID != currentFragment) {
-                replaceFragment(new AndroidFragment());
-                currentFragment = FRAGMENT_ANDROID;
-            }
-        }else if (id == R.id.nav_NgonnguC) {
-            if (FRAGMENT_C != currentFragment) {
-                replaceFragment(new CFragment());
-                currentFragment = FRAGMENT_C;
-            }
-        }else if (id == R.id.nav_Web) {
-            if (FRAGMENT_WED != currentFragment) {
-                replaceFragment(new WebFragment());
-                currentFragment = FRAGMENT_WED;
-            }
-        }else if (id == R.id.nav_Java) {
-            if (FRAGMENT_JAVA != currentFragment) {
-                replaceFragment(new JavaFragment());
-                currentFragment = FRAGMENT_JAVA;
-            }
 
+                replaceFragment(new TrangChuFragment());
+        }else if (id == R.id.nav_Feedback) {
+                replaceFragment(new GopYFragment());
+
+        }else if (id == R.id.nav_Android) {
+                replaceFragment(new AndroidFragment());
+        }else if (id == R.id.nav_NgonnguC) {
+                replaceFragment(new CFragment());
+        }else if (id == R.id.nav_Web) {
+                replaceFragment(new WebFragment());
+        }else if (id == R.id.nav_Java) {
+                replaceFragment(new JavaFragment());
         }else if (id == R.id.nav_Python) {
-            if (FRAGMENT_PYTHON != currentFragment) {
                 replaceFragment(new PythonFragment());
-                currentFragment = FRAGMENT_PYTHON;
-            }
+        }else if (id == R.id.nav_voucher) {
+            startActivity(new Intent(HomeActivity.this, VuiCungTaiChinhActivity.class));
         }else if (id == R.id.nav_profile) {
             if(LoginActivity.taiKhoan.getMATK() != -1)
             {
-                if (FRAGMENT_NGUOIDUNG != currentFragment) {
                     replaceFragment(new UserFragment());
-                    currentFragment = FRAGMENT_NGUOIDUNG;
-                }
             }else
             {
                 Toast.makeText(HomeActivity.this, " Bạn chưa đăng nhập ", Toast.LENGTH_LONG).show();
             }
 
         }else if (id == R.id.nav_cart) {
-            if (FRAGMENT_GIOHANG != currentFragment) {
                 replaceFragment(new GioHangFragment());
-                currentFragment = FRAGMENT_GIOHANG;
-            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_animation_mot"
+
+    tools:context=".Animation_Vong1">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/tieude"
+            android:layout_width="380dp"
+            android:layout_height="280dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/title_vongmot"
+            android:layout_marginBottom="40dp"/>
+        <ImageView
+            android:id="@+id/phg"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="150dp"
+            android:src="@drawable/phg_vongmot"/>
+        <ImageView
+            android:id="@+id/nextvong1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_vonghien"
+            android:layout_margin="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+
+</FrameLayout>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_thanhtoan_ne"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#54D7E8"
-    android:gravity="center"
-
+    android:background="@drawable/custom_dialog_thanhtoan"
+    android:gravity="center|top"
     android:orientation="vertical">
 
     <TextView
@@ -16,19 +17,71 @@
         android:textColor="@color/black"
         android:padding="20dp"
         />
+
     <EditText
         android:id="@+id/diachi_thanhtoan"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:gravity="center"
-        android:hint="Nhập địa chỉ giao hàng"/>
+        android:hint="Nhập địa chỉ giao hàng"
+        android:inputType="text"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <EditText
         android:id="@+id/ghichu_thanhtoan"
         android:layout_width="300dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Ghi chú"
         android:inputType="textMultiLine"
-        android:hint="Ghi chú"/>
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Spinner
+        android:id="@+id/spinner_Voucher"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minHeight="48dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+    <TextView
+        android:id="@+id/truockhuyenmai"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Tổng"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:inputType="textMultiLine"
+        tools:ignore="TouchTargetSizeCheck" />
+    <TextView
+        android:id="@+id/tiengiam"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Tổng"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:inputType="textMultiLine"
+        tools:ignore="TouchTargetSizeCheck" />
+    <TextView
+        android:id="@+id/saukhuyenmai"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Sau Khuyến Mãi"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:inputType="textMultiLine"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btn_xacnhan_thanhtoan"
+        android:layout_width="300dp"
+        android:padding="@dimen/size10dp"
+        android:background="@drawable/custom_button_vang"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size10dp"
+        android:text="Xác Nhận" />
+
 
 </LinearLayout>

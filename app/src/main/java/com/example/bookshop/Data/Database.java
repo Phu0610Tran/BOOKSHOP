@@ -102,7 +102,48 @@ public class Database extends SQLiteOpenHelper {
 
         return list;
     }
+    public void Tangdiem(int IDTK, int diem){
+        QueryData("UPDATE TAIKHOAN SET DIEM = " + diem + "   WHERE IDTAIKHOAN = " + IDTK);
 
+    }
+    public boolean VONGTONTAI(int IDTK,float VONG){
+        Cursor tro = Getdata("SELECT * FROM VONGCHINH WHERE IDTK = " + IDTK + " AND VONG = " + VONG );
+        while (tro.moveToNext()) {
+            return false;
+        }
+        return true;
+    }
+    public void VONGGAME(int IDTK,float VONG, int SOSAO, int VOUCHER){
+        if(VONGTONTAI(IDTK, VONG)){
+            QueryData("INSERT INTO VONGCHINH ( IDTK, VONG, SOSAO, VOUCHER ) VALUES ( " + IDTK + " , " + VONG + " , "
+                    + VOUCHER + " , "
+                    + SOSAO + ")");
+        }
+        else {
+            QueryData("UPDATE VONGCHINH SET SOSAO = " + SOSAO + "   WHERE IDTK = " + IDTK + " AND VONG = " + VONG);
+        }
+    }
+    public boolean kiemtraVoucher(int IDTK,int VOUCHER){
+        Cursor tro = Getdata("SELECT * FROM VONGCHINH WHERE IDTK = " + IDTK + " AND VOUCHER = " + VOUCHER );
+        while (tro.moveToNext()) {
+            return false;
+        }
+        return true;
+    }
+    public boolean TonTaiBanBe(int IDTK,int IDBAN)
+    {
+        Cursor tro = Getdata("SELECT * FROM BANBE WHERE IDTK_CHINH = " + IDTK + " AND IDTK_BAN = " + IDBAN );
+        while (tro.moveToNext()) {
+            return false;
+        }
+        return true;
+    }
+    public void ThemBan(int IDTK,int IDBAN){
+        QueryData("INSERT INTO BANBE ( IDTK_CHINH, IDTK_BAN) VALUES ( " + IDTK + " , " + IDBAN + ")");
+    }
+    public void XoaBan(int IDTK,int IDBAN){
+        QueryData(" DELETE FROM BANBE WHERE IDTK_CHINH = " + IDTK + " AND IDTK_BAN = " + IDBAN);
+    }
     //-------------------------
     public void INSERT_DOAN(String ten,byte[] hinh,int soluong,int  Gia,int danhmuc,int spmoi ) throws SQLiteException {
         SQLiteDatabase database = this.getWritableDatabase();
@@ -113,7 +154,6 @@ public class Database extends SQLiteOpenHelper {
         cv.put(CreateDatabase.tbl_SANPHAM_SOLUONG,   soluong);
         cv.put(CreateDatabase.tbl_SANPHAM_IDSP_NEW,   spmoi);
         cv.put(CreateDatabase.tbl_SANPHAM_HINHANH,   hinh);
-
         database.insert( CreateDatabase.tbl_SANPHAM, null, cv );
 
     }
@@ -176,7 +216,7 @@ public class Database extends SQLiteOpenHelper {
         // CHUA ID HOA DON
     }
 
-    public void INSERT_HOADON(int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK)
+    public void INSERT_HOADON(double TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK)
     {
         QueryData("INSERT INTO " + CreateDatabase.tbl_HOADON +
                 " ( "
@@ -211,7 +251,11 @@ public class Database extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+    public void UPDATE_VOUCHER(int IDTK,int VOUCHER)
+    {
+        QueryData("UPDATE VONGCHINH SET VOUCHER = " + 0 + "   WHERE IDTK = " + IDTK + " AND VOUCHER = " + VOUCHER);
 
+    }
 //----------------------------------------------thanh toan
     public void SPGH(int IDTK,byte[] hinh, int IDSP, String TenSP, int Soluong, int thanhtien){
         if(SPChuaCoTrongGH(IDTK, IDSP)){

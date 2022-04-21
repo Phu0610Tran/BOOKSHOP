@@ -125,8 +125,6 @@ public class InforUserActivity extends AppCompatActivity {
             byte[] hinhAnh = taiKhoan.getHINHANH();
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
             img_user_cn.setImageBitmap(bitmap);
-//            Toast.makeText(InforUserActivity.this, "sssss : " + hinhAnh, Toast.LENGTH_SHORT).show();
-
         }
         IDTAIKHOAN = taiKhoan.getMATK();
 
