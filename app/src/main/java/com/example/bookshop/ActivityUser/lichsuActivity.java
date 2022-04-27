@@ -83,7 +83,8 @@ public class lichsuActivity extends AppCompatActivity {
         tongtien_HD.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"));
 
 
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + LoginActivity.taiKhoan.getMATK());
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + LoginActivity.taiKhoan.getMATK()
+        + " ORDER  BY IDHOADON DESC");
         hoaDonArrayList.clear();
         while (cursor.moveToNext())
         {
@@ -93,7 +94,10 @@ public class lichsuActivity extends AppCompatActivity {
                     cursor.getInt(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getInt(5)
+                    cursor.getInt(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7),
+                    cursor.getInt(8)
             ));
         }
         adapter.notifyDataSetChanged();

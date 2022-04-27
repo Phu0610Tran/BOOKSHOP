@@ -3,31 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="56dp"
+
     android:background="@drawable/backgroup"
     tools:context=".Fragment.TrangChuFragment"
     android:orientation="vertical">
 
     <ViewFlipper
+        android:layout_marginTop="56dp"
         android:id="@+id/viewFlippermanhinhchinh"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
     </ViewFlipper>
-    <TextView
-        android:layout_margin="20dp"
-        android:id="@+id/tieude_trangchu"
-        android:textSize="20sp"
-        android:text="Sản phẩm mới"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <GridView
-        android:id="@+id/gridviewSanPham"
+<!--    <TextView-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:id="@+id/tieude_trangchu"-->
+<!--        android:textSize="20sp"-->
+<!--        android:text="Sản phẩm mới"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        />-->
+<!--    <GridView-->
+<!--        android:id="@+id/gridviewSanPham"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:numColumns="2" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Re_trangchu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2" />
-
+        android:layout_height="wrap_content"/>
 </LinearLayout>

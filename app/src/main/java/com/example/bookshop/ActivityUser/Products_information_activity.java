@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -32,6 +33,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Products_information_activity extends AppCompatActivity {
@@ -42,7 +44,7 @@ public class Products_information_activity extends AppCompatActivity {
     EditText editTextSL;
     Button btnaddcart,btn_GuiBl;
     ImageButton btn_quaylai;
-    int id,idtk;
+    int id,idtk,iddanhmucsp;
     BinhLuanAdapter binhLuanAdapter;
     NestedScrollView scrollV;
     RecyclerView recV_chatbox;
@@ -51,9 +53,13 @@ public class Products_information_activity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        if(idtk==2){
-            sanPham = SanPhamAdapter.sanPhamList.get(id);
-        }else
+        if(idtk==2 && iddanhmucsp==3){
+            sanPham = GetData(id);
+        }else if (id==1 && idtk == 2)
+        {
+            sanPham = SanPhamAdapter.sanPhamList.get(iddanhmucsp);
+        }
+        else
         {
             sanPham = TimKiemAdapter.sanPhamList.get(idtk);
         }
@@ -75,6 +81,7 @@ public class Products_information_activity extends AppCompatActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id",1);
         idtk = intent.getIntExtra("idtk",2);
+        iddanhmucsp = intent.getIntExtra("iddanhmucsp",3);
 //        Toast.makeText(Products_information_activity.this, " sss : " + id + idtk, Toast.LENGTH_SHORT).show();
         Anhxa();
         Sukien();
@@ -193,9 +200,13 @@ public class Products_information_activity extends AppCompatActivity {
 
     private void GetDataSP() {
         //get data
-        if(idtk==2){
-            sanPham = SanPhamAdapter.sanPhamList.get(id);
-        }else
+        if(idtk==2 && iddanhmucsp==3){
+            sanPham = GetData(id);
+        }else if (id==1 && idtk == 2)
+        {
+            sanPham = SanPhamAdapter.sanPhamList.get(iddanhmucsp);
+        }
+        else
         {
             sanPham = TimKiemAdapter.sanPhamList.get(idtk);
         }
@@ -213,5 +224,20 @@ public class Products_information_activity extends AppCompatActivity {
         imgHinh.setImageBitmap(bitmap);
 
 
+    }
+    private SanPham GetData(int id) {
+        //get data
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM SANPHAM WHERE IDSP = " + id );
+        while (cursor.moveToNext()) {
+            return new SanPham(
+                    cursor.getInt(0),
+                    cursor.getBlob(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4),
+                    cursor.getString(5)
+            );
+        }
+        return null;
     }
 }

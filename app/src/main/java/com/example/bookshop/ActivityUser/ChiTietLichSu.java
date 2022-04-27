@@ -26,7 +26,7 @@ public class ChiTietLichSu extends AppCompatActivity {
 
     ListView Listview_Lichsu;
     ImageView ibtnExit_lichsu,imageHinhlichsu_HD;
-    TextView textviewTongTien_HD,textviewdc_HD,textviewgc_HD;
+    TextView textviewTongTien_HD,textviewdc_HD,textviewgc_HD,tienship_lichsu,htvc_lichsu;
     ArrayList<CTHoaDon> cthoaDonArrayList;
     CTHoaDonAdapter adapter;
     int idcthd,KEYhd;
@@ -52,11 +52,14 @@ public class ChiTietLichSu extends AppCompatActivity {
         GetData();
     }
     private void AnhXa() {
+        tienship_lichsu = findViewById(R.id.tienship_lichsu);
+        htvc_lichsu = findViewById(R.id.htvc_lichsu);
         textviewgc_HD = findViewById(R.id.textviewgc_HD);
         textviewdc_HD = findViewById(R.id.textviewdc_HD);
         textviewTongTien_HD = findViewById(R.id.textviewTongTien_HD);
         imageHinhlichsu_HD = findViewById(R.id.imageHinhlichsu_HD);
         ibtnExit_lichsu = findViewById(R.id.ibtnExit_lichsu);
+
         ibtnExit_lichsu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +74,14 @@ public class ChiTietLichSu extends AppCompatActivity {
         HoaDon hoaDon = HoaDonAdapter.ListHoaDon.get(KEYhd);
         textviewgc_HD.setText("Ghi chú : " + hoaDon.getGHICHU());
         textviewdc_HD.setText("Địa chỉ : " + hoaDon.getDIACHI());
+        tienship_lichsu.setText("Tiền Ship: " + hoaDon.getTIENSHIP());
+        if (hoaDon.getHTVC()==1)
+        {
+            htvc_lichsu.setText("Giao hàng tiết kiệm");
+        }
+        else {
+            htvc_lichsu.setText("Giao hàng nhanh ");
+        }
         textviewTongTien_HD.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(hoaDon.getTONGTIEN())) + " VNĐ");
 
 

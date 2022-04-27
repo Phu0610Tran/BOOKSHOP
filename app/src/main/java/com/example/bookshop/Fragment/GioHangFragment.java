@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,6 +35,7 @@ import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -41,25 +44,31 @@ import java.util.Locale;
 public class GioHangFragment extends Fragment {
 
 
-
+    AutoCompleteTextView AutoCompleteTextView;
     ArrayList<Category> listCategory;
+    ArrayList<Category> listvanchuyen;
     ArrayList<Category> list;
+    ArrayList<Category> listvc;
     CategoryAdapter categoryAdapter;
+    CategoryAdapter categoryAdapter1;
     private View view;
     ListView Listview_SanPham;
     ArrayList<GioHang> sanPhamArrayList;
     GioHangAdapter adapter;
     Button btn_tieptuc,btn_thanhtoan;
     TextView txtthongbao,tongthanhtien;
-    double tong;
+    int tong;
+    String tt="null";
+    int tongsoluong;
     int idcthd = 0;
     int Voucher = 0;
     double phantram=0;
-    TextView saukhuyenmai,truockhuyenmai,tiengiam;
+    TextView saukhuyenmai,truockhuyenmai,tiengiam,tienship;
     public GioHangFragment() {
         // Required empty public constructor
     }
-
+    int tienvanchuyen;
+    int idvanchuyen=1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +87,16 @@ public class GioHangFragment extends Fragment {
 
         GetData();
 
+        Events();
+
+
+
+
+
+        return view;
+    }
+
+    private void Events() {
         btn_thanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,11 +109,16 @@ public class GioHangFragment extends Fragment {
                 EditText diachi = bottomSheetView.findViewById(R.id.diachi_thanhtoan);
                 EditText ghichu = bottomSheetView.findViewById(R.id.ghichu_thanhtoan);
                 Spinner spinner_Voucher = bottomSheetView.findViewById(R.id.spinner_Voucher);
+                Spinner spinner_Vanchuyen = bottomSheetView.findViewById(R.id.spinner_Vanchuyen);
                 saukhuyenmai = bottomSheetView.findViewById(R.id.saukhuyenmai);
                 truockhuyenmai = bottomSheetView.findViewById(R.id.truockhuyenmai);
                 tiengiam = bottomSheetView.findViewById(R.id.tiengiam);
-                //---------------------Test-----------------------
+                tienship = bottomSheetView.findViewById(R.id.tienship);
+                tiengiam.setText("0");
+//---------------------Spiner Voucher-----------------------
                 listCategory = getListCategory();
+
+
                 categoryAdapter = new CategoryAdapter(getActivity(), R.layout.item_select, listCategory);
                 spinner_Voucher.setAdapter(categoryAdapter);
 
@@ -103,7 +127,10 @@ public class GioHangFragment extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                         Voucher = categoryAdapter.getItem(position).getIDcategory();
-                        if (Voucher == 1){
+                        if (Voucher == 0)
+                        {
+
+                        }else if (Voucher == 1){
                             phantram = 0.1;
                         }
                         else if (Voucher == 2)
@@ -114,9 +141,14 @@ public class GioHangFragment extends Fragment {
                         {
                             phantram = 0.3;
                         }
-                        truockhuyenmai.setText("Tiền trước khuyến mãi : " + String.valueOf(tong));
-                        tiengiam.setText("Tiền được giảm : " + String.valueOf(tong*phantram));
-                        saukhuyenmai.setText("Tổng Tiền : " + String.valueOf(tong - tong*phantram));
+
+                        NumberFormat formatter = new DecimalFormat("#0");
+                        tiengiam.setText(String.valueOf(formatter.format(tong*phantram)));
+
+
+
+
+
                     }
 
                     @Override
@@ -124,6 +156,39 @@ public class GioHangFragment extends Fragment {
 
                     }
                 });
+//                if (TrangChuFragment.database.KIEMTRAVOUCHER(LoginActivity.taiKhoan.getMATK()))
+//                {
+//
+//                }
+//                else
+//                {
+//                    tiengiam.setText("0");
+//                }
+                //-----------------------------tinh thanh----------------
+                String[] tinhthanh = getResources().getStringArray(R.array.tinhthanh);
+                AutoCompleteTextView = bottomSheetView.findViewById(R.id.AutoCompleteTextView);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,tinhthanh);
+                AutoCompleteTextView.setAdapter(adapter);
+                //---------------------Spiner VanChuyen-----------------------
+
+                listvanchuyen = getListvc();
+                categoryAdapter1 = new CategoryAdapter(getActivity(), R.layout.item_select, listvanchuyen);
+                spinner_Vanchuyen.setAdapter(categoryAdapter1);
+                spinner_Vanchuyen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        idvanchuyen = categoryAdapter1.getItem(i).getIDcategory();
+                        HamTinhShip();
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+                truockhuyenmai.setText(String.valueOf(tong));
                 diachi.setText(LoginActivity.taiKhoan.getDIACHI());
                 btn_xacnhan_thanhtoan.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,7 +204,8 @@ public class GioHangFragment extends Fragment {
                         }
 
 
-
+                        GetData();
+                        Tongtien();
                         for (int position = 0; position<GioHangAdapter.sanPhamGioHangList.size();position++)
                         {
                             GioHang themhoadon = GioHangAdapter.sanPhamGioHangList.get(position);
@@ -148,11 +214,12 @@ public class GioHangFragment extends Fragment {
                             TrangChuFragment.database.UPDATE_SOLUONG(themhoadon.getIDSP(),themhoadon.getSOLUONG());
 
                         }
-                        TrangChuFragment.database.INSERT_HOADON(tong - tong*phantram,idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK());
+                        TrangChuFragment.database.INSERT_HOADON(Double.valueOf(saukhuyenmai.getText().toString()),
+                                idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK(),
+                                Integer.valueOf(tienship.getText().toString()),idvanchuyen);
                         TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoan.getMATK());
                         TrangChuFragment.database.UPDATE_VOUCHER(LoginActivity.taiKhoan.getMATK(),Voucher);
-                        GetData();
-                        Tongtien();
+
                         Toast.makeText(getActivity(),"Thanh toán thành công",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getActivity(),HomeActivity.class));
                     }
@@ -168,17 +235,20 @@ public class GioHangFragment extends Fragment {
                 startActivity(new Intent(getActivity(),HomeActivity.class));
             }
         });
-
-
-
-
-
-        return view;
     }
 
     @Override
     public void onStart() {
         Tongtien();
+        Tongsoluong();
+        Events();
+//        if (tt.equals("null"))
+//        {
+//
+//        }else
+//        {
+//            HamTinhShip();
+//        }
 
         super.onStart();
     }
@@ -189,6 +259,12 @@ public class GioHangFragment extends Fragment {
         cursor.moveToNext();
         tong = cursor.getInt(0);
         tongthanhtien.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(tong) + " VNĐ"));
+    }
+    private void Tongsoluong() {
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT SUM ( SOLUONG ) FROM GIOHANG WHERE IDTK = "
+                + LoginActivity.taiKhoan.getMATK());
+        cursor.moveToNext();
+        tongsoluong = cursor.getInt(0);
     }
 
     private void AnhXa() {
@@ -229,6 +305,7 @@ public class GioHangFragment extends Fragment {
 
     private ArrayList<Category> getListCategory() {
 
+
         Cursor cursor =  TrangChuFragment.database.Getdata("SELECT VOUCHER FROM VONGCHINH WHERE IDTK = " +
                 LoginActivity.taiKhoan.getMATK() + " ORDER BY VOUCHER DESC " );
         list = new ArrayList<>();
@@ -254,16 +331,44 @@ public class GioHangFragment extends Fragment {
             else if (cursor.getInt(0) == 0){
                 return list;
             }
+
             list.add(new Category(
                             namevoucher,
                             cursor.getInt(0)
                     )
             );
         }
-
+        list.add(new Category(
+                        "Không chọn",
+                        0
+                )
+        );
 
 
         return list;
+    }
+    private ArrayList<Category> getListvc() {
+        listvc = new ArrayList<>();
+        listvc.clear();
+        listvc.add(new Category(
+                        "Không chọn",
+                        0
+                )
+        );
+        listvc.add(new Category(
+                        "Giao hàng tiết kiệm",
+                        1
+                )
+        );
+        listvc.add(new Category(
+                        "Giao hàng nhanh",
+                        2
+                )
+        );
+
+
+
+        return listvc;
     }
 
 
@@ -297,5 +402,113 @@ public class GioHangFragment extends Fragment {
                 return super.onContextItemSelected(item);
         }
     }
+    public boolean TinhMienBac(String tenmien){
+        if (tenmien.equals("TP Hồ Chí Minh")  ||
+                tenmien.equals("Bà Rịa – Vũng Tàu") ||
+                tenmien.equals("Bình Phước") ||
+                tenmien.equals("Đồng Nai" )||
+                tenmien.equals("Tây Ninh" )||
+                tenmien.equals("An Giang" )||
+                tenmien.equals( "Cà Mau" )||
+                tenmien.equals("Bạc Liêu" )||
+                tenmien.equals("Sóc Trăng" )||
+                tenmien.equals("Tiền Giang" )||
+                tenmien.equals("Kiên Giang") ||
+                tenmien.equals("Bến Tre") ||
+                tenmien.equals("Long An") ||
+                tenmien.equals("Đồng Tháp") ||
+                tenmien.equals("Cần Thơ") ||
+                tenmien.equals("Trà Vinh") ||
+                tenmien.equals("Vĩnh Long")){
+            return false;
 
+        }
+        return true;
+    }
+    public void HamTinhShip()
+    {
+        tt = AutoCompleteTextView.getText().toString();
+        if (tt.equals(""))
+        {
+            Toast.makeText(getActivity(), "Vui lòng chọn tỉnh thành!", Toast.LENGTH_SHORT).show();
+        }else if (idvanchuyen==0)
+        {
+            tienvanchuyen=0;
+        }
+        else if(tt.equals("Bình Dương"))
+        {
+            if (tongsoluong <= 6)
+            {
+                tienvanchuyen = 16000;
+            }
+            else if (tongsoluong%2==0)
+            {
+                tienvanchuyen = 16000 + (tongsoluong-6)*1250;
+            }else {
+                tienvanchuyen = 16000 + (tongsoluong-7)*1250;
+            }
+        }
+        else if (idvanchuyen == 1)
+        {
+            if (TinhMienBac(tt))
+            {
+                if (tongsoluong <= 2)
+                {
+                    tienvanchuyen = 32000;
+                }
+                else if (tongsoluong%2==0)
+                {
+                    tienvanchuyen = 32000 + (tongsoluong-2)*2500;
+                }else {
+                    tienvanchuyen = 32000 + (tongsoluong-3)*2500;
+                }
+            }
+            else{
+                if (tongsoluong <= 2)
+                {
+                    tienvanchuyen = 30000;
+                }
+                else if (tongsoluong%2==0)
+                {
+                    tienvanchuyen = 30000 + (tongsoluong-2)*1250;
+                }else {
+                    tienvanchuyen = 30000 + (tongsoluong-3)*1250;
+                }
+            }
+        }
+        else if(idvanchuyen == 2)// giao nhanh
+        {
+            if (TinhMienBac(tt))// Liên Miền
+            {
+                if (tongsoluong <= 2)
+                {
+                    tienvanchuyen = 35000;
+                }
+                else if (tongsoluong%2==0)
+                {
+                    tienvanchuyen = 35000 + (tongsoluong-2)*5000;
+                }else {
+                    tienvanchuyen = 35000 + (tongsoluong-3)*5000;
+                }
+            }
+            else{ // Nội Miền
+                if (tongsoluong <= 2)
+                {
+                    tienvanchuyen = 30000;
+                }
+                else if (tongsoluong%2==0)
+                {
+                    tienvanchuyen = 30000 + (tongsoluong-2)*2500;
+                }else {
+                    tienvanchuyen = 30000 + (tongsoluong-3)*2500;
+                }
+            }
+        }
+
+        tienship.setText(String.valueOf(tienvanchuyen));
+
+        saukhuyenmai.setText(String.valueOf(tong - Integer.valueOf(tiengiam.getText().toString()) + Integer.valueOf( tienship.getText().toString())));
+
+
+    }
 }

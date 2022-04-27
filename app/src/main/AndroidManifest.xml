@@ -17,32 +17,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BOOKSHOP">
         <activity
+            android:name=".ActivityUser.BinhLuanActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ActivityUser.ThongBaoChitiet_Activity"
+            android:exported="true" />
+        <activity
             android:name=".TimKiemBanBe_Activity"
             android:exported="true" />
         <activity
             android:name=".Animation_Vong3"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ChoiNgayVong3"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ChoiNgayVong2"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".Animation_Vong2"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".TracnghiemActivity"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".ChoiNgayActivity"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".HuongDan_Activity"
             android:exported="true" />
@@ -52,7 +58,7 @@
         <activity
             android:name=".Animation_Vong1"
             android:exported="true"
-            android:screenOrientation="userLandscape"/>
+            android:screenOrientation="userLandscape" />
         <activity
             android:name=".XepHang_Activity"
             android:exported="true" />

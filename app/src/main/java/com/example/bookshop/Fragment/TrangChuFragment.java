@@ -3,6 +3,7 @@ package com.example.bookshop.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,22 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.Adapter.SanPhamAdapter;
+import com.example.bookshop.Adapter.TieudeRe_Adapter;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Data.Database;
 import com.example.bookshop.ActivityUser.Products_information_activity;
 import com.example.bookshop.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class TrangChuFragment extends Fragment {
@@ -35,7 +42,8 @@ public class TrangChuFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<SanPham> sanPhamArrayList;
     SanPhamAdapter adapter;
-
+    List<String> stringList;
+    RecyclerView Re_trangchu;
 
 
     public TrangChuFragment() {
@@ -49,42 +57,34 @@ public class TrangChuFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_trang_chu, container, false);
 
-        database = new Database(getActivity(),"BookShop",null,2);
+        database = new Database(getActivity(), "BookShop", null, 2);
 //        database.QueryData("CREATE TABLE IF NOT EXISTS DoAn(Id INTEGER PRIMARY KEY AUTOINCREMENT" +
 //                ", Ten VARCHAR(150), MoTa VARCHAR(250), HinhAnh BLOB)");
         Anhxa();
         ActionViewFlipper();
-        gridView_SanPham = (GridView) view.findViewById(R.id.gridviewSanPham);
-        sanPhamArrayList = new ArrayList<>();
-        adapter = new SanPhamAdapter(TrangChuFragment.this, R.layout.productnew_layout, sanPhamArrayList);
-        gridView_SanPham.setAdapter(adapter);
-        gridView_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), Products_information_activity.class);
+        stringList = new ArrayList<>();
+        stringList.add("Sản phẩm mới");
+        stringList.add("Python");
+        stringList.add("C#");
+        stringList.add("Java");
+        stringList.add("Web");
+        stringList.add("Android");
+
+        TieudeRe_Adapter tieudeRe_adapter = new TieudeRe_Adapter(getContext(), stringList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        Re_trangchu.setAdapter(tieudeRe_adapter);
+        Re_trangchu.setLayoutManager(linearLayoutManager);
 
 
-                intent.putExtra("id",i);
-                startActivity(intent);
-
-            }
-        });
-        registerForContextMenu(gridView_SanPham);
-
-        GetData();
 
 
-//        Cursor cursor = TrangChuFragment.database.Getdata("SELECT SUM ( SOLUONG ) FROM GIOHANG WHERE IDTK = "
-//                + LoginActivity.taiKhoan.getMATK());
-//        cursor.moveToNext();
-//        int tong = cursor.getInt(0);
-//        txt_count_giohang.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(tong) + " VNĐ"));
 
 
         return view;
     }
 
     private void Anhxa() {
+        Re_trangchu = view.findViewById(R.id.Re_trangchu);
         viewFlipper = (ViewFlipper) view.findViewById(R.id.viewFlippermanhinhchinh);
     }
 
@@ -95,8 +95,7 @@ public class TrangChuFragment extends Fragment {
         mangquangcao.add("https://image.freepik.com/free-psd/high-angle-open-tale-book_23-2149160145.jpg");
         mangquangcao.add("https://image.freepik.com/free-psd/book-hardcover-mockup-three-views_125540-226.jpg");
 
-        for(int i=0;i<mangquangcao.size();i++)
-        {
+        for (int i = 0; i < mangquangcao.size(); i++) {
             ImageView imageView = new ImageView(getActivity());
             Picasso.with(getActivity()).load(mangquangcao.get(i)).into(imageView);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -105,8 +104,8 @@ public class TrangChuFragment extends Fragment {
         }
         viewFlipper.setFlipInterval(5000);
         viewFlipper.setAutoStart(true);
-        Animation animation_slide_in = AnimationUtils.loadAnimation(getActivity(),R.anim.slide_in_right);
-        Animation animation_slide_out = AnimationUtils.loadAnimation(getActivity(),R.anim.slide_out_right);
+        Animation animation_slide_in = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+        Animation animation_slide_out = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
         viewFlipper.setInAnimation(animation_slide_in);
         viewFlipper.setOutAnimation(animation_slide_out);
     }
@@ -117,21 +116,5 @@ public class TrangChuFragment extends Fragment {
         super.onStart();
     }
 
-    private void GetData() {
-        //get data
-        Cursor cursor = database.Getdata("SELECT * FROM SANPHAM WHERE SPNEW = 1");
-        sanPhamArrayList.clear();
-        while (cursor.moveToNext())
-        {
-            sanPhamArrayList.add(new SanPham(
-                    cursor.getInt(0),
-                    cursor.getBlob(1),
-                    cursor.getString(2),
-                    cursor.getInt(3),
-                    cursor.getInt(4),
-                    cursor.getString(5)
-            ));
-        }
-        adapter.notifyDataSetChanged();
-    }
+
 }

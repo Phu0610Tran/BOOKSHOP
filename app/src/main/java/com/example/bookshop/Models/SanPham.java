@@ -11,8 +11,15 @@ public class SanPham {
     int IDDANHMUC;
     int SPNEW;
 
+    boolean spmoi;
 
+    public boolean isSpmoi() {
+        return spmoi;
+    }
 
+    public void setSpmoi(boolean spmoi) {
+        this.spmoi = spmoi;
+    }
 
     public SanPham(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP, int IDDANHMUC, int SPNEW) {
         MaSP = maSP;
@@ -30,6 +37,15 @@ public class SanPham {
         GiaSP = giaSP;
         Sl_SP = sl_SP;
         this.MotaSP = motaSP;
+    }
+    public SanPham(int maSP, byte[] imageSP, String tenSP, int giaSP, int sl_SP,String motaSP, boolean spmoi) {
+        MaSP = maSP;
+        ImageSP = imageSP;
+        TenSP = tenSP;
+        GiaSP = giaSP;
+        Sl_SP = sl_SP;
+        this.MotaSP = motaSP;
+        this.spmoi = spmoi;
     }
     public int getIDDANHMUC() {
         return IDDANHMUC;

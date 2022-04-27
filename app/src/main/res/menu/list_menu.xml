@@ -71,6 +71,10 @@
                     android:id="@+id/nav_login"
                     android:title="Đăng Nhập" />
                 <item
+                    android:icon="@drawable/thongbao"
+                    android:id="@+id/nav_thongbao"
+                    android:title="Thông Báo" />
+                <item
                     android:icon="@drawable/logout"
                     android:id="@+id/nav_logout"
                     android:title="Đăng Xuất" />

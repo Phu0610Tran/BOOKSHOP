@@ -55,7 +55,7 @@ public class JavaFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Products_information_activity.class);
 
 
-                intent.putExtra("id",i);
+                intent.putExtra("iddanhmucsp",i);
                 startActivity(intent);
 
             }

@@ -29,6 +29,7 @@ import com.example.bookshop.Fragment.GioHangFragment;
 import com.example.bookshop.Fragment.GopYFragment;
 import com.example.bookshop.Fragment.JavaFragment;
 import com.example.bookshop.Fragment.PythonFragment;
+import com.example.bookshop.Fragment.ThongBao_Fragment;
 import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.Fragment.UserFragment;
 import com.example.bookshop.Fragment.WebFragment;
@@ -48,11 +49,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Toolbar toolbar;
 
-    ImageView imagegiohang,timkiem_home;
+    ImageView imagegiohang,timkiem_home,imagethongbao;
 
     // Drawer
 
-    TextView txt_TenTaiKhoan,count_giohang;
+    TextView txt_TenTaiKhoan,count_giohang,count_thongbao;
 
 
     @SuppressLint("RestrictedApi")
@@ -74,12 +75,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+        imagethongbao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+                intent.putExtra("thongbao", R.id.nav_thongbao);
+                startActivity(intent);
+            }
+        });
+
+
 
         Intent intent = getIntent();
         int GioHangIntent = intent.getIntExtra("giohang", R.id.nav_home);
         if(GioHangIntent == R.id.nav_cart){
             navigationView.setCheckedItem(GioHangIntent);
             replaceFragment(new GioHangFragment());
+        }
+        int ThongBaoIntent = intent.getIntExtra("thongbao", R.id.nav_home);
+        if(ThongBaoIntent == R.id.nav_thongbao){
+            navigationView.setCheckedItem(ThongBaoIntent);
+            replaceFragment(new ThongBao_Fragment());
         }
         timkiem_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +119,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_thongbao).setVisible(false);
         if(LoginActivity.taiKhoan.getMATK() == -1){
             menu.findItem(R.id.nav_logout).setVisible(false);
             menu.findItem(R.id.nav_voucher).setVisible(false);
@@ -131,7 +148,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void AnhXa() {
         timkiem_home = findViewById(R.id.timkiem_home);
         imagegiohang = findViewById(R.id.imagegiohang);
+        imagethongbao = findViewById(R.id.imagethongbao);
         count_giohang = findViewById(R.id.count_giohang);
+        count_thongbao = findViewById(R.id.count_thongbao);
         img_user_home = findViewById(R.id.img_user_home);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.home_nav_view);
