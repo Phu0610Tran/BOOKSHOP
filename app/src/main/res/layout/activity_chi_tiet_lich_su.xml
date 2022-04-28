@@ -12,15 +12,15 @@
         android:background="#FF9800">
 
         <ImageButton
-            android:scaleType="fitXY"
             android:id="@+id/ibtnExit_lichsu"
             android:layout_width="30dp"
-            android:layout_gravity="center"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:background="@null"
+            android:contentDescription="TODO"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/quaylai"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:contentDescription="TODO" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/textView3"
@@ -34,6 +34,32 @@
             android:textStyle="bold"/>
 
     </LinearLayout>
+
+    <com.kofigyan.stateprogressbar.StateProgressBar
+        android:id="@+id/stapro_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size20dp"
+        android:layout_marginBottom="@dimen/size10dp"
+        app:spb_maxStateNumber="five"
+        android:fontFamily="serif"
+        android:textSize="15sp"
+        app:spb_stateBackgroundColor="#BDBDBD"
+        app:spb_stateForegroundColor="#009688"
+        app:spb_stateNumberBackgroundColor="#808080"
+        app:spb_stateNumberForegroundColor="#eeeeee"
+        app:spb_currentStateDescriptionColor="#009688"
+        app:spb_stateDescriptionColor="#808080"
+        app:spb_checkStateCompleted="true" />
+
+    <Button
+        android:id="@+id/btn_Xacnhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size10dp"
+        android:layout_gravity="center"
+        android:text="Xác nhận" />
+
     <LinearLayout
         android:background="#9DDCE4"
         android:padding="10dp"
@@ -73,7 +99,7 @@
                 android:text="Địa chỉ"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                />
+                tools:ignore="TouchTargetSizeCheck" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +115,7 @@
                     android:text="ghi chú"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    />
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
             </LinearLayout>
@@ -108,7 +134,7 @@
                     android:text="tien ship"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    />
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
             </LinearLayout>
@@ -126,10 +152,11 @@
                     android:text="Hình thức vận chuyển : "
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    />
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/htvc_lichsu"
                 android:layout_width="200dp"
@@ -140,11 +167,11 @@
                 android:text="htvc"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                />
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -153,7 +180,6 @@
             android:id="@+id/listview_danhsachchitiethoadon_lichsu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
 
     </LinearLayout>
 

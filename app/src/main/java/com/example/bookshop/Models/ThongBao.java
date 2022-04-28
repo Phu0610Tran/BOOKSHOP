@@ -19,6 +19,10 @@ public class ThongBao {
         this.THICH = THICH;
         this.KHONGTHICH = KHONGTHICH;
     }
+    public ThongBao(String TIEUDE, String NOIDUNG) {
+        this.TIEUDE = TIEUDE;
+        this.NOIDUNG = NOIDUNG;
+    }
 
     public int getTHICH() {
         return THICH;

@@ -1,8 +1,10 @@
 package com.example.bookshop.Adapter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.Data.CreateDatabase;
+import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
@@ -50,7 +54,8 @@ public class ThongBaoAdapter extends BaseAdapter {
     }
 
     static class ViewHolder{
-        TextView tieude_thongbao, noidung_thongbao, thoigian_thongbao;
+        TextView tieude_thongbao, noidung_thongbao,gio_bantin;
+        ImageView chuaxem;
     }
 
 
@@ -66,17 +71,30 @@ public class ThongBaoAdapter extends BaseAdapter {
             view = inflater.inflate(layout, null);
             holder.tieude_thongbao = (TextView) view.findViewById(R.id.tieude_thongbao);
             holder.noidung_thongbao = (TextView) view.findViewById(R.id.noidung_thongbao);
-            holder.thoigian_thongbao = (TextView) view.findViewById(R.id.thoigian_thongbao);
+            holder.chuaxem = view.findViewById(R.id.chuaxem);
+//            holder.thoigian_thongbao = (TextView) view.findViewById(R.id.thoigian_thongbao);
+            holder.gio_bantin = (TextView) view.findViewById(R.id.gio_bantin);
             view.setTag(holder);
         } else {
             holder = (ThongBaoAdapter.ViewHolder) view.getTag();
         }
 
         ThongBao thongBao = thongBaoList.get(i);
+        if(TrangChuFragment.database.tieudeSOSANH(LoginActivity.taiKhoan.getMATK(),thongBao.getTIEUDE()))
+        {
+            holder.chuaxem.setImageResource(R.drawable.chuaxem);
+        }
+        else
+        {
+
+        }
         holder.tieude_thongbao.setText(thongBao.getTIEUDE());
         holder.noidung_thongbao.setText(thongBao.getNOIDUNG());
-        holder.thoigian_thongbao.setText(thongBao.getDATE());
+//        holder.thoigian_thongbao.setText(thongBao.getDATE());
+        holder.gio_bantin.setText(thongBao.getDATE());
 
+        Log.e("TAG", " " + thongBao.getTIEUDE() + " = " + TrangChuFragment.database.tieudeSOSANH(LoginActivity.taiKhoan.getMATK(),thongBao.getTIEUDE()) );
         return view;
     }
+
 }

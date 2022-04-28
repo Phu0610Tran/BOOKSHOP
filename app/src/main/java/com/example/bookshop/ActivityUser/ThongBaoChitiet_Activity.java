@@ -23,7 +23,8 @@ public class ThongBaoChitiet_Activity extends AppCompatActivity {
     ArrayList<ThongBao> thongBaoArrayList;
     ThongBaoChiTietAdapter adapter;
     ImageView quaylaibantin;
-    int idtb;
+    int idtb,notification;
+    String tieude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,17 +32,30 @@ public class ThongBaoChitiet_Activity extends AppCompatActivity {
         Intent intent = getIntent();
 
         idtb = intent.getIntExtra("thongbaoct",123);
+        notification = intent.getIntExtra("notification",2);
+        tieude = intent.getStringExtra("tieude");
         AnhXa();
 
         thongBaoArrayList = new ArrayList<>();
         adapter = new ThongBaoChiTietAdapter(ThongBaoChitiet_Activity.this,R.layout.bangtin_layout,thongBaoArrayList);
         gridview_bangtin.setAdapter(adapter);
-        GetData();
+        if(idtb == 123)
+        {
+            GetData(notification);
+            TrangChuFragment.database.XoaThongBao(
+                    LoginActivity.taiKhoan.getMATK(),
+                    tieude);
+        }
+        else
+        {
+            GetData(ThongBaoAdapter.thongBaoList.get(idtb).getIDTB());
+        }
+
     }
 
-    private void GetData() {
+    private void GetData(int IDTB) {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDTB,TIEUDE,NOIDUNG,DATE,HINHANH,THICH,KHONGTHICH " +
-                "FROM THONGBAO WHERE IDTB = " + ThongBaoAdapter.thongBaoList.get(idtb).getIDTB());
+                "FROM THONGBAO WHERE IDTB = " + IDTB);
         thongBaoArrayList.clear();
         while (cursor.moveToNext())
         {
@@ -60,7 +74,14 @@ public class ThongBaoChitiet_Activity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        GetData();
+        if(idtb == 123)
+        {
+            GetData(notification);
+        }
+        else
+        {
+            GetData(ThongBaoAdapter.thongBaoList.get(idtb).getIDTB());
+        }
         super.onStart();
     }
 

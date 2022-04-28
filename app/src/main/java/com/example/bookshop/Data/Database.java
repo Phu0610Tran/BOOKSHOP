@@ -14,6 +14,7 @@ import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.Models.BinhLuan;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Models.TaiKhoan;
+import com.example.bookshop.Models.ThongBao;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,15 @@ public class Database extends SQLiteOpenHelper {
     public Cursor Getdata(String sql) {
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql,null);
+    }
+    public int demthongbao(int IDTK)
+    {
+        Cursor cursor = Getdata("SELECT COUNT ( IDTBNEW ) FROM THONGBAONEW WHERE IDTK = "
+                + IDTK);
+        while (cursor.moveToNext()){
+            return cursor.getInt(0);
+        }
+        return 0;
     }
     public int isDaLike(int IDTB, int IDTK){
         Cursor cursor = Getdata("SELECT TRANGTHAI FROM LUOTDANHGIA WHERE IDTB = " + IDTB + " AND IDTK = " + IDTK );
@@ -149,6 +159,83 @@ public class Database extends SQLiteOpenHelper {
                     tro.getBlob(1),
                     tro.getString(2),
                     tro.getString(3)
+            ));
+        }
+
+        return list;
+    }
+    public void Dangbai(String NOIDUNG, String THOIGIAN, byte[] HinhAnh, String TIEUDE){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues cv = new  ContentValues();
+        cv.put("NOIDUNG",   NOIDUNG);
+        cv.put("DATE",   THOIGIAN);
+        cv.put("HINHANH",   HinhAnh);
+        cv.put("THICH",   0);
+        cv.put("KHONGTHICH",   0);
+        cv.put("TIEUDE",   TIEUDE);
+        database.insert( "THONGBAO", null, cv );
+    }
+    public void DangbaiALL(String NOIDUNG, int IDTK, String TIEUDE){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues cv = new  ContentValues();
+        cv.put("NOIDUNG",   NOIDUNG);
+        cv.put("IDTK",IDTK);
+        cv.put("TIEUDE",TIEUDE);
+        database.insert( "THONGBAONEW", null, cv );
+    }
+    public boolean tieudeSOSANH(int IDTK, String TIEUDE){
+        Cursor cursor = Getdata("SELECT B.TIEUDE FROM THONGBAONEW A,THONGBAO B WHERE IDTK = "
+                + IDTK + " AND '" + TIEUDE + "' = A.TIEUDE");
+       while (cursor.moveToNext())
+       {
+           return true;
+       }
+       return false;
+    }
+    public int layidthongbao (int IDTK, String TIEUDE){
+        Cursor cursor = Getdata("SELECT B.IDTB FROM THONGBAONEW A,THONGBAO B WHERE IDTK = "
+                + IDTK + " AND '" + TIEUDE + "' = B.TIEUDE");
+        while (cursor.moveToNext())
+        {
+            return cursor.getInt(0);
+        }
+        return 0;
+    }
+    public void XoaThongBao(int IDTK,String TIEUDE){
+        QueryData(" DELETE FROM THONGBAONEW WHERE IDTK = " + IDTK + " AND TIEUDE = '" + TIEUDE + "' " );
+    }
+//    public String tieude(int IDTK){
+//        Cursor cursor = Getdata("SELECT TIEUDE FROM THONGBAONEW WHERE IDTK = "
+//                + IDTK);
+//        cursor.moveToNext();
+//        return cursor.getString(0);
+//    }
+    public ArrayList<TaiKhoan> LayALLTK(){
+        ArrayList<TaiKhoan> list = new ArrayList<>();
+        Cursor cursor = Getdata("SELECT * FROM TAIKHOAN WHERE LOAITK = 1 ");
+        while (cursor.moveToNext()){
+            list.add(new TaiKhoan(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getInt(6),
+                    cursor.getString(7),
+                    cursor.getBlob(8)
+            ));
+        }
+
+        return list;
+    }
+    public ArrayList<ThongBao> LayALLTB(int IDTK){
+        ArrayList<ThongBao> list = new ArrayList<>();
+        Cursor cursor = Getdata("SELECT TIEUDE,NOIDUNG FROM THONGBAONEW WHERE IDTK =  " + IDTK);
+        while (cursor.moveToNext()){
+            list.add(new ThongBao(
+                    cursor.getString(0),
+                    cursor.getString(1)
             ));
         }
 

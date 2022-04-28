@@ -5,6 +5,7 @@ public class HoaDon {
     String GHICHU,DIACHI;
     int IDTAIKHOAN;
     int TIENSHIP,HTVC,TIENGIAM;
+    int TINHTRANG;
 
     public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN) {
         this.IDHOADON = IDHOADON;
@@ -14,6 +15,7 @@ public class HoaDon {
         this.DIACHI = DIACHI;
         this.IDTAIKHOAN = IDTAIKHOAN;
     }
+
     public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN,int TIENGIAM, int TIENSHIP,int HTVC) {
         this.IDHOADON = IDHOADON;
         this.TONGTIEN = TONGTIEN;
@@ -24,6 +26,19 @@ public class HoaDon {
         this.TIENSHIP = TIENSHIP;
         this.HTVC = HTVC;
         this.TIENGIAM = TIENGIAM;
+    }
+
+    public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN,int TIENGIAM, int TIENSHIP,int HTVC,int TINHTRANG) {
+        this.IDHOADON = IDHOADON;
+        this.TONGTIEN = TONGTIEN;
+        this.IDCTHOADON = IDCTHOADON;
+        this.GHICHU = GHICHU;
+        this.DIACHI = DIACHI;
+        this.IDTAIKHOAN = IDTAIKHOAN;
+        this.TIENSHIP = TIENSHIP;
+        this.HTVC = HTVC;
+        this.TIENGIAM = TIENGIAM;
+        this.TINHTRANG = TINHTRANG;
     }
 
     public int getTIENGIAM() {
@@ -96,5 +111,13 @@ public class HoaDon {
 
     public void setIDTAIKHOAN(int IDTAIKHOAN) {
         this.IDTAIKHOAN = IDTAIKHOAN;
+    }
+
+    public int getTINHTRANG() {
+        return TINHTRANG;
+    }
+
+    public void setTINHTRANG(int TINHTRANG) {
+        this.TINHTRANG = TINHTRANG;
     }
 }

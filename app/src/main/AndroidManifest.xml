@@ -11,11 +11,14 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/bookshop"
-        android:label="BOOKSHOP"
+        android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/bookshop"
         android:supportsRtl="true"
         android:theme="@style/Theme.BOOKSHOP">
+        <activity
+            android:name=".ActivityAdmin.DangBaiActivity"
+            android:exported="true" />
         <activity
             android:name=".ActivityUser.BinhLuanActivity"
             android:exported="true" />

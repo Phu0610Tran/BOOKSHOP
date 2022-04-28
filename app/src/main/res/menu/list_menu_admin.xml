@@ -40,6 +40,20 @@
             </group>
         </menu>
     </item>
+    <item android:title="Bài Viết">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:icon="@drawable/chuong"
+                    android:id="@+id/nav_dangbai"
+                    android:title="Đăng Bài" />
+                <item
+                    android:icon="@drawable/chuong"
+                    android:id="@+id/nav_ql_dangbai"
+                    android:title="Đăng Bài" />
+            </group>
+        </menu>
+    </item>
     <item android:title="Hỗ Trợ Khách Hàng">
         <menu>
             <group android:checkableBehavior="single">

@@ -4,6 +4,7 @@ public class CTHoaDon {
     int IDCTHOADON, IDSANPHAM,IDTAIKHOAN;
     String TENSANPHAM;
     int SOLUONG,THANHTIEN;
+    int TINHTRANG;
 
     public CTHoaDon(int IDCTHOADON, int IDSANPHAM, int IDTAIKHOAN, String TENSANPHAM, int SOLUONG, int THANHTIEN) {
         this.IDCTHOADON = IDCTHOADON;
@@ -12,6 +13,16 @@ public class CTHoaDon {
         this.TENSANPHAM = TENSANPHAM;
         this.SOLUONG = SOLUONG;
         this.THANHTIEN = THANHTIEN;
+    }
+
+    public CTHoaDon(int IDCTHOADON, int IDSANPHAM, int IDTAIKHOAN, String TENSANPHAM, int SOLUONG, int THANHTIEN, int TINHTRANG) {
+        this.IDCTHOADON = IDCTHOADON;
+        this.IDSANPHAM = IDSANPHAM;
+        this.IDTAIKHOAN = IDTAIKHOAN;
+        this.TENSANPHAM = TENSANPHAM;
+        this.SOLUONG = SOLUONG;
+        this.THANHTIEN = THANHTIEN;
+        this.TINHTRANG = TINHTRANG;
     }
 
     public int getIDCTHOADON() {
@@ -60,5 +71,13 @@ public class CTHoaDon {
 
     public void setTHANHTIEN(int THANHTIEN) {
         this.THANHTIEN = THANHTIEN;
+    }
+
+    public int getTINHTRANG() {
+        return TINHTRANG;
+    }
+
+    public void setTINHTRANG(int TINHTRANG) {
+        this.TINHTRANG = TINHTRANG;
     }
 }

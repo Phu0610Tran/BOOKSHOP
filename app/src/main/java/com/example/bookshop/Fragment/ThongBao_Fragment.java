@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.example.bookshop.ActivityUser.HomeActivity;
+import com.example.bookshop.ActivityUser.LoginActivity;
 import com.example.bookshop.ActivityUser.ThongBaoChitiet_Activity;
 import com.example.bookshop.Adapter.ThongBaoAdapter;
 import com.example.bookshop.Models.ThongBao;
@@ -49,6 +50,16 @@ public class ThongBao_Fragment extends Fragment {
         gridviewThongBao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(TrangChuFragment.database.tieudeSOSANH(
+                        LoginActivity.taiKhoan.getMATK(),
+                        ThongBaoAdapter.thongBaoList.get(i).getTIEUDE()))
+                {
+                    TrangChuFragment.database.XoaThongBao(
+                            LoginActivity.taiKhoan.getMATK(),
+                            ThongBaoAdapter.thongBaoList.get(i).getTIEUDE());
+                }
+
+
                 Intent intent = new Intent(getActivity(), ThongBaoChitiet_Activity.class);
                 intent.putExtra("thongbaoct", i);
                 startActivity(intent);
@@ -60,7 +71,7 @@ public class ThongBao_Fragment extends Fragment {
 
     private void GetData() {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDTB,TIEUDE,NOIDUNG,DATE,HINHANH,THICH,KHONGTHICH " +
-                "FROM THONGBAO ");
+                "FROM THONGBAO ORDER BY IDTB DESC ");
         thongBaoArrayList.clear();
         while (cursor.moveToNext())
         {

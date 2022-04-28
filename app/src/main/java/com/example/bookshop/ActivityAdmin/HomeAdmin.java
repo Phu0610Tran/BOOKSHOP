@@ -28,12 +28,7 @@ import com.example.bookshop.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private static final int FRAGMENT_QLSANPHAM = 1;
-    private static final int FRAGMENT_QLTHONGKESANPHAM = 2;
-    private static final int FRAGMENT_QLTAIKHOAN = 3;
-    private static final int FRAGMENT_QLGOPY = 4;
 
-    private int currentFragment = FRAGMENT_QLSANPHAM;
 
     // Drawer
     private DrawerLayout drawerLayout;
@@ -121,27 +116,21 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }else if (id == R.id.nav_ql_sanpham) {
-            if (FRAGMENT_QLSANPHAM != currentFragment) {
                 replaceFragment(new QLSanphamFragment());
-                currentFragment = FRAGMENT_QLSANPHAM;
-            }
+
         }else if (id == R.id.nav_ql_taikhoan) {
-            if (FRAGMENT_QLTAIKHOAN != currentFragment) {
                 replaceFragment(new QLTaikhoanFragment());
-                currentFragment = FRAGMENT_QLTAIKHOAN;
-            }
+
         }else if (id == R.id.nav_ql_hoadon) {
             startActivity(new Intent(HomeAdmin.this, HoaDonAdmin.class));
         }else if (id == R.id.nav_ql_gopy) {
-            if (FRAGMENT_QLGOPY != currentFragment) {
-                replaceFragment(new QLGopyFragment());
-                currentFragment = FRAGMENT_QLGOPY;
-            }
+            replaceFragment(new QLGopyFragment());
+
+        }else if (id == R.id.nav_dangbai) {
+            startActivity(new Intent(HomeAdmin.this, DangBaiActivity.class));
+
         }else if (id == R.id.nav_ql_soluongsanpham) {
-            if (FRAGMENT_QLTHONGKESANPHAM != currentFragment) {
                 replaceFragment(new ThongKeSanPham());
-                currentFragment = FRAGMENT_QLTHONGKESANPHAM;
-            }
         }else if (id == R.id.nav_ql_themsanpham) {
             startActivity(new Intent(HomeAdmin.this,QL_ThemSanPham.class));
         }

@@ -7,6 +7,7 @@
     android:backgroundTint="#C1BFBF"
     android:orientation="vertical"
     >
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +16,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="10dp">
+        <ImageView
+            android:id="@+id/chuaxem"
+            android:layout_margin="10dp"
+            android:layout_gravity="right"
+            android:layout_width="@dimen/size30dp"
+            android:layout_height="@dimen/size30dp"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,13 +86,13 @@
                 android:textSize="15sp"
                 android:ellipsize="end"
                 android:maxLines="3"/>
-            <TextView
-                android:id="@+id/thoigian_thongbao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Thời gian"
-                android:padding="5dp"
-                android:textSize="15sp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/thoigian_thongbao"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Thời gian"-->
+<!--                android:padding="5dp"-->
+<!--                android:textSize="15sp"/>-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

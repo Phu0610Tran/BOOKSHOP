@@ -97,7 +97,9 @@ public class lichsuActivity extends AppCompatActivity {
                     cursor.getInt(5),
                     cursor.getInt(6),
                     cursor.getInt(7),
-                    cursor.getInt(8)
+                    cursor.getInt(8),
+                    cursor.getInt(9)
+
             ));
         }
         adapter.notifyDataSetChanged();

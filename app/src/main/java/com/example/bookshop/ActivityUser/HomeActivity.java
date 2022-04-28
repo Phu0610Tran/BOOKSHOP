@@ -1,11 +1,20 @@
 package com.example.bookshop.ActivityUser;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -34,9 +45,13 @@ import com.example.bookshop.Fragment.TrangChuFragment;
 import com.example.bookshop.Fragment.UserFragment;
 import com.example.bookshop.Fragment.WebFragment;
 import com.example.bookshop.Models.TaiKhoan;
+import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
 import com.example.bookshop.VuiCungTaiChinhActivity;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Date;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,9 +63,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-
+    List<ThongBao> thongBaoList;
     ImageView imagegiohang,timkiem_home,imagethongbao;
-
+    int idnotification;
     // Drawer
 
     TextView txt_TenTaiKhoan,count_giohang,count_thongbao;
@@ -61,7 +76,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        if (Build.VERSION.SDK_INT  >= Build.VERSION_CODES.O)
+        {
+            NotificationChannel channel = new NotificationChannel("BOOKSHOP","BOOKSHOP", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+        if (LoginActivity.taiKhoan.getMATK()!= -1
+                && TrangChuFragment.database.demthongbao(LoginActivity.taiKhoan.getMATK()) != 0)
+        {
+            thongBaoList = TrangChuFragment.database.LayALLTB(LoginActivity.taiKhoan.getMATK());
 
+            for (int i=0;i<thongBaoList.size();i++)
+            {
+                idnotification = TrangChuFragment.database.layidthongbao(LoginActivity.taiKhoan.getMATK(),thongBaoList.get(i).getTIEUDE());
+                sendNotification(HomeActivity.this,
+                        thongBaoList.get(i).getTIEUDE(),
+                        thongBaoList.get(i).getNOIDUNG(),
+                        idnotification
+                );
+
+            }
+        }
         AnhXa();
         HienThiTen();
         demSL();
@@ -112,6 +148,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     + LoginActivity.taiKhoan.getMATK());
             cursor.moveToNext();
             count_giohang.setText(String.valueOf(cursor.getInt(0)));
+
+//            Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT COUNT ( IDTBNEW ) FROM THONGBAONEW WHERE IDTK = "
+//                    + LoginActivity.taiKhoan.getMATK());
+//            cursor1.moveToNext();
+            count_thongbao.setText(TrangChuFragment.database.demthongbao(LoginActivity.taiKhoan.getMATK())+"");
         }
 
     }
@@ -131,6 +172,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
     }
 
+    public static void sendNotification(Context mContext, String title, String text,int id) {
+        Uri url = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Intent intent = new Intent(mContext,ThongBaoChitiet_Activity.class);
+        intent.putExtra("notification",id);
+        intent.putExtra("tieude",title);
+//
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext,getThongbaoID(),intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new NotificationCompat.Builder(mContext, "BOOKSHOP")
+                .setContentTitle(title)
+                .setContentText(text)
+                .setSmallIcon(R.drawable.logo)
+                .setSound(url)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setColor(mContext.getResources().getColor(R.color.cam))
+                .build();
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(mContext);
+        notificationManagerCompat.notify(getThongbaoID(), notification);
+    }
+
+    private static int getThongbaoID() {
+        return (int) new Date().getTime();
+    }
     private void HienThiTen() {
         View view = navigationView.inflateHeaderView(R.layout.header);
         txt_TenTaiKhoan = view.findViewById(R.id.txtTennguoidung);
