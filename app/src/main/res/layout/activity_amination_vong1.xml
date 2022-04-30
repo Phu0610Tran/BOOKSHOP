@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_animation_mot"
 
-    tools:context=".Animation_Vong1">
+    tools:context=".Events.Animation_Vong1">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

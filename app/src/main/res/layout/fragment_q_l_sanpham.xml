@@ -6,7 +6,7 @@
     android:layout_marginTop="56dp"
     android:orientation="vertical"
     android:background="#9DDCE4"
-    tools:context=".Fragment_Admin.QLSanphamFragment">
+    tools:context=".Admin_Fragment.QLSanphamFragment">
 
 
     <LinearLayout

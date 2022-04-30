@@ -4,11 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <TextView
-        android:padding="10dp"
+
         android:id="@+id/tieude_trangchu_sp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_marginTop="@dimen/size10dp"
+        android:layout_marginLeft="@dimen/size10dp"
+        android:layout_marginRight="@dimen/size10dp"
+        android:background="@drawable/bg_dinh"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:text="sssss"/>

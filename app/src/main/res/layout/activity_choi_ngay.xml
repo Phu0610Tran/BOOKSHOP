@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_choingay"
     android:gravity="center"
-    tools:context=".ChoiNgayActivity">
+    tools:context=".Events.ChoiNgayActivity">
     <ImageView
         android:id="@+id/quaylai_choingay"
         android:layout_width="50dp"

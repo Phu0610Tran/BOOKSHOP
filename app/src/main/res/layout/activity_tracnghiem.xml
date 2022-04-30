@@ -7,7 +7,7 @@
     android:background="@drawable/bg_choingay"
     android:padding="10dp"
     android:gravity="center"
-    tools:context=".TracnghiemActivity">
+    tools:context=".Events.TracnghiemActivity">
 
     <ImageView
         android:id="@+id/quaylai_tng"

@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshop.ActivityUser.MainActivity;
-import com.example.bookshop.Fragment.TrangChuFragment;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.BinhLuan;
 import com.example.bookshop.R;
 

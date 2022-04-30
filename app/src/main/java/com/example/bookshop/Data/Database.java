@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
-import com.example.bookshop.ActivityUser.LoginActivity;
+import com.example.bookshop.User_Activity.LoginActivity;
 import com.example.bookshop.Models.BinhLuan;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.Models.TaiKhoan;
@@ -146,19 +146,60 @@ public class Database extends SQLiteOpenHelper {
         statement.executeInsert();
     }
     // BL
-    public void ThemBL(int IDTK, int IDSP, String NOIDUNG, String THOIGIAN){
+    public void ThemBL(int IDTK, int IDTB, String NOIDUNG, String THOIGIAN){
         QueryData("INSERT INTO BINHLUANTB (IDTK,IDTB,NOIDUNG,THOIGIAN) VALUES (" +IDTK + ",'" +
-                IDSP + "','" + NOIDUNG+"','" + THOIGIAN + "')");
+                IDTB + "','" + NOIDUNG+"','" + THOIGIAN + "')");
+    }
+    public void ThemDanhGia(int IDTK, int IDSP, String NOIDUNG, String THOIGIAN, float SOSAO, int IDCTHOADON){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues cv = new  ContentValues();
+        cv.put("IDTK",   IDTK);
+        cv.put("IDSP",   IDSP);
+        cv.put("NOIDUNG",   NOIDUNG);
+        cv.put("THOIGIAN",   THOIGIAN);
+        cv.put("SOSAO",   SOSAO);
+        cv.put("IDCTHOADON",   IDCTHOADON);
+        database.insert( "DANHGIA", null, cv );
+
+    }
+
+    public boolean KiemTraDanhGia(int IDTK, int IDSP, int IDCTHOADON)
+    {
+        Cursor cursor = Getdata("SELECT IDTK,NOIDUNG,THOIGIAN,A.IDCTHOADON,IDSP FROM DANHGIA A, CHITIETHOADON B WHERE A.IDSP = B.IDSANPHAM AND A.IDCTHOADON = B.IDCTHOADON AND " +
+                " IDTK = " + IDTK +  " AND IDSP = " + IDSP +  " AND A.IDCTHOADON = " + IDCTHOADON );
+        while (cursor.moveToNext())
+        {
+            return false;
+        }
+        return true;
+    }
+    public int countCTSP(int IDTK)
+    {
+        Cursor cursor = Getdata("SELECT COUNT(IDCTHOADON) FROM CHITIETHOADON WHERE IDTAIKHOAN = " + IDTK);
+        while (cursor.moveToNext()){
+            return cursor.getInt(0);
+        }
+        return 0;
+    }
+    public int countDG(int IDTK)
+    {
+        Cursor cursor = Getdata("SELECT COUNT(IDCTHOADON) FROM DANHGIA WHERE IDTK = " + IDTK);
+        while (cursor.moveToNext()){
+            return cursor.getInt(0);
+        }
+        return 0;
     }
     public ArrayList<BinhLuan> LayBinhLuan(int IDSP){
         ArrayList<BinhLuan> list = new ArrayList<>();
-        Cursor tro = Getdata("SELECT A.IDTK,B.HINHANH,A.NOIDUNG,A.THOIGIAN FROM BINHLUAN A,TAIKHOAN B WHERE A.IDTK = B.IDTAIKHOAN AND A.IDSP ='" + IDSP +"' ORDER BY THOIGIAN ASC");
+        Cursor tro = Getdata("SELECT A.IDTK,B.HINHANH,A.NOIDUNG,A.THOIGIAN,A.SOSAO,B.TENTAIKHOAN FROM DANHGIA A,TAIKHOAN B WHERE A.IDTK = B.IDTAIKHOAN AND A.IDSP = " + IDSP + " ORDER BY THOIGIAN ASC");
         while (tro.moveToNext()){
             list.add(new BinhLuan(
                     tro.getInt(0),
                     tro.getBlob(1),
                     tro.getString(2),
-                    tro.getString(3)
+                    tro.getString(3),
+                    tro.getFloat(4),
+                    tro.getString(5)
             ));
         }
 
@@ -200,6 +241,10 @@ public class Database extends SQLiteOpenHelper {
             return cursor.getInt(0);
         }
         return 0;
+    }
+    public void HUYDON(int IDHOADON, int TINHTRANG){
+        QueryData("UPDATE HOADON SET TINHTRANG = " + TINHTRANG + "   WHERE IDHOADON = " + IDHOADON);
+
     }
     public void XoaThongBao(int IDTK,String TIEUDE){
         QueryData(" DELETE FROM THONGBAONEW WHERE IDTK = " + IDTK + " AND TIEUDE = '" + TIEUDE + "' " );
@@ -368,8 +413,22 @@ public class Database extends SQLiteOpenHelper {
         return true;
         // CHUA ID HOA DON
     }
+    public float TrungBinhSoSao(int IDSP){
+        Cursor tro = Getdata("SELECT AVG(SOSAO) FROM DANHGIA WHERE IDSP =  " + IDSP );
+        while (tro.moveToNext()) {
+            return tro.getFloat(0);
+        }
+        return 0;
+    }
+    public int DemSoDanhGia(int IDSP){
+        Cursor tro = Getdata("SELECT COUNT(SOSAO) FROM DANHGIA WHERE IDSP =  " + IDSP );
+        while (tro.moveToNext()) {
+            return tro.getInt(0);
+        }
+        return 0;
+    }
 
-    public void INSERT_HOADON(double TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK, int tienship, int HTVC)
+    public void INSERT_HOADON(double TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK, int tienship, int HTVC, String NGAYDAT, int TIENGIAM)
     {
         QueryData("INSERT INTO " + CreateDatabase.tbl_HOADON +
                 " ( "
@@ -379,8 +438,21 @@ public class Database extends SQLiteOpenHelper {
                 + CreateDatabase.tbl_HOADON_DIACHI + " , "
                 + CreateDatabase.tbl_HOADON_IDTAIKHOAN + " , "
                 + "TIENSHIP" + " , "
-                + "HINHTHUCVANCHUYEN" +
-                " ) VALUES ( " + TONGTIEN + " , " + IDCTHOADON + " , '" + GHICHU + "' , '" + DIACHI + "' , " + IDTK + " , " + tienship + " , " + HTVC + " ) ");
+                + "HINHTHUCVANCHUYEN" + " , "
+                + "NGAYDAT" + " , "
+                + "TINHTRANG" + " , "
+                + "TIENGIAM" +
+                " ) VALUES ( " + TONGTIEN + " , "
+                + IDCTHOADON + " , '"
+                + GHICHU + "' , '"
+                + DIACHI + "' , "
+                + IDTK + " , "
+                + tienship + " , "
+                + HTVC + " , '"
+                + NGAYDAT + "' , "
+                + 1 + " , "
+                + TIENGIAM + " , "
+                + " ) ");
     }
     public void INSERT_CTHOADON(int IDCTHOADON,int IDTK, int IDSP, String TenSP, int Soluong, int thanhtien)
     {

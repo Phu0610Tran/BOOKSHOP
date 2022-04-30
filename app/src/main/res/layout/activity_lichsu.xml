@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ActivityUser.lichsuActivity">
+    tools:context=".User_Activity.lichsuActivity">
     <LinearLayout
         android:id="@+id/layoutdoanhthu"
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             android:paddingLeft="18dp"
             android:gravity="center|left"
             android:text="Lịch sử mua hàng"
+            android:textColor="@color/black"
             android:textSize="@dimen/size20dp"
             android:textStyle="bold"/>
         <Spinner

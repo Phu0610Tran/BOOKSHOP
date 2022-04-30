@@ -7,7 +7,7 @@
     android:id="@+id/layout_animation_"
     android:background="@drawable/bg_animation_hai"
 
-    tools:context=".Animation_Vong2">
+    tools:context=".Events.Animation_Vong2">
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/animation_vong2"

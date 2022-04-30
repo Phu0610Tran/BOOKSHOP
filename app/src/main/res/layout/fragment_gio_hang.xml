@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.GioHangFragment">
+    tools:context=".User_Fragment.GioHangFragment">
     <LinearLayout
-        android:background="#9DDCE4"
+        android:background="#DDDDDD"
         android:layout_width="match_parent"
         android:layout_height="620dp"
         android:orientation="vertical">

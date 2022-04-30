@@ -5,24 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_dialog_thanhtoan"
-    android:gravity="center"
     android:orientation="vertical">
     <TextView
-        android:layout_width="wrap_content"
+        android:background="@drawable/custom_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="THANH TOÁN"
-        android:textStyle="bold"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:text="PHIẾU THANH TOÁN"
+
+        android:textColor="@color/cam"
         android:padding="10dp"
         />
+
     <LinearLayout
-        android:background="#9DDCE4"
+
         android:gravity="center|top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <EditText
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:padding="10dp"
             android:id="@+id/diachi_thanhtoan"
             android:layout_width="match_parent"
@@ -34,7 +39,8 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:padding="10dp"
             android:id="@+id/ghichu_thanhtoan"
             android:layout_width="match_parent"
@@ -45,7 +51,7 @@
             android:inputType="textMultiLine"
             tools:ignore="TouchTargetSizeCheck" />
         <LinearLayout
-            android:padding="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -55,7 +61,6 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 android:text="Voucher : "/>
             <Spinner
                 android:id="@+id/spinner_Voucher"
@@ -68,7 +73,7 @@
 
 
         <LinearLayout
-            android:padding="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -78,18 +83,18 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 android:text="Tỉnh : "/>
             <AutoCompleteTextView
                 android:id="@+id/AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="   Chọn Tỉnh Thành"
+                android:textSize="15sp"
                 android:completionThreshold="1"
                 android:completionHint="Chọn 1 Tỉnh"/>
         </LinearLayout>
         <LinearLayout
-            android:padding="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -99,7 +104,6 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 android:text="Hình thức vận chuyển : "/>
             <Spinner
                 android:id="@+id/spinner_Vanchuyen"
@@ -110,110 +114,109 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
         <LinearLayout
-            android:padding="10dp"
             android:layout_width="match_parent"
+            android:background="@drawable/bg_dinh"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tentienship"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:text="Tiền Ship : "
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-            <TextView
-                android:id="@+id/tienship"
+            android:orientation="vertical">
+            <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:hint="Tiền Ship"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tentienship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Tiền Ship : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <TextView
+                    android:id="@+id/tienship"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Tiền Ship"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:text="Tổng tiền : "
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-            <TextView
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Tổng tiền : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <TextView
 
-                android:id="@+id/truockhuyenmai"
+                    android:id="@+id/truockhuyenmai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Tổng"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:hint="Tổng"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:text="Giảm : "
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-            <TextView
-                android:id="@+id/tiengiam"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Giảm : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <TextView
+                    android:id="@+id/tiengiam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Tổng"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:hint="Tổng"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:text="Thành tiền : "
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
-            <TextView
-                android:id="@+id/saukhuyenmai"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:hint="Sau Khuyến Mãi"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Thành tiền : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <TextView
+                    android:id="@+id/saukhuyenmai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:hint="Sau Khuyến Mãi"
+
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
         </LinearLayout>
 
 

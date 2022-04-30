@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="56dp"
-    android:background="#9DDCE4"
     android:orientation="vertical"
-    tools:context=".Fragment.WebFragment">
+    tools:context=".User_Fragment.WebFragment">
 
     <TextView
-
+android:padding="@dimen/size10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:background="@drawable/bg_dinh"
         android:layout_margin="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#070707"
         android:text="Sách Android"
 
         />

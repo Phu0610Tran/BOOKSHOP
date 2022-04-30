@@ -17,65 +17,68 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BOOKSHOP">
         <activity
+            android:name=".User_Activity.DanhGiaActivity"
+            android:exported="true" />
+        <activity
             android:name=".ActivityAdmin.DangBaiActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.BinhLuanActivity"
+            android:name=".User_Activity.BinhLuanActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.ThongBaoChitiet_Activity"
+            android:name=".User_Activity.ThongBaoChitiet_Activity"
             android:exported="true" />
         <activity
-            android:name=".TimKiemBanBe_Activity"
+            android:name=".Events.TimKiemBanBe_Activity"
             android:exported="true" />
         <activity
-            android:name=".Animation_Vong3"
+            android:name=".Events.Animation_Vong3"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ChoiNgayVong3"
+            android:name=".Events.ChoiNgayVong3"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ChoiNgayVong2"
+            android:name=".Events.ChoiNgayVong2"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".Animation_Vong2"
+            android:name=".Events.Animation_Vong2"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".TracnghiemActivity"
+            android:name=".Events.TracnghiemActivity"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".ChoiNgayActivity"
+            android:name=".Events.ChoiNgayActivity"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".HuongDan_Activity"
+            android:name=".Events.HuongDan_Activity"
             android:exported="true" />
         <activity
-            android:name=".BanBeActivity"
+            android:name=".Events.BanBeActivity"
             android:exported="true" />
         <activity
-            android:name=".Animation_Vong1"
+            android:name=".Events.Animation_Vong1"
             android:exported="true"
             android:screenOrientation="userLandscape" />
         <activity
-            android:name=".XepHang_Activity"
+            android:name=".Events.XepHang_Activity"
             android:exported="true" />
         <activity
-            android:name=".VuiCungTaiChinhActivity"
+            android:name=".Events.VuiCungTaiChinhActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.TimKiem"
+            android:name=".User_Activity.TimKiem"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.KetQua_Activity"
+            android:name=".User_Activity.KetQua_Activity"
             android:exported="true" />
         <activity
-            android:name=".Fragment_Admin.HoaDonAdmin"
+            android:name=".Admin_Fragment.HoaDonAdmin"
             android:exported="true" />
         <activity
             android:name=".ActivityAdmin.QL_SuaTaiKhoan"
@@ -84,7 +87,7 @@
             android:name=".ActivityAdmin.QL_SuaSanPham"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.DoiMatKhauActivity"
+            android:name=".User_Activity.DoiMatKhauActivity"
             android:exported="true" />
         <activity
             android:name=".ActivityAdmin.QL_ThemSanPham"
@@ -94,28 +97,28 @@
             android:name=".ActivityAdmin.HomeAdmin"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.ChiTietLichSu"
+            android:name=".User_Activity.ChiTietLichSu"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.lichsuActivity"
+            android:name=".User_Activity.lichsuActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.HoTroKhachHangActivity"
+            android:name=".User_Activity.HoTroKhachHangActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.InforUserActivity"
+            android:name=".User_Activity.InforUserActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.Products_information_activity"
+            android:name=".User_Activity.Products_information_activity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.HomeActivity"
+            android:name=".User_Activity.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.LoginActivity"
+            android:name=".User_Activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".ActivityUser.MainActivity"
+            android:name=".User_Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -18,12 +18,12 @@ import android.view.View;
 import android.widget.TextView;
 
 
-import com.example.bookshop.Fragment_Admin.HoaDonAdmin;
-import com.example.bookshop.Fragment_Admin.QLGopyFragment;
-import com.example.bookshop.Fragment_Admin.QLSanphamFragment;
-import com.example.bookshop.Fragment_Admin.QLTaikhoanFragment;
-import com.example.bookshop.ActivityUser.LoginActivity;
-import com.example.bookshop.Fragment_Admin.ThongKeSanPham;
+import com.example.bookshop.Admin_Fragment.HoaDonAdmin;
+import com.example.bookshop.Admin_Fragment.QLGopyFragment;
+import com.example.bookshop.Admin_Fragment.QLSanphamFragment;
+import com.example.bookshop.Admin_Fragment.QLTaikhoanFragment;
+import com.example.bookshop.User_Activity.LoginActivity;
+import com.example.bookshop.Admin_Fragment.ThongKeSanPham;
 import com.example.bookshop.R;
 import com.google.android.material.navigation.NavigationView;
 

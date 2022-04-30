@@ -21,8 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bookshop.ActivityUser.MainActivity;
-import com.example.bookshop.Fragment.TrangChuFragment;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
 import java.io.ByteArrayOutputStream;

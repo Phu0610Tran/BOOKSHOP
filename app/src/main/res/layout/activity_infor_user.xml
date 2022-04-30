@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    android:background="#9DDCE4"
-    tools:context=".ActivityUser.InforUserActivity">
+    android:background="#DDDDDD"
+    tools:context=".User_Activity.InforUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FF9800">
+        android:background="#ffff">
 
 
         <ImageButton
@@ -36,6 +36,7 @@
             android:paddingLeft="@dimen/size20dp"
             android:gravity="center|left"
             android:text="Thông Tin Người Dùng"
+            android:textColor="@color/black"
             android:textSize="@dimen/size20dp"
             android:textStyle="bold"/>
 
@@ -178,7 +179,7 @@
             android:layout_marginLeft="@dimen/size30dp"
             android:backgroundTint="#FF9800"
             android:hint="Cập Nhật"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/white"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -189,9 +190,9 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginLeft="40dp"
-            android:backgroundTint="#8AFF1F0E"
+            android:backgroundTint="#E31607"
             android:hint="Đổi Mật Khẩu"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/white"
             android:textSize="16dp"
             android:textStyle="bold" />
 

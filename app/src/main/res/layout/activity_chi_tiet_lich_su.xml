@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ActivityUser.ChiTietLichSu">
+    tools:context=".User_Activity.ChiTietLichSu">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -29,15 +29,24 @@
             android:layout_weight="1"
             android:paddingLeft="@dimen/size20dp"
             android:gravity="center|left"
+            android:textColor="@color/black"
             android:text="Chi tiết hóa đơn"
             android:textSize="@dimen/size20dp"
             android:textStyle="bold"/>
 
     </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tình Trạng đơn hàng"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:textColor="@color/black"/>
     <com.kofigyan.stateprogressbar.StateProgressBar
         android:id="@+id/stapro_menu"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size20dp"
         android:layout_marginBottom="@dimen/size10dp"
@@ -56,12 +65,13 @@
         android:id="@+id/btn_Xacnhan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FF0000"
         android:layout_marginBottom="@dimen/size10dp"
         android:layout_gravity="center"
-        android:text="Xác nhận" />
+        android:text="" />
 
     <LinearLayout
-        android:background="#9DDCE4"
+        android:background="#AEECF4"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

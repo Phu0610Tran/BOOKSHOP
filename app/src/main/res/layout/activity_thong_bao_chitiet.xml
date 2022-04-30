@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="#C1BFBF"
     android:orientation="vertical"
-    tools:context=".ActivityUser.ThongBaoChitiet_Activity">
+    tools:context=".User_Activity.ThongBaoChitiet_Activity">
     <LinearLayout
         android:id="@+id/layoutdoanhthu"
         android:layout_width="match_parent"

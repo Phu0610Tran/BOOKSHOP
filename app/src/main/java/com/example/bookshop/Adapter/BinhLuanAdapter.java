@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,8 @@ public class BinhLuanAdapter extends RecyclerView.Adapter<BinhLuanAdapter.viewho
         holder.img_Hinh_binhluan.setImageBitmap(bitmap);
         holder.txt_NoiDung_binhluan.setText(binhLuan.getNoidungBL());
         holder.txtV_ThoiGian_binhluan.setText(String.valueOf(binhLuan.getThoiGianBL()));
+        holder.txtV_Ten_chatbox.setText(binhLuan.getTENTAIKHOAN());
+        holder.RatingBar_binhluan.setRating(binhLuan.getRa());
     }
 
     @Override
@@ -57,13 +60,16 @@ public class BinhLuanAdapter extends RecyclerView.Adapter<BinhLuanAdapter.viewho
 
     public class viewholder extends RecyclerView.ViewHolder{
         CircleImageView img_Hinh_binhluan;
-        TextView txt_NoiDung_binhluan,txtV_ThoiGian_binhluan;
+        TextView txt_NoiDung_binhluan,txtV_ThoiGian_binhluan,txtV_Ten_chatbox;
+        RatingBar RatingBar_binhluan;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
             img_Hinh_binhluan = itemView.findViewById(R.id.img_Hinh_chatbox);
             txt_NoiDung_binhluan = itemView.findViewById(R.id.txt_NoiDung_chatbox);
             txtV_ThoiGian_binhluan = itemView.findViewById(R.id.txtV_ThoiGian_chatbox);
+            txtV_Ten_chatbox = itemView.findViewById(R.id.txtV_Ten_chatbox);
+            RatingBar_binhluan = itemView.findViewById(R.id.RatingBar_binhluan);
         }
     }
 }

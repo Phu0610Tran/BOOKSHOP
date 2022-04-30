@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollV"
+
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:background="#DDDDDD"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#9DDCE4"
             android:orientation="vertical"
-            android:padding="10dp">
-            <LinearLayout
+            >
+            <Toolbar
+
+                android:background="#ffff"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="#FFC107">
+                android:layout_height="wrap_content">
                 <ImageButton
                     android:id="@+id/btn_quaylai"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="15dp"
-                    android:src="@drawable/quaylai"
+                    android:background="@null"
                     android:scaleType="fitXY"
-                    android:background="@null"/>
+                    android:src="@drawable/quaylai"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                 <TextView
 
                     android:layout_width="match_parent"
@@ -40,15 +43,17 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/size20dp"
                     android:textStyle="bold"/>
-            </LinearLayout>
+            </Toolbar>
+
 
             <LinearLayout
-                android:background="#9DDCE4"
+
+                android:background="@drawable/bg_dinh"
+                android:padding="10dp"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
-
                 android:orientation="horizontal">
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -114,14 +119,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:inputType="number"
+                            android:text="1"
                             android:textColor="@color/black"
-                            android:text="1"/>
+                            tools:ignore="TouchTargetSizeCheck" />
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/btnadd_addtocart_CT"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:text="Thêm vào giỏ"
                         android:textStyle="bold"
                         android:layout_gravity="center"/>
@@ -133,7 +139,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_dinh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -143,7 +152,7 @@
                         android:text="Thông tin sản phẩm"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textSize="20sp"/>
+                        android:textSize="18dp"/>
                     <TextView
                         android:id="@+id/noidung_ctsp"
                         android:layout_width="match_parent"
@@ -152,44 +161,81 @@
                         android:textSize="15sp"
                         />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/layoutBinhLuan_playvideo"
-                    android:paddingLeft="10dp"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/edt_noidungbl_sanpham"
-                        android:layout_width="260dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="right"
-                        android:hint="Nhập nội dung bình luận"
-                        android:textSize="15sp"
-                        />
-                    <Button
-                        android:id="@+id/btn_GuiBl"
-                        android:layout_width="100dp"
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FFC107"/>
+                <TextView
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ĐÁNH GIÁ SẢN PHẨM"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <RatingBar
+                        android:padding="1dp"
+                        android:progressTint="@color/cam"
+                        android:id="@+id/RatingBar_ctsp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Gửi"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="0.1"
+                        style="?android:attr/ratingBarStyleSmall"
+                        tools:ignore="SpeakableTextPresentCheck"  />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="@dimen/size10dp"
+                        android:id="@+id/sosao_ctsp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số sao"
+                        android:textSize="16dp"
+                        />
+                    <TextView
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="@dimen/size10dp"
+                        android:id="@+id/sodanhgia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/ Số sao"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rec_Binhluan_sanpham"
-                    android:background="@color/white"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="0dp"/>
+                    android:layout_height="1dp"
+                    android:background="#FF9800"/>
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_Binhluan_sanpham"
+                android:background="#DDDDDD"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+               />
 
 
         </LinearLayout>

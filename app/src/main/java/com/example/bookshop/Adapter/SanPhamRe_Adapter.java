@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshop.ActivityUser.Products_information_activity;
+import com.example.bookshop.User_Activity.Products_information_activity;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.R;
 

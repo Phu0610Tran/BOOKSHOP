@@ -1,9 +1,6 @@
 package com.example.bookshop.Adapter;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +9,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.bookshop.ActivityUser.LoginActivity;
-import com.example.bookshop.Data.CreateDatabase;
-import com.example.bookshop.Fragment.TrangChuFragment;
-import com.example.bookshop.Models.SanPham;
+import com.example.bookshop.User_Activity.LoginActivity;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class ThongBaoAdapter extends BaseAdapter {
     private Fragment context;
@@ -86,7 +80,7 @@ public class ThongBaoAdapter extends BaseAdapter {
         }
         else
         {
-
+            holder.chuaxem.setBackgroundResource(R.color.white);
         }
         holder.tieude_thongbao.setText(thongBao.getTIEUDE());
         holder.noidung_thongbao.setText(thongBao.getNOIDUNG());

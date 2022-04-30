@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/MyUser"
-    android:background="#9DDCE4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="56dp"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".Fragment.UserFragment">
+    tools:context=".User_Fragment.UserFragment">
 
 
     <LinearLayout
@@ -24,7 +23,7 @@
             android:orientation="horizontal"
             android:padding="10dp"
 
-            android:background="#9DDCE4">
+            android:background="#FFC107">
 
             <de.hdodenhof.circleimageview.CircleImageView
 
@@ -56,6 +55,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -67,23 +67,27 @@
                     android:layout_height="match_parent"
                     android:layout_weight="8.9"
                     android:background="@null"
-                    android:paddingLeft="@dimen/size10dp"
-                    android:src="@drawable/baseline_verified_user_24" />
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_verified_user_24" />
 
                 <TextView
+
                     android:id="@+id/txtBaomat"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1.1"
-                    android:paddingLeft="@dimen/size20dp"
-                    android:gravity="left |center"
+                    android:padding="10dp"
+                    android:gravity="center"
                     android:textStyle="bold"
                     android:text="Mật khẩu và bảo mật"
-                    android:textSize="@dimen/size20dp"
-                    android:textColor="#FFFFFF"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_dinh"
+                    />
             </LinearLayout>
 
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -95,24 +99,26 @@
                     android:layout_height="match_parent"
                     android:layout_weight="8.9"
                     android:background="@null"
-                    android:paddingLeft="@dimen/size10dp"
-                    android:src="@drawable/baseline_medical_services_24" />
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_phone_in_talk_24" />
 
                 <TextView
                     android:id="@+id/txtDichvu"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1.1"
-                    android:paddingLeft="@dimen/size20dp"
-                    android:gravity="left |center"
-                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_dinh"
                     android:textStyle="bold"
                     android:text="Dịch vụ"
-                    android:textSize="@dimen/size20dp"
+                    android:textSize="15sp"
                     />
             </LinearLayout>
 
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -124,32 +130,25 @@
                     android:layout_height="match_parent"
                     android:layout_weight="8.9"
                     android:background="@null"
-                    android:paddingLeft="@dimen/size10dp"
-                    android:src="@drawable/baseline_history_24" />
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_history_24" />
 
                 <TextView
                     android:id="@+id/txtLichsu"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1.1"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_dinh"
                     android:text="Lịch sử giao dịch"
-                    android:paddingLeft="@dimen/size20dp"
+                    android:padding="10dp"
                     android:textStyle="bold"
-                    android:gravity="left |center"
-                    android:textSize="@dimen/size20dp"
+                    android:gravity="center"
+                    android:textSize="15sp"
                      />
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:padding="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -161,81 +160,74 @@
                     android:layout_height="match_parent"
                     android:layout_weight="8.9"
                     android:background="@null"
-                    android:paddingLeft="@dimen/size10dp"
-                    android:src="@drawable/baseline_support_agent_24" />
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_support_agent_24" />
 
                 <TextView
                     android:id="@+id/txtHoTroKhachHang"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1.1"
                     android:textStyle="bold"
                     android:text="Trung Tâm Hổ Trợ"
-                    android:textSize="@dimen/size20dp"
-                    android:paddingLeft="@dimen/size20dp"
-                    android:gravity="left |center"
-                    android:textColor="#FFFFFF"/>
+                    android:textSize="15sp"
+                    android:padding="10dp"                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/bg_dinh"
+                    />
             </LinearLayout>
 
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10">
 
                 <ImageView
-
                     android:id="@+id/icon4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="8.9"
                     android:background="@null"
-                    android:paddingLeft="@dimen/size10dp"
-                    android:src="@drawable/baseline_help_24" />
-
-                <TextView
-                    android:id="@+id/txtThongTinUngDung"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_star_border_24" />
+                <FrameLayout
                     android:layout_weight="1.1"
-                    android:textStyle="bold"
-                    android:text="Thông Tin Ứng Dụng"
-                    android:textSize="@dimen/size20dp"
-                    android:paddingLeft="@dimen/size20dp"
-                    android:gravity="left |center"
-                    android:textColor="#FFFFFF" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txtDanhGia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Đánh giá"
+                        android:textSize="15sp"
+                        android:padding="10dp"                    android:gravity="center"
+                        android:textColor="@color/black"
+                        android:background="@drawable/bg_dinh"
+                        />
+                    <TextView
+                        android:background="@drawable/custom_countdanhgia"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/count_danhgia"
+                        android:layout_gravity="right|center_vertical"
+                        android:gravity="center"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:text="0"/>
+                </FrameLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:padding="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10">
 
-            <ImageView
-                android:id="@+id/icon5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="8.9"
-                android:background="@null"
-                android:paddingLeft="@dimen/size10dp"
-                android:src="@drawable/baseline_settings_24" />
 
-            <TextView
-                android:id="@+id/txtCaidat"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1.1"
-                android:paddingLeft="@dimen/size20dp"
-                android:gravity="left |center"
-                android:textStyle="bold"
-                android:text="Cài đặt"
-                android:textSize="@dimen/size20dp"
-                android:textColor="#FFFFFF"/>
-        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

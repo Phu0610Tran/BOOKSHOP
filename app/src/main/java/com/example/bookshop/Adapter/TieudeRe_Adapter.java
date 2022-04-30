@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshop.Fragment.TrangChuFragment;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.R;
 

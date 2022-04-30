@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_baoluc"
-    tools:context=".Animation_Vong3">
+    tools:context=".Events.Animation_Vong3">
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/animation_vong3"

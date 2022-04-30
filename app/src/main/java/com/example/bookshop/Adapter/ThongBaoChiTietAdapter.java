@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.bookshop.ActivityUser.BinhLuanActivity;
-import com.example.bookshop.ActivityUser.LoginActivity;
-import com.example.bookshop.Fragment.TrangChuFragment;
+import com.example.bookshop.User_Activity.BinhLuanActivity;
+import com.example.bookshop.User_Activity.LoginActivity;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
 

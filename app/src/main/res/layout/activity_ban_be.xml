@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bxh_bg"
-    tools:context=".BanBeActivity">
+    tools:context=".Events.BanBeActivity">
     <ImageView
         android:id="@+id/quaylai_banbe"
         android:layout_width="50dp"

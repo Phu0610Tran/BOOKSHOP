@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.bookshop.Models.HoaDon;
 import com.example.bookshop.R;
+import com.kofigyan.stateprogressbar.StateProgressBar;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -46,7 +47,7 @@ public class HoaDonAdapter extends BaseAdapter {
     }
 
     static class ViewHolder{
-        TextView txtTongTien,txtdiachi,txtghichu;
+        TextView txtTongTien,txtdiachi,txtghichu,textviewtt_lichsu;
         ListView listView;
     }
     @Override
@@ -62,6 +63,7 @@ public class HoaDonAdapter extends BaseAdapter {
             holder.txtTongTien = (TextView) view.findViewById(R.id.textviewTongTien_lichsu);
             holder.txtdiachi = (TextView) view.findViewById(R.id.textviewdc_lichsu);
             holder.txtghichu = (TextView) view.findViewById(R.id.textviewgc_lichsu);
+            holder.textviewtt_lichsu = (TextView) view.findViewById(R.id.textviewtt_lichsu);
             holder.listView = (ListView) view.findViewById(R.id.listview_danhsachhoadon_lichsu);
             view.setTag(holder);
         } else {
@@ -72,8 +74,37 @@ public class HoaDonAdapter extends BaseAdapter {
 
 
         holder.txtTongTien.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(hoaDon.getTONGTIEN())) + " VNĐ");
-        holder.txtdiachi.setText("Địa chỉ : " +  hoaDon.getDIACHI());
-        holder.txtghichu.setText("Ghi chú : " + hoaDon.getGHICHU());
+        holder.txtdiachi.setText(hoaDon.getDIACHI());
+        holder.txtghichu.setText(hoaDon.getGHICHU());
+        String trangthai = null;
+        switch (hoaDon.getTINHTRANG()) {
+            case 1:
+                trangthai = " Chờ duyệt ";
+                break;
+            case 2:
+                trangthai = " Chờ lấy hàng ";
+                break;
+            case 3:
+                trangthai = " Đang giao ";
+                break;
+            case 4:
+                trangthai = " Đã giao ";
+                break;
+
+            case 5:
+                trangthai = " Chờ nhận hàng ";
+                break;
+            case 6:
+                trangthai = " Đã nhận hàng ";
+                break;
+            case 7:
+                trangthai = " Đã huỷ ";
+                break;
+            default:
+                break;
+
+        }
+        holder.textviewtt_lichsu.setText(trangthai);
         id = hoaDon.getIDHOADON();
         idcthd = hoaDon.getIDCTHOADON();
 

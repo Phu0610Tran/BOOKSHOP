@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.bookshop.Models.CTHoaDon;
 import com.example.bookshop.Models.SanPham;
-import com.example.bookshop.Fragment.TrangChuFragment;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
 import java.text.NumberFormat;

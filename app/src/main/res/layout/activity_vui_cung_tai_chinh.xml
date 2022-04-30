@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/backgroup"
     android:layout_height="match_parent"
-    tools:context=".VuiCungTaiChinhActivity">
+    tools:context=".Events.VuiCungTaiChinhActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
