@@ -387,8 +387,8 @@ public class Database extends SQLiteOpenHelper {
     public void VONGGAME(int IDTK,float VONG, int SOSAO, int VOUCHER){
         if(VONGTONTAI(IDTK, VONG)){
             QueryData("INSERT INTO VONGCHINH ( IDTK, VONG, SOSAO, VOUCHER ) VALUES ( " + IDTK + " , " + VONG + " , "
-                    + VOUCHER + " , "
-                    + SOSAO + ")");
+                    + SOSAO + " , "
+                    + VOUCHER + ")");
         }
         else {
             QueryData("UPDATE VONGCHINH SET SOSAO = " + SOSAO + "   WHERE IDTK = " + IDTK + " AND VONG = " + VONG);

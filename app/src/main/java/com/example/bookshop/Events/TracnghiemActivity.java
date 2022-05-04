@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookshop.User_Activity.LoginActivity;
 import com.example.bookshop.User_Fragment.TrangChuFragment;
@@ -36,6 +37,7 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
     private int currentQuestion = 0;
     private int cau = 1;
     private int dung=0;
+    int kiemtradiem=0;
     ImageView quaylai_tng;
     float vong;
     int idbo=0;
@@ -45,6 +47,7 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_tracnghiem);
         AnhXa();
         CheckThongTin();
+        kiemtradiem = Integer.valueOf(diem_tk_tng.getText().toString());
         Intent intent = getIntent();
 
         vong = intent.getFloatExtra("vong", 1.5F);
@@ -88,7 +91,9 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
         ten_tk_tng.setText(cursor.getString(0));
         if(String.valueOf(cursor.getInt(2)).length() == 0 )
         {
+
             diem_tk_tng.setText("0");
+
         }else {
             diem_tk_tng.setText(String.valueOf(cursor.getInt(2)));
         }
@@ -115,10 +120,10 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
         String titleQuestion = "Câu Hỏi " + cau;
         tv_question.setText(titleQuestion);
         tv_content_question.setText(question.getContent());
-        tv_answer1.setText(question.getAnswerList().get(0).getContent());
-        tv_answer2.setText(question.getAnswerList().get(1).getContent());
-        tv_answer3.setText(question.getAnswerList().get(2).getContent());
-        tv_answer4.setText(question.getAnswerList().get(3).getContent());
+        tv_answer1.setText("a." +question.getAnswerList().get(0).getContent());
+        tv_answer2.setText("b." +question.getAnswerList().get(1).getContent());
+        tv_answer3.setText("c." +question.getAnswerList().get(2).getContent());
+        tv_answer4.setText("d." +question.getAnswerList().get(3).getContent());
 //        Toast.makeText(TracnghiemActivity.this, "sss : " + question.getAnswerList().get(0).getIsCorrect(), Toast.LENGTH_SHORT).show();
 
 
@@ -216,9 +221,8 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
             public void run() {
                 if(answer.getIsCorrect().equals("true")){
                     textView.setBackgroundResource(R.drawable.custom_cautraloi_dung);
-                    nextQuestion();
-                    dung = dung + 1;
                     diem_tk_tng.setText(String.valueOf(Integer.valueOf(diem_tk_tng.getText().toString())+ 1));
+                    nextQuestion();
 
                 }
                 else
@@ -248,17 +252,18 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void nextQuestion() {
-
-        if(cau >= 5){
+        cau++;
+        if(cau > 5){
             showDialog();
         }else {
+
             Random random1 = new Random();
             Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDCH FROM CAUHOI WHERE IDBO = " + idbo +" ORDER BY IDCH DESC");
             cursor.moveToNext();
             int val = random1.nextInt(cursor.getCount() - 1);
 //            Toast.makeText(TracnghiemActivity.this, "so ngau nhien " + val, Toast.LENGTH_SHORT).show();
             currentQuestion = val;
-            cau++;
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -279,6 +284,7 @@ public class TracnghiemActivity extends AppCompatActivity implements View.OnClic
         final TextView txt_chucmung = view.findViewById(R.id.txt_chucmung);
         final TextView txt_diem = view.findViewById(R.id.txt_diem);
         int idtk = LoginActivity.taiKhoan.getMATK();
+        dung = Integer.valueOf(diem_tk_tng.getText().toString()) - kiemtradiem;
         if(dung == 5 ){
 
             if (TrangChuFragment.database.kiemtraVoucher(idtk,3))

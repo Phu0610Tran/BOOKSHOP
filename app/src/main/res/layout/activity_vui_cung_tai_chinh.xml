@@ -110,25 +110,25 @@
 
             <Button
                 android:id="@+id/btn_bangxephang"
-                android:background="@drawable/custom_button_vang"
+                android:backgroundTint="@color/white"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="5dp"
 
                 android:text="BẢNG XẾP HẠNG"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnbanbe"
-                android:background="@drawable/custom_button_vang"
+                android:backgroundTint="@color/white"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="5dp"
                 android:text="KẾT NỐI VỚI BẠN BÈ"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <Button
@@ -136,10 +136,10 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="5dp"
                 android:text="HƯỚNG DẪN"
-                android:background="@drawable/custom_button_vang"
-                android:textColor="@color/white"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
