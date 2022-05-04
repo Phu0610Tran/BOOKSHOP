@@ -1,4 +1,4 @@
-package com.example.bookshop.ActivityAdmin;
+package com.example.bookshop.AdminActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

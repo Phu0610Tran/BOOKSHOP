@@ -1,4 +1,4 @@
-package com.example.bookshop.ActivityAdmin;
+package com.example.bookshop.AdminActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bookshop.Adapter.SanPhamAdminAdapter;
-import com.example.bookshop.Models.SanPham;
 import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.R;
 
@@ -30,7 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class QL_SuaSanPham extends AppCompatActivity {
+public class QL_ThemSanPham extends AppCompatActivity {
 
     Button btnAdd,btnCancel;
     EditText editTen, edtDanhMuc,edtSoLuong, edt_GiaSP,edtSPmoi;
@@ -38,18 +36,13 @@ public class QL_SuaSanPham extends AppCompatActivity {
     ImageView imgHinh,quaylai_QLSP;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
-    SanPham sanPham;
-    int id,MASP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ql_them_san_pham);
-        Intent intent = getIntent();
-        id = intent.getIntExtra("id",1123);
 
         Anhxa();
-        Getdata();
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,19 +53,16 @@ public class QL_SuaSanPham extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
                 byte[] hinhAnh = byteArray.toByteArray();
 
-                TrangChuFragment.database.UPDATE_DOAN(
+                TrangChuFragment.database.INSERT_DOAN(
                         editTen.getText().toString().trim(),
                         hinhAnh,
                         Integer.parseInt(edtSoLuong.getText().toString().trim()),
                         Integer.parseInt(edt_GiaSP.getText().toString().trim()),
                         Integer.parseInt(edtDanhMuc.getText().toString().trim()),
                         Integer.parseInt(edtSPmoi.getText().toString().trim())
-                        ,MASP
-
                 );
 
-                Toast.makeText(QL_SuaSanPham.this," Sửa thành công",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(QL_SuaSanPham.this, HomeAdmin.class));
+                Toast.makeText(QL_ThemSanPham.this," Them thanh cong",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -81,7 +71,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions(
-                        QL_SuaSanPham.this,
+                        QL_ThemSanPham.this,
                         new String[]{Manifest.permission.CAMERA},
                         REQUEST_CODE_CAMERA
                 );
@@ -93,7 +83,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions(
-                        QL_SuaSanPham.this,
+                        QL_ThemSanPham.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         REQUEST_CODE_FOLDER
                 );
@@ -113,19 +103,6 @@ public class QL_SuaSanPham extends AppCompatActivity {
         });
     }
 
-    private void Getdata() {
-        sanPham = SanPhamAdminAdapter.sanPhamList.get(id);
-        MASP = sanPham.getMaSP();
-        editTen.setText(sanPham.getTenSP());
-        edt_GiaSP.setText(String.valueOf(sanPham.getGiaSP()));
-        edtDanhMuc.setText(String.valueOf(sanPham.getIDDANHMUC()));
-        edtSoLuong.setText(String.valueOf(sanPham.getSl_SP()));
-        edtSPmoi.setText(String.valueOf(sanPham.getSPNEW()));
-        byte[] hinhAnh = sanPham.getImageSP();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
-        imgHinh.setImageBitmap(bitmap);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
@@ -136,7 +113,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
                     startActivityForResult(intent,REQUEST_CODE_CAMERA);
                 }else
                 {
-                    Toast.makeText(QL_SuaSanPham.this," Ban khong cho phep mo camera", Toast.LENGTH_LONG).show();
+                    Toast.makeText(QL_ThemSanPham.this," Ban khong cho phep mo camera", Toast.LENGTH_LONG).show();
                 }
                 break;
             case REQUEST_CODE_FOLDER:
@@ -147,7 +124,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
                     startActivityForResult(intent,REQUEST_CODE_FOLDER);
                 }else
                 {
-                    Toast.makeText(QL_SuaSanPham.this," Ban khong cho phep mo folder", Toast.LENGTH_LONG).show();
+                    Toast.makeText(QL_ThemSanPham.this," Ban khong cho phep mo folder", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -177,7 +154,6 @@ public class QL_SuaSanPham extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        quaylai_QLSP = findViewById(R.id.quaylai_QLSP);
         btnAdd = (Button) findViewById(R.id.buttonAdd);
         btnCancel = (Button) findViewById(R.id.buttonHuy_QlSP);
         editTen =  (EditText) findViewById(R.id.edt_TenSP_QLSP);
@@ -185,6 +161,7 @@ public class QL_SuaSanPham extends AppCompatActivity {
         edtSoLuong = (EditText) findViewById(R.id.edt_SLSP_QLSP);
         edt_GiaSP = (EditText) findViewById(R.id.edt_GiaSP_QLSP);
         edtSPmoi = (EditText) findViewById(R.id.edt_SPmoi_QLSP);
+        quaylai_QLSP = findViewById(R.id.quaylai_QLSP);
         ibtnCamera = (ImageButton) findViewById(R.id.imageButtonCamera);
         ibtnFolder = (ImageButton) findViewById(R.id.imageButtonFolder);
         imgHinh = (ImageView) findViewById(R.id.imageViewHinh_QLSP);

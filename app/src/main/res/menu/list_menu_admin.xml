@@ -13,6 +13,10 @@
                     android:icon="@drawable/book"
                     android:id="@+id/nav_ql_themsanpham"
                     android:title="Thêm sản phẩm" />
+                <item
+                    android:icon="@drawable/book"
+                    android:id="@+id/nav_ql_soluongsanpham"
+                    android:title="Sản phẩm sắp hết hàng" />
             </group>
         </menu>
     </item>
@@ -26,17 +30,14 @@
             </group>
         </menu>
     </item>
-    <item android:title="Thống Kê">
+    <item android:title="Quản Lý Hoá Đơn">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:icon="@drawable/giohang"
                     android:id="@+id/nav_ql_hoadon"
-                    android:title="Doanh Thu" />
-                <item
-                    android:icon="@drawable/book"
-                    android:id="@+id/nav_ql_soluongsanpham"
-                    android:title="Sản phẩm" />
+                    android:title="Hoá đơn" />
+
             </group>
         </menu>
     </item>
@@ -50,7 +51,7 @@
                 <item
                     android:icon="@drawable/chuong"
                     android:id="@+id/nav_ql_dangbai"
-                    android:title="Đăng Bài" />
+                    android:title="Xem Bài Đăng" />
             </group>
         </menu>
     </item>

@@ -12,7 +12,7 @@
         android:id="@+id/layoutdoanhthu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#FF9800">
+        android:background="@color/chude">
 
         <ImageButton
             android:id="@+id/ibtnExit_thongbao"
@@ -34,6 +34,7 @@
             android:gravity="center|left"
             android:text="Thông Báo"
             android:textSize="@dimen/size20dp"
+            android:textColor="@color/black"
             android:textStyle="bold"/>
     </LinearLayout>
     <LinearLayout

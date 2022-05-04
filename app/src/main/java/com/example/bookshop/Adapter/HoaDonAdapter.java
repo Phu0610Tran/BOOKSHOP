@@ -47,7 +47,7 @@ public class HoaDonAdapter extends BaseAdapter {
     }
 
     static class ViewHolder{
-        TextView txtTongTien,txtdiachi,txtghichu,textviewtt_lichsu;
+        TextView txtTongTien,txtdiachi,txtghichu,textviewtt_lichsu,txtngaydat_lichsu;
         ListView listView;
     }
     @Override
@@ -65,6 +65,7 @@ public class HoaDonAdapter extends BaseAdapter {
             holder.txtghichu = (TextView) view.findViewById(R.id.textviewgc_lichsu);
             holder.textviewtt_lichsu = (TextView) view.findViewById(R.id.textviewtt_lichsu);
             holder.listView = (ListView) view.findViewById(R.id.listview_danhsachhoadon_lichsu);
+            holder.txtngaydat_lichsu = view.findViewById(R.id.txtngaydat_lichsu);
             view.setTag(holder);
         } else {
             holder = (HoaDonAdapter.ViewHolder) view.getTag();
@@ -107,7 +108,7 @@ public class HoaDonAdapter extends BaseAdapter {
         holder.textviewtt_lichsu.setText(trangthai);
         id = hoaDon.getIDHOADON();
         idcthd = hoaDon.getIDCTHOADON();
-
+        holder.txtngaydat_lichsu.setText(hoaDon.getNgayDat());
 
 
 

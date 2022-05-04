@@ -1,10 +1,14 @@
 package com.example.bookshop.Admin_Fragment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -14,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookshop.AdminActivity.SuaHoaDon_Activity;
 import com.example.bookshop.User_Activity.ChiTietLichSu;
 import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.HoaDonAdapter;
@@ -91,6 +96,7 @@ public class HoaDonAdmin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        registerForContextMenu(Listview_Lichsu);
         GetTien();
         GetData();
     }
@@ -104,10 +110,9 @@ public class HoaDonAdmin extends AppCompatActivity {
 
     private void AnhXa() {
         layoutdoanhthu = findViewById(R.id.layoutdoanhthu);
-        layoutdoanhthu.setBackgroundResource(R.color.blue_nhat);
         title_qlhd = findViewById(R.id.title_qlhd);
         tongtien_HD = findViewById(R.id.tongtien_HD);
-        title_qlhd.setText("Thống kê Doanh Thu");
+        title_qlhd.setText("Hoá Đơn");
         tongchi = findViewById(R.id.tongchi);
         tongchi.setText(" Tổng Doanh Thu: ");
         ibtnExit_lichsu = findViewById(R.id.ibtnExit_lichsu);
@@ -148,7 +153,13 @@ public class HoaDonAdmin extends AppCompatActivity {
                     cursor.getInt(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getInt(5)
+                    cursor.getInt(5),
+                    cursor.getInt(6),
+                    cursor.getInt(7),
+                    cursor.getInt(8),
+                    cursor.getString(9),
+                    cursor.getInt(10)
+
             ));
         }
         adapter.notifyDataSetChanged();
@@ -168,5 +179,30 @@ public class HoaDonAdmin extends AppCompatActivity {
 
 
         return list;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = HoaDonAdmin.this.getMenuInflater();
+        inflater.inflate(R.menu.menu_hoadon, menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId())
+        {
+
+            case R.id.menu_edit_item:
+                Intent intent = new Intent(HoaDonAdmin.this, SuaHoaDon_Activity.class);
+                intent.putExtra("id",info.position);
+                startActivity(intent);
+                GetData();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

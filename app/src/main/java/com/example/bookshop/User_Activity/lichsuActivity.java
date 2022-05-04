@@ -59,7 +59,7 @@ public class lichsuActivity extends AppCompatActivity {
     }
     private void AnhXa() {
         layoutdoanhthu = findViewById(R.id.layoutdoanhthu);
-        layoutdoanhthu.setBackgroundResource(R.color.cam);
+
         ibtnExit_lichsu = findViewById(R.id.ibtnExit_lichsu);
         ibtnExit_lichsu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +73,12 @@ public class lichsuActivity extends AppCompatActivity {
         title_qlhd.setText(" Lịch sử mua hàng");
         tongchi = findViewById(R.id.tongchi);
         tongchi.setText(" Tổng chi :");
+    }
+
+    @Override
+    protected void onStart() {
+        GetData();
+        super.onStart();
     }
 
     private void GetData() {
@@ -98,7 +104,8 @@ public class lichsuActivity extends AppCompatActivity {
                     cursor.getInt(6),
                     cursor.getInt(7),
                     cursor.getInt(8),
-                    cursor.getInt(9)
+                    cursor.getString(9),
+                    cursor.getInt(10)
 
             ));
         }

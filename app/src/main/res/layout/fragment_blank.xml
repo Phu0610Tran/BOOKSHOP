@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="56dp"
     android:orientation="vertical"
-    android:background="#9DDCE4"
+    android:background="@color/chude"
     tools:context=".Admin_Fragment.ThongKeSanPham">
 
     <TextView
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="15sp"
 
             android:text="Số Lượng tồn kho : "
 
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:text="0"
             android:textColor="#000000"
             />

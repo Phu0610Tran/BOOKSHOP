@@ -103,26 +103,39 @@ public class ChiTietLichSu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TrangChuFragment.database.HUYDON(hoaDon.getIDHOADON(),7);
+                btn_Xacnhan.setEnabled(false);
+                btn_Xacnhan.setText("ĐÃ HUỶ");
+                stateProgressBar.setAllStatesCompleted(false);
+                btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.chude));
             }
         });
         switch (hoaDon.getTINHTRANG()) {
             case 1:
+                btn_Xacnhan.setEnabled(true);
 //                btn_Huydonhang.setEnabled(true);
 //                btn_Huydonhang.setBackgroundTintList(ContextCompat.getColorStateList(TransactionHistoryDetailsActivity.this, R.color.red));
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
                 break;
             case 2:
+                btn_Xacnhan.setEnabled(true);
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 break;
             case 3:
                 btn_Xacnhan.setEnabled(false);
+                btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.chude));
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 break;
             case 4:
-               stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                btn_Xacnhan.setEnabled(false);
+
+                btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.chude));
+
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
                 break;
             case 5:
                 btn_Xacnhan.setEnabled(true);
+                btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.red));
+
                 btn_Xacnhan.setText(" ĐÃ NHẬN HÀNG ");
                 btn_Xacnhan.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -137,10 +150,17 @@ public class ChiTietLichSu extends AppCompatActivity {
                 btn_Xacnhan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        TrangChuFragment.database.HUYDON(hoaDon.getIDHOADON(),6);
+                        startActivity(new Intent(ChiTietLichSu.this,DanhGiaActivity.class));
                     }
                 });
                 stateProgressBar.setAllStatesCompleted(true);
+                break;
+            case 7:
+                btn_Xacnhan.setText(" ĐÃ HUỶ ");
+                btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.chude));
+                btn_Xacnhan.setEnabled(false);
+                stateProgressBar.setAllStatesCompleted(false);
+
                 break;
             default:
                 break;

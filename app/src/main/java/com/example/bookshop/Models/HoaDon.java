@@ -4,8 +4,25 @@ public class HoaDon {
     int IDHOADON,TONGTIEN,IDCTHOADON;
     String GHICHU,DIACHI;
     int IDTAIKHOAN;
-    int TIENSHIP,HTVC,TIENGIAM;
+    int TIENGIAM,TIENSHIP,HTVC;
+    String NgayDat;
     int TINHTRANG;
+
+
+
+    public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN, int TIENGIAM, int TIENSHIP, int HTVC, String ngayDat, int TINHTRANG) {
+        this.IDHOADON = IDHOADON;
+        this.TONGTIEN = TONGTIEN;
+        this.IDCTHOADON = IDCTHOADON;
+        this.GHICHU = GHICHU;
+        this.DIACHI = DIACHI;
+        this.IDTAIKHOAN = IDTAIKHOAN;
+        this.TIENGIAM = TIENGIAM;
+        this.TIENSHIP = TIENSHIP;
+        this.HTVC = HTVC;
+        NgayDat = ngayDat;
+        this.TINHTRANG = TINHTRANG;
+    }
 
     public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN) {
         this.IDHOADON = IDHOADON;
@@ -16,31 +33,13 @@ public class HoaDon {
         this.IDTAIKHOAN = IDTAIKHOAN;
     }
 
-    public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN,int TIENGIAM, int TIENSHIP,int HTVC) {
-        this.IDHOADON = IDHOADON;
-        this.TONGTIEN = TONGTIEN;
-        this.IDCTHOADON = IDCTHOADON;
-        this.GHICHU = GHICHU;
-        this.DIACHI = DIACHI;
-        this.IDTAIKHOAN = IDTAIKHOAN;
-        this.TIENSHIP = TIENSHIP;
-        this.HTVC = HTVC;
-        this.TIENGIAM = TIENGIAM;
+    public String getNgayDat() {
+        return NgayDat;
     }
 
-    public HoaDon(int IDHOADON, int TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTAIKHOAN,int TIENGIAM, int TIENSHIP,int HTVC,int TINHTRANG) {
-        this.IDHOADON = IDHOADON;
-        this.TONGTIEN = TONGTIEN;
-        this.IDCTHOADON = IDCTHOADON;
-        this.GHICHU = GHICHU;
-        this.DIACHI = DIACHI;
-        this.IDTAIKHOAN = IDTAIKHOAN;
-        this.TIENSHIP = TIENSHIP;
-        this.HTVC = HTVC;
-        this.TIENGIAM = TIENGIAM;
-        this.TINHTRANG = TINHTRANG;
+    public void setNgayDat(String ngayDat) {
+        NgayDat = ngayDat;
     }
-
     public int getTIENGIAM() {
         return TIENGIAM;
     }

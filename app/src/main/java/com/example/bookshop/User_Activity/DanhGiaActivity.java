@@ -61,7 +61,9 @@ public class DanhGiaActivity extends AppCompatActivity {
     }
 
     private void GetData() {
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM CHITIETHOADON WHERE IDTAIKHOAN = " + LoginActivity.taiKhoan.getMATK());
+        Cursor cursor = TrangChuFragment.database.Getdata(
+                "SELECT A.IDCTHOADON,A.IDSANPHAM,A.IDTAIKHOAN,A.TENSANPHAM,A.SOLUONG,A.THANHTIEN FROM CHITIETHOADON A,HOADON B " +
+                        "WHERE A.IDCTHOADON = B.IDCTHHOADON AND B.TINHTRANG = 6 AND A.IDTAIKHOAN = " + LoginActivity.taiKhoan.getMATK());
         cthoaDonArrayList.clear();
         while (cursor.moveToNext())
         {

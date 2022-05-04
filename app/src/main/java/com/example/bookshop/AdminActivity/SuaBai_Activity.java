@@ -1,4 +1,4 @@
-package com.example.bookshop.ActivityAdmin;
+package com.example.bookshop.AdminActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,9 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bookshop.User_Fragment.TrangChuFragment;
+import com.example.bookshop.Adapter.ThongBaoChiTietAdapter;
 import com.example.bookshop.Models.TaiKhoan;
+import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -36,7 +38,7 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DangBaiActivity extends AppCompatActivity {
+public class SuaBai_Activity extends AppCompatActivity {
     CircleImageView imgtk_dangbai;
     Button btn_dangbai;
     ImageView imghinh_dangbai,imageButtonCamera,imageButtonFolder;
@@ -48,16 +50,33 @@ public class DangBaiActivity extends AppCompatActivity {
     final int REQUEST_CODE_FOLDER=456;
     boolean checkimage = true,checkimagecam=true;
     List<TaiKhoan> taiKhoanList;
+    int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_dang_bai);
+        setContentView(R.layout.activity_sua_bai);
         taiKhoanList = new ArrayList<>();
         taiKhoanList = TrangChuFragment.database.LayALLTK();
-        Toast.makeText(DangBaiActivity.this, "taikhoan : " + taiKhoanList.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(DangBaiActivity.this, "taikhoan : " + taiKhoanList.size(), Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+        position = intent.getIntExtra("position",123);
+
         AnhXa();
+        GetData();
         Events();
     }
+
+    private void GetData() {
+        ThongBao thongBao = ThongBaoChiTietAdapter.thongBaoList.get(position);
+        // hình ảnh
+        byte[] hinhAnh = thongBao.getHINHANHTHONGBAO();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh,0, hinhAnh.length);
+        imghinh_dangbai.setImageBitmap(bitmap);
+        // tiêuđề nội dung
+        edt_noidung_dangbai.setText(thongBao.getNOIDUNG());
+        edt_tieude_dangbai.setText(thongBao.getTIEUDE());
+    }
+
     private void Events() {
         quaylai_dangbai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,9 +90,6 @@ public class DangBaiActivity extends AppCompatActivity {
 
             }
         });
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(LoginActivity.taiKhoan.getHINHANH(),0,LoginActivity.taiKhoan.getHINHANH().length);
-//        imgtk_dangbai.setImageBitmap(bitmap);
-//        tentk_dangbai.setText(LoginActivity.taiKhoan.getTENTK());
         btn_dangbai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,21 +102,26 @@ public class DangBaiActivity extends AppCompatActivity {
                 //thoihian
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
                 String currentDateandTime = sdf.format(new Date());
-                TrangChuFragment.database.Dangbai(
+                TrangChuFragment.database.Suabai(
                         edt_noidung_dangbai.getText().toString().trim(),
                         currentDateandTime,
                         hinhAnh,
                         edt_tieude_dangbai.getText().toString().trim()
                 );
-                for (int i=0;i<taiKhoanList.size();i++)
+
+                if (TrangChuFragment.database.KiemtraTBNEW(edt_tieude_dangbai.getText().toString().trim()))
                 {
-                    TrangChuFragment.database.DangbaiALL(
+                    TrangChuFragment.database.SuabaiALL(
                             edt_noidung_dangbai.getText().toString().trim(),
-                            taiKhoanList.get(i).getMATK(),
                             edt_tieude_dangbai.getText().toString().trim());
                 }
-                startActivity(new Intent(DangBaiActivity.this,HomeAdmin.class));
-                Toast.makeText(DangBaiActivity.this," Đăng thành công!",Toast.LENGTH_LONG).show();
+                else
+                {
+//                    Toast.makeText(SuaBai_Activity.this, "Không có ", Toast.LENGTH_LONG).show();
+                }
+
+                startActivity(new Intent(SuaBai_Activity.this,QL_BaiViet_Activity.class));
+                Toast.makeText(SuaBai_Activity.this," Sửa thành công!",Toast.LENGTH_LONG).show();
 
 
             }
@@ -109,7 +130,7 @@ public class DangBaiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions(
-                        DangBaiActivity.this,
+                        SuaBai_Activity.this,
                         new String[]{Manifest.permission.CAMERA},
                         REQUEST_CODE_CAMERA
                 );
@@ -119,7 +140,7 @@ public class DangBaiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions(
-                        DangBaiActivity.this,
+                        SuaBai_Activity.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         REQUEST_CODE_FOLDER
                 );
@@ -137,7 +158,7 @@ public class DangBaiActivity extends AppCompatActivity {
                     startActivityForResult(intent,REQUEST_CODE_CAMERA);
                 }else
                 {
-                    Toast.makeText(DangBaiActivity.this," Bạn không cho phép mở camera", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SuaBai_Activity.this," Bạn không cho phép mở camera", Toast.LENGTH_LONG).show();
                 }
                 break;
             case REQUEST_CODE_FOLDER:
@@ -148,7 +169,7 @@ public class DangBaiActivity extends AppCompatActivity {
                     startActivityForResult(intent,REQUEST_CODE_FOLDER);
                 }else
                 {
-                    Toast.makeText(DangBaiActivity.this," Bạn không cho phép mở folder", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SuaBai_Activity.this," Bạn không cho phép mở folder", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -180,6 +201,8 @@ public class DangBaiActivity extends AppCompatActivity {
     }
     private void AnhXa() {
         edt_tieude_dangbai = findViewById(R.id.edt_tieude_dangbai);
+        edt_tieude_dangbai.setEnabled(false);
+        edt_tieude_dangbai.setBackgroundColor(SuaBai_Activity.this.getColor(R.color.chude));
         quaylai_dangbai = findViewById(R.id.quaylai_dangbai);
         btn_dangbai = findViewById(R.id.btn_dangbai);
         imgtk_dangbai= findViewById(R.id.imgtk_dangbai);

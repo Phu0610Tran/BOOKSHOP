@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.bookshop.ActivityAdmin.DangBaiActivity;
 import com.example.bookshop.User_Activity.DanhGiaActivity;
 import com.example.bookshop.User_Activity.HoTroKhachHangActivity;
 import com.example.bookshop.User_Activity.InforUserActivity;
@@ -70,8 +69,8 @@ public class UserFragment extends Fragment {
 
     @Override
     public void onStart() {
-
-        TaiKhoan kiemtra = taiKhoanDAO.KiemTraDangNhap(LoginActivity.taiKhoan.getTENTK(),
+        count_danhgia.setText(String.valueOf(TrangChuFragment.database.countCTSP(LoginActivity.taiKhoan.getMATK())
+                - TrangChuFragment.database.countDG(LoginActivity.taiKhoan.getMATK())));        TaiKhoan kiemtra = taiKhoanDAO.KiemTraDangNhap(LoginActivity.taiKhoan.getTENTK(),
                 LoginActivity.taiKhoan.getMATKHAU());
         LoginActivity.taiKhoan = kiemtra;
         if (LoginActivity.taiKhoan.getHINHANH() == null){
@@ -90,7 +89,7 @@ public class UserFragment extends Fragment {
     private void AnhXa() {
         count_danhgia = mView.findViewById(R.id.count_danhgia);
         count_danhgia.setText(String.valueOf(TrangChuFragment.database.countCTSP(LoginActivity.taiKhoan.getMATK())
-         - TrangChuFragment.database.countDG(LoginActivity.taiKhoan.getMATK())));
+        - TrangChuFragment.database.countDG(LoginActivity.taiKhoan.getMATK())));
         txtDanhGia = mView.findViewById(R.id.txtDanhGia);
         img_user_cn = mView.findViewById(R.id.img_user_cn);
         txt_Tentaikhoan = mView.findViewById(R.id.txtUsername);

@@ -17,7 +17,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.example.bookshop.ActivityAdmin.QL_SuaTaiKhoan;
+import com.example.bookshop.AdminActivity.QL_SuaTaiKhoan;
 import com.example.bookshop.Adapter.TaiKhoanAdminAdapter;
 import com.example.bookshop.Models.TaiKhoan;
 import com.example.bookshop.User_Fragment.TrangChuFragment;

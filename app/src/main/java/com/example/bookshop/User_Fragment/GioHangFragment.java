@@ -155,14 +155,6 @@ public class GioHangFragment extends Fragment {
 
                     }
                 });
-//                if (TrangChuFragment.database.KIEMTRAVOUCHER(LoginActivity.taiKhoan.getMATK()))
-//                {
-//
-//                }
-//                else
-//                {
-//                    tiengiam.setText("0");
-//                }
                 //-----------------------------tinh thanh----------------
                 String[] tinhthanh = getResources().getStringArray(R.array.tinhthanh);
                 AutoCompleteTextView = bottomSheetView.findViewById(R.id.AutoCompleteTextView);
@@ -244,14 +236,6 @@ public class GioHangFragment extends Fragment {
         Tongtien();
         Tongsoluong();
         Events();
-//        if (tt.equals("null"))
-//        {
-//
-//        }else
-//        {
-//            HamTinhShip();
-//        }
-
         super.onStart();
     }
 

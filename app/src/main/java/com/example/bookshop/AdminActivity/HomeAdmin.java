@@ -1,4 +1,4 @@
-package com.example.bookshop.ActivityAdmin;
+package com.example.bookshop.AdminActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -121,9 +121,12 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
         }else if (id == R.id.nav_ql_taikhoan) {
                 replaceFragment(new QLTaikhoanFragment());
 
+        }else if (id == R.id.nav_ql_dangbai) {
+            startActivity(new Intent(HomeAdmin.this, QL_BaiViet_Activity.class));
         }else if (id == R.id.nav_ql_hoadon) {
             startActivity(new Intent(HomeAdmin.this, HoaDonAdmin.class));
-        }else if (id == R.id.nav_ql_gopy) {
+        }
+        else if (id == R.id.nav_ql_gopy) {
             replaceFragment(new QLGopyFragment());
 
         }else if (id == R.id.nav_dangbai) {

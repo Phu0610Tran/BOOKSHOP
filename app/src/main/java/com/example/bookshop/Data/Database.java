@@ -94,6 +94,24 @@ public class Database extends SQLiteOpenHelper {
 
         statement.executeInsert();
     }
+    public void DELETE_CTHOADON(int IDCTHOADON){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "DELETE  FROM CHITIETHOADON WHERE IDCTHOADON = "+ IDCTHOADON  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+
+        statement.executeInsert();
+    }
+    public void DELETE_HOADON(int IDHOADON){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "DELETE  FROM HOADON WHERE IDHOADON = "+ IDHOADON  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+
+        statement.executeInsert();
+    }
     public boolean KIEMTRAVOUCHER(int IDTK)
     {
         Cursor cursor = Getdata("SELECT VOUCHER FROM VONGCHINH WHERE IDTK = " +
@@ -122,7 +140,17 @@ public class Database extends SQLiteOpenHelper {
         statement.bindBlob(1,hinh);
         statement.executeInsert();
     }
+    public void UPDATE_HOADON(int IDHOADON,String GHICHU,String DIACHI,int TINHTRANG)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("GHICHU", GHICHU);
+        values.put("DIACHI", DIACHI);
+        values.put("TINHTRANG", TINHTRANG);
 
+
+        sqLiteDatabase.update("HOADON",values,"IDHOADON =" + IDHOADON,null);
+    }
     //---------------------------------------------quan ly
     public void UPDATE_DOAN(String ten,byte[] hinh,int SOLUONG,int  GIA,int IDDANHMUC,int SPNEW, int IDSP ){
 
@@ -175,7 +203,7 @@ public class Database extends SQLiteOpenHelper {
     }
     public int countCTSP(int IDTK)
     {
-        Cursor cursor = Getdata("SELECT COUNT(IDCTHOADON) FROM CHITIETHOADON WHERE IDTAIKHOAN = " + IDTK);
+        Cursor cursor = Getdata("SELECT COUNT(IDCTHOADON) FROM CHITIETHOADON A,HOADON B WHERE A.IDCTHOADON = B.IDCTHHOADON AND B.TINHTRANG = 6 AND A.IDTAIKHOAN = " + IDTK);
         while (cursor.moveToNext()){
             return cursor.getInt(0);
         }
@@ -216,6 +244,29 @@ public class Database extends SQLiteOpenHelper {
         cv.put("TIEUDE",   TIEUDE);
         database.insert( "THONGBAO", null, cv );
     }
+//    public void Suabai(String NOIDUNG, String THOIGIAN, byte[] HinhAnh, String TIEUDE){
+//        QueryData("UPDATE THONGBAO SET NOIDUNG = '" + NOIDUNG + "',"
+//                + " THOIGIAN = '" + THOIGIAN + "',"
+//                +  null + " WHERE TIEUDE = '" + TIEUDE + "' ");
+//
+//        SQLiteDatabase database = getWritableDatabase();
+//        String sql = "UPDATE THONGBAO SET HinhAnh = ? WHERE TIEUDE = '" + TIEUDE + "' "  ;
+//        SQLiteStatement statement = database.compileStatement(sql);
+//        statement.clearBindings();
+//        statement.bindBlob(1,HinhAnh);
+//        statement.executeInsert();
+//
+//    }
+    public void Suabai(String NOIDUNG, String THOIGIAN, byte[] HinhAnh, String TIEUDE){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "UPDATE THONGBAO SET HINHANH = ?, NOIDUNG = ?, DATE = ? WHERE TIEUDE = '" + TIEUDE + "' "  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+        statement.bindBlob(1,HinhAnh);
+        statement.bindString(2,NOIDUNG);
+        statement.bindString(3,THOIGIAN);
+        statement.executeInsert();
+    }
     public void DangbaiALL(String NOIDUNG, int IDTK, String TIEUDE){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues cv = new  ContentValues();
@@ -224,6 +275,28 @@ public class Database extends SQLiteOpenHelper {
         cv.put("TIEUDE",TIEUDE);
         database.insert( "THONGBAONEW", null, cv );
     }
+    public boolean KiemtraTBNEW(String TIEUDE)
+    {
+        Cursor cursor = Getdata("SELECT TIEUDE FROM THONGBAONEW WHERE TIEUDE = '" + TIEUDE +"'");
+        while (cursor.moveToNext())
+        {
+            return true;
+        }
+        return false;
+    }
+    public void SuabaiALL(String NOIDUNG,  String TIEUDE){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "UPDATE THONGBAONEW SET  NOIDUNG = ? WHERE TIEUDE = '" + TIEUDE + "' "  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+        statement.bindString(1,NOIDUNG);
+        statement.executeInsert();    }
+//    public void SuabaiALL(String NOIDUNG,  String TIEUDE){
+//        SQLiteDatabase database = this.getWritableDatabase();
+//        ContentValues cv = new  ContentValues();
+//        cv.put("NOIDUNG",   NOIDUNG);
+//        database.update("THONGBAONEW",cv," TIEUDE = " + TIEUDE,null);
+//    }
     public boolean tieudeSOSANH(int IDTK, String TIEUDE){
         Cursor cursor = Getdata("SELECT B.TIEUDE FROM THONGBAONEW A,THONGBAO B WHERE IDTK = "
                 + IDTK + " AND '" + TIEUDE + "' = A.TIEUDE");

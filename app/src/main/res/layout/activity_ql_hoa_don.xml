@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".AdminActivity.SuaHoaDon_Activity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:background="@color/chude"
+    android:gravity="center">
+    <ImageView
+        android:id="@+id/quaylai_HoaDon"
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/size30dp"
+        android:layout_height="@dimen/size30dp"
+        android:src="@drawable/quaylai"/>
+    <TextView
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quản Lý Sản Phẩm"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+</LinearLayout>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_IDHOADON"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/chude"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="ID Hoá đơn"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_tongtien"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/chude"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Tổng tiền"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_idct_hoadon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/chude"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="ID Chi tiết hoá đơn"
+                android:inputType="number"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_ghichu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Ghi Chú"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_diachi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Địa chỉ"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edt_tinhtrang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/chude"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="Tình Trạng"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:gravity="center |left"
+                android:textSize="15sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size30dp"
+            android:text="Chọn tình Trạng"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:gravity="center |left"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <Spinner
+            android:id="@+id/spinner_hoadon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/buttonAdd_hoadon"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Xác Nhận"/>
+            <Button
+                android:id="@+id/buttonHuy_hoadon"
+                android:layout_marginLeft="@dimen/size20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Hủy"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/edt_danhmuc"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:textColor="@color/white"
+            android:inputType="textPersonName"
+            android:paddingLeft="20dp"
+            android:gravity="center |left"
+            android:textSize="15sp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
+
+
+</LinearLayout>

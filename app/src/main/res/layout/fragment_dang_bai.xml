@@ -73,20 +73,44 @@
         </LinearLayout>
 
     </LinearLayout>
-    <EditText
-        android:id="@+id/edt_tieude_dangbai"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:padding="10dp"
-        android:hint="Tiêu đề thông báo?"/>
-    <EditText
-        android:id="@+id/edt_noidung_dangbai"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_tieude_dangbai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:hint="Tiêu đề bài viết"
+            android:inputType="textPersonName"
+            android:paddingLeft="@dimen/size20dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="start"
-        android:padding="10dp"
-        android:hint="Bạn đang nghĩ gì?"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_noidung_dangbai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="start"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:hint="Nội dung bài viết"
+            android:inputType="textMultiLine"
+            android:paddingLeft="@dimen/size20dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
     <ImageView
         android:id="@+id/imghinh_dangbai"
         android:layout_width="match_parent"
