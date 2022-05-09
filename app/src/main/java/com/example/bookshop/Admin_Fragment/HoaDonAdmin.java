@@ -126,14 +126,14 @@ public class HoaDonAdmin extends AppCompatActivity {
 
     private void GetTien()
     {
-        Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON ");
+        Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON WHERE TINHTRANG = 6 ");
         cursor1.moveToNext();
         tongtien_HD.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"));
 
     }
     private void GetTienAlone()
     {
-        Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc);
+        Cursor cursor1 = TrangChuFragment.database.Getdata("SELECT SUM ( TONGTIEN ) FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc + " AND TINHTRANG = 6 ");
         cursor1.moveToNext();
         Toast.makeText(HoaDonAdmin.this, "Tổng tiền : " + String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(cursor1.getInt(0)) + " VNĐ"), Toast.LENGTH_LONG).show();
 

@@ -106,14 +106,16 @@ public class Products_information_activity extends AppCompatActivity {
 
                 int SL = Integer.parseInt(editTextSL.getText().toString());
 
-                if(idtk==2){
-                    sanPham = SanPhamAdapter.sanPhamList.get(id);
-                }else
+                if(idtk==2 && iddanhmucsp==3){
+                    sanPham = GetData(id);
+                }else if (id==1 && idtk == 2)
+                {
+                    sanPham = SanPhamAdapter.sanPhamList.get(iddanhmucsp);
+                }
+                else
                 {
                     sanPham = TimKiemAdapter.sanPhamList.get(idtk);
                 }
-
-
                 if(LoginActivity.taiKhoan.getMATK() == -1)
                 {
                     Toast.makeText(Products_information_activity.this, "Bạn phải đăng nhập để mua hàng !", Toast.LENGTH_SHORT).show();

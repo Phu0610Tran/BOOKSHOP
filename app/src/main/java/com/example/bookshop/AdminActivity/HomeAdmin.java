@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import com.example.bookshop.Admin_Fragment.BieuDoFragment;
 import com.example.bookshop.Admin_Fragment.HoaDonAdmin;
 import com.example.bookshop.Admin_Fragment.QLGopyFragment;
 import com.example.bookshop.Admin_Fragment.QLSanphamFragment;
@@ -136,6 +137,8 @@ public class HomeAdmin extends AppCompatActivity implements NavigationView.OnNav
                 replaceFragment(new ThongKeSanPham());
         }else if (id == R.id.nav_ql_themsanpham) {
             startActivity(new Intent(HomeAdmin.this,QL_ThemSanPham.class));
+        }else if (id == R.id.nav_bieudo) {
+            replaceFragment(new BieuDoFragment());
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

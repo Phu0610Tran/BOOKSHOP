@@ -284,6 +284,24 @@ public class Database extends SQLiteOpenHelper {
         }
         return false;
     }
+    public void XoaBaiTB(int IDTB){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "DELETE  FROM THONGBAO WHERE IDTB = "+ IDTB  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+
+        statement.executeInsert();
+    }
+    public void XoaBaiTBNEW(String TIEUDE){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "DELETE  FROM THONGBAONEW WHERE TIEUDE = '"+ TIEUDE + "'"  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+
+        statement.executeInsert();
+    }
     public void SuabaiALL(String NOIDUNG,  String TIEUDE){
         SQLiteDatabase database = getWritableDatabase();
         String sql = "UPDATE THONGBAONEW SET  NOIDUNG = ? WHERE TIEUDE = '" + TIEUDE + "' "  ;
@@ -524,7 +542,7 @@ public class Database extends SQLiteOpenHelper {
                 + HTVC + " , '"
                 + NGAYDAT + "' , "
                 + 1 + " , "
-                + TIENGIAM + " , "
+                + TIENGIAM
                 + " ) ");
     }
     public void INSERT_CTHOADON(int IDCTHOADON,int IDTK, int IDSP, String TenSP, int Soluong, int thanhtien)

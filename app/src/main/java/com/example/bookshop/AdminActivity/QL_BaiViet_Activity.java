@@ -1,18 +1,24 @@
 package com.example.bookshop.AdminActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookshop.Adapter.ThongBaoAdapter;
 import com.example.bookshop.Adapter.ThongBaoChiTietAdapter;
+import com.example.bookshop.Admin_Fragment.HoaDonAdmin;
 import com.example.bookshop.Models.ThongBao;
 import com.example.bookshop.R;
 import com.example.bookshop.User_Activity.HomeActivity;
@@ -45,6 +51,7 @@ public class QL_BaiViet_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        registerForContextMenu(gridview_bangtin);
     }
     private void GetData() {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDTB,TIEUDE,NOIDUNG,DATE,HINHANH,THICH,KHONGTHICH " +
@@ -83,5 +90,37 @@ public class QL_BaiViet_Activity extends AppCompatActivity {
         title_qlhd = findViewById(R.id.title_qlhd);
         title_qlhd.setText("Bài Viết");
 
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = QL_BaiViet_Activity.this.getMenuInflater();
+        inflater.inflate(R.menu.menu_content, menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId())
+        {
+
+            case R.id.menu_delete_item:
+                ThongBao thongBao = ThongBaoChiTietAdapter.thongBaoList.get(info.position);
+                TrangChuFragment.database.XoaBaiTB(thongBao.getIDTB());
+                if (TrangChuFragment.database.KiemtraTBNEW(thongBao.getTIEUDE()))
+                {
+                    TrangChuFragment.database.XoaBaiTBNEW(thongBao.getTIEUDE());
+                }
+                else
+                {
+//                    Toast.makeText(QL_BaiViet_Activity.this, "Không có ", Toast.LENGTH_LONG).show();
+                }
+                GetData();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

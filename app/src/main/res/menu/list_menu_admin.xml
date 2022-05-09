@@ -30,13 +30,17 @@
             </group>
         </menu>
     </item>
-    <item android:title="Quản Lý Hoá Đơn">
+    <item android:title="Thống Kê">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:icon="@drawable/giohang"
                     android:id="@+id/nav_ql_hoadon"
                     android:title="Hoá đơn" />
+                <item
+                    android:icon="@drawable/giohang"
+                    android:id="@+id/nav_bieudo"
+                    android:title="Biểu đồ" />
 
             </group>
         </menu>
