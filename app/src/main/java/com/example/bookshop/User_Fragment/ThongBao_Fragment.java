@@ -27,9 +27,14 @@ public class ThongBao_Fragment extends Fragment {
 
     View view;
     GridView gridviewThongBao;
+
     ArrayList<ThongBao> thongBaoArrayList;
     ThongBaoAdapter adapter;
-    ImageView quaylaibantin;
+
+
+    GridView gridviewphanhoi;
+    ArrayList<ThongBao> thongBaoArrayList1;
+    ThongBaoAdapter adapter1;
     public ThongBao_Fragment() {
         // Required empty public constructor
     }
@@ -43,6 +48,15 @@ public class ThongBao_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_thong_bao_, container, false);
         AnhXa();
+//        thongBaoArrayList1 = new ArrayList<>();
+//        adapter1 = new ThongBaoAdapter(ThongBao_Fragment.this,R.layout.thongbao_layout,thongBaoArrayList1);
+//        gridviewphanhoi.setAdapter(adapter1);
+//        GetData1();
+
+
+
+
+
         thongBaoArrayList = new ArrayList<>();
         adapter = new ThongBaoAdapter(ThongBao_Fragment.this,R.layout.thongbao_layout,thongBaoArrayList);
         gridviewThongBao.setAdapter(adapter);
@@ -60,7 +74,7 @@ public class ThongBao_Fragment extends Fragment {
 
 
                 Intent intent = new Intent(getActivity(), ThongBaoChitiet_Activity.class);
-                intent.putExtra("thongbaoct", i);
+                intent.putExtra("thongbaoct",ThongBaoAdapter.thongBaoList.get(i).getIDTB() );
                 startActivity(intent);
             }
         });
@@ -68,9 +82,29 @@ public class ThongBao_Fragment extends Fragment {
         return view;
     }
 
+//    private void GetData1() {
+//        Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDTB,TIEUDE,NOIDUNG,DATE,HINHANH,THICH,KHONGTHICH,IDTK " +
+//                "FROM THONGBAO WHERE IDTK = " + LoginActivity.taiKhoan.getMATK() + " ORDER BY IDTB DESC ");
+//        thongBaoArrayList1.clear();
+//        while (cursor.moveToNext())
+//        {
+//            thongBaoArrayList1.add(new ThongBao(
+//                    cursor.getInt(0),
+//                    cursor.getString(1),
+//                    cursor.getString(2),
+//                    cursor.getString(3),
+//                    cursor.getBlob(4),
+//                    cursor.getInt(5),
+//                    cursor.getInt(6),
+//                    cursor.getInt(7)
+//            ));
+//        }
+//        adapter1.notifyDataSetChanged();
+//    }
+
     private void GetData() {
         Cursor cursor = TrangChuFragment.database.Getdata("SELECT IDTB,TIEUDE,NOIDUNG,DATE,HINHANH,THICH,KHONGTHICH " +
-                "FROM THONGBAO ORDER BY IDTB DESC ");
+                "FROM  THONGBAO ORDER BY IDTB DESC ");
         thongBaoArrayList.clear();
         while (cursor.moveToNext())
         {

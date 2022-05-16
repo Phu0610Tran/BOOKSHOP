@@ -1,66 +1,97 @@
 package com.example.bookshop.Admin_Fragment;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
+import com.example.bookshop.Adapter.GopY_Adapter;
+import com.example.bookshop.Models.GopY;
 import com.example.bookshop.R;
+import com.example.bookshop.User_Fragment.TrangChuFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QLGopyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class QLGopyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    View view;
+    GridView gridviewgopy;
+    ArrayList<GopY> gopYArrayList;
+    GopY_Adapter adapter;
     public QLGopyFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment QLGopyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static QLGopyFragment newInstance(String param1, String param2) {
-        QLGopyFragment fragment = new QLGopyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_q_l_gopy, container, false);
+        view = inflater.inflate(R.layout.fragment_q_l_gopy, container, false);
+        gridviewgopy = (GridView) view.findViewById(R.id.gridviewgopy);
+        gopYArrayList = new ArrayList<>();
+        adapter = new GopY_Adapter(QLGopyFragment.this, R.layout.gopy, gopYArrayList);
+        gridviewgopy.setAdapter(adapter);
+        registerForContextMenu(gridviewgopy);
+
+        GetData();
+        return view;
+    }
+    private void GetData() {
+        //get data
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM GOPY ");
+        gopYArrayList.clear();
+        while (cursor.moveToNext())
+        {
+            gopYArrayList.add(new GopY(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2),
+                    cursor.getString(3)
+            ));
+        }
+        adapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_content, menu);
+
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId())
+        {
+            case R.id.menu_delete_item:
+                GopY gopY = GopY_Adapter.gopYList.get(info.position);
+                TrangChuFragment.database.DELETE_GOPY(
+                        gopY.getIDGOPY()
+                );
+
+                Toast.makeText(getActivity(),"Xóa thành công",Toast.LENGTH_LONG).show();
+                GetData();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

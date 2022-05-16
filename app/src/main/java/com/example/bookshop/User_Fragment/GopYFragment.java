@@ -43,7 +43,7 @@ public class GopYFragment extends Fragment {
     private void GetData() {
 
         edt_Tentaikhoan.setText(LoginActivity.taiKhoan.getTENTK());
-        edt_Sdt.setText(String.valueOf(LoginActivity.taiKhoan.getSDT()));
+        edt_Sdt.setText( "0" + String.valueOf(LoginActivity.taiKhoan.getSDT()));
     }
 
     private void Anhxa() {

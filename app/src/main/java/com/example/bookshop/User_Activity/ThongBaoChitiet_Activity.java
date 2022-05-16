@@ -10,7 +10,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.bookshop.Adapter.ThongBaoAdapter;
 import com.example.bookshop.Adapter.ThongBaoChiTietAdapter;
 import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.ThongBao;
@@ -49,7 +48,7 @@ public class ThongBaoChitiet_Activity extends AppCompatActivity {
         }
         else
         {
-            GetData(ThongBaoAdapter.thongBaoList.get(idtb).getIDTB());
+            GetData(idtb);
         }
 
     }
@@ -81,7 +80,7 @@ public class ThongBaoChitiet_Activity extends AppCompatActivity {
         }
         else
         {
-            GetData(ThongBaoAdapter.thongBaoList.get(idtb).getIDTB());
+            GetData(idtb);
         }
         super.onStart();
     }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookshop.Adapter.CTHoaDonAdapter;
 import com.example.bookshop.Adapter.HoaDonAdapter;
@@ -106,6 +107,14 @@ public class ChiTietLichSu extends AppCompatActivity {
                 btn_Xacnhan.setEnabled(false);
                 btn_Xacnhan.setText("ĐÃ HUỶ");
                 stateProgressBar.setAllStatesCompleted(false);
+                for (int i=0;i<cthoaDonArrayList.size();i++)
+                {
+                    TrangChuFragment.database.UPDATE_SOLUONGHUYDON(
+                         CTHoaDonAdapter.ListCTHoaDon.get(i).getIDSANPHAM(),
+                            CTHoaDonAdapter.ListCTHoaDon.get(i).getSOLUONG()
+                    );
+                }
+                Toast.makeText(ChiTietLichSu.this, " Đã huỷ đơn thành công!", Toast.LENGTH_SHORT).show();
                 btn_Xacnhan.setBackgroundColor(ChiTietLichSu.this.getColor(R.color.chude));
             }
         });

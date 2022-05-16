@@ -3,6 +3,7 @@ package com.example.bookshop.User_Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -205,12 +206,20 @@ public class GioHangFragment extends Fragment {
                             TrangChuFragment.database.UPDATE_SOLUONG(themhoadon.getIDSP(),themhoadon.getSOLUONG());
 
                         }
-                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
+                        long date = System.currentTimeMillis();
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        SimpleDateFormat stt = new SimpleDateFormat("MM/yyyy");
+                        SimpleDateFormat sn = new SimpleDateFormat("yyyy");
                         String currentDateandTime = sdf.format(new Date());
+                        String thang = stt.format(date);
+                        String nam = sn.format(date);
+                        Log.e("hien thi", currentDateandTime + " " + thang + " " + nam + " ");
+
                         TrangChuFragment.database.INSERT_HOADON(Double.valueOf(saukhuyenmai.getText().toString()),
                                 idcthd,diachi.getText().toString(),ghichu.getText().toString(),LoginActivity.taiKhoan.getMATK(),
                                 Integer.valueOf(tienship.getText().toString()),idvanchuyen,currentDateandTime,
-                                Integer.valueOf(tiengiam.getText().toString()));
+                                Integer.valueOf(tiengiam.getText().toString()),
+                                thang,nam);
                         TrangChuFragment.database.DELETE_GIOHANG(LoginActivity.taiKhoan.getMATK());
                         TrangChuFragment.database.UPDATE_VOUCHER(LoginActivity.taiKhoan.getMATK(),Voucher);
 

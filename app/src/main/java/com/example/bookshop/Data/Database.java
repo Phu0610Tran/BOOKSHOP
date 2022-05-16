@@ -131,6 +131,15 @@ public class Database extends SQLiteOpenHelper {
 
         statement.executeInsert();
     }
+    public void DELETE_GOPY(int IDGOPY){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "DELETE  FROM GOPY WHERE IDGOPY = "+ IDGOPY  ;
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+
+        statement.executeInsert();
+    }
     public void UPDATE_IMAGE_TK(int IDTAIKHOAN, byte[] hinh){
         String sql = "UPDATE TAIKHOAN SET HINHANH = ? WHERE IDTAIKHOAN="+ IDTAIKHOAN ;
         SQLiteDatabase database = this.getWritableDatabase();
@@ -266,6 +275,13 @@ public class Database extends SQLiteOpenHelper {
         statement.bindString(2,NOIDUNG);
         statement.bindString(3,THOIGIAN);
         statement.executeInsert();
+    }
+    public void UPDATE_SOLUONGHUYDON(int IDSP,int Soluong)
+    {
+        QueryData("UPDATE " + CreateDatabase.tbl_SANPHAM + " SET "
+                + CreateDatabase.tbl_SANPHAM_SOLUONG + " = "+CreateDatabase.tbl_SANPHAM_SOLUONG + " + " + Soluong +
+                " WHERE " + CreateDatabase.tbl_GIOHANG_IDSP + " = " + IDSP)
+        ;
     }
     public void DangbaiALL(String NOIDUNG, int IDTK, String TIEUDE){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -519,7 +535,7 @@ public class Database extends SQLiteOpenHelper {
         return 0;
     }
 
-    public void INSERT_HOADON(double TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK, int tienship, int HTVC, String NGAYDAT, int TIENGIAM)
+    public void INSERT_HOADON(double TONGTIEN, int IDCTHOADON, String GHICHU, String DIACHI, int IDTK, int tienship, int HTVC, String NGAYDAT, int TIENGIAM, String thang, String nam)
     {
         QueryData("INSERT INTO " + CreateDatabase.tbl_HOADON +
                 " ( "
@@ -532,7 +548,9 @@ public class Database extends SQLiteOpenHelper {
                 + "HINHTHUCVANCHUYEN" + " , "
                 + "NGAYDAT" + " , "
                 + "TINHTRANG" + " , "
-                + "TIENGIAM" +
+                + "TIENGIAM" + " , "
+                + "THANGDAT" + " , "
+                + "NAMDAT" +
                 " ) VALUES ( " + TONGTIEN + " , "
                 + IDCTHOADON + " , '"
                 + GHICHU + "' , '"
@@ -542,7 +560,9 @@ public class Database extends SQLiteOpenHelper {
                 + HTVC + " , '"
                 + NGAYDAT + "' , "
                 + 1 + " , "
-                + TIENGIAM
+                + TIENGIAM + " , "
+                + thang + " , "
+                + nam
                 + " ) ");
     }
     public void INSERT_CTHOADON(int IDCTHOADON,int IDTK, int IDSP, String TenSP, int Soluong, int thanhtien)

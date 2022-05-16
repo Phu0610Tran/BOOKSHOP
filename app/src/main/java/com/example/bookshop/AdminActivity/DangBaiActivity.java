@@ -46,7 +46,6 @@ public class DangBaiActivity extends AppCompatActivity {
     private boolean isEnabled;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
-    boolean checkimage = true,checkimagecam=true;
     List<TaiKhoan> taiKhoanList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +70,6 @@ public class DangBaiActivity extends AppCompatActivity {
 
             }
         });
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(LoginActivity.taiKhoan.getHINHANH(),0,LoginActivity.taiKhoan.getHINHANH().length);
-//        imgtk_dangbai.setImageBitmap(bitmap);
-//        tentk_dangbai.setText(LoginActivity.taiKhoan.getTENTK());
         btn_dangbai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

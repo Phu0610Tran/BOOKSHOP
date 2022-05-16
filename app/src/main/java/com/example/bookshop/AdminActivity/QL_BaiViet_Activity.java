@@ -83,7 +83,7 @@ public class QL_BaiViet_Activity extends AppCompatActivity {
         quaylaibantin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                startActivity(new Intent(QL_BaiViet_Activity.this,HomeAdmin.class));
             }
         });
         gridview_bangtin = findViewById(R.id.gridview_bangtin);

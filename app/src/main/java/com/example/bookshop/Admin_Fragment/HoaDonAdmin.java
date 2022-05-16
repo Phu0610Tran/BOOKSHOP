@@ -142,7 +142,7 @@ public class HoaDonAdmin extends AppCompatActivity {
         //get data
 
 
-        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc);
+        Cursor cursor = TrangChuFragment.database.Getdata("SELECT * FROM HOADON WHERE IDTAIKHOAN = " + Danhmuc + " ORDER BY TINHTRANG ASC ");
 //        Toast.makeText(HoaDonAdmin.this, "sads : " + Danhmuc, Toast.LENGTH_SHORT).show();
         hoaDonArrayList.clear();
         while (cursor.moveToNext())

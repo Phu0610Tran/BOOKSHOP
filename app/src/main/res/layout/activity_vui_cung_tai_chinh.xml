@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="VUI CÙNG TÀI CHÍNH"
+                    android:text="GAME SĂN VOUCHER"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />

@@ -7,16 +7,17 @@
     android:orientation="vertical"
     tools:context=".User_Activity.TimKiem">
     <LinearLayout
-        android:background="#FF9800"
-        android:padding="10dp"
+        android:gravity="center"
+        android:background="@color/chude"
+        android:paddingLeft="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:orientation="horizontal">
         <EditText
             android:layout_marginLeft="10dp"
             android:id="@+id/edt_tk"
-
+            android:textSize="15sp"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Nhập từ khóa"/>

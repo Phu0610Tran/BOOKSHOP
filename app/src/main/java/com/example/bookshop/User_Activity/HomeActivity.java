@@ -110,14 +110,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-        imagethongbao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-                intent.putExtra("thongbao", R.id.nav_thongbao);
-                startActivity(intent);
-            }
-        });
+        if (LoginActivity.taiKhoan.getMATK()!=-1)
+        {
+            imagethongbao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+                    intent.putExtra("thongbao", R.id.nav_thongbao);
+                    startActivity(intent);
+                }
+            });
+        }
+        else
+        {
+            imagethongbao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(HomeActivity.this, " Vui lòng đăng nhập! ", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
 
 
 
@@ -267,7 +280,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 replaceFragment(new TrangChuFragment());
         }else if (id == R.id.nav_Feedback) {
+            if(LoginActivity.taiKhoan.getMATK() != -1)
+            {
                 replaceFragment(new GopYFragment());
+            }else
+            {
+                Toast.makeText(HomeActivity.this, " Bạn chưa đăng nhập ", Toast.LENGTH_LONG).show();
+            }
+
 
         }else if (id == R.id.nav_Android) {
                 replaceFragment(new AndroidFragment());

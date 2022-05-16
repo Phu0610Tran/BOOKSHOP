@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookshop.Adapter.BinhLuanAdapter;
+import com.example.bookshop.Adapter.BinhLuanTBAdapter;
 import com.example.bookshop.Adapter.ThongBaoChiTietAdapter;
 import com.example.bookshop.User_Fragment.TrangChuFragment;
 import com.example.bookshop.Models.BinhLuan;
@@ -30,7 +31,7 @@ public class BinhLuanActivity extends AppCompatActivity {
     int position;
     ArrayList<BinhLuan> listBL;
     ThongBao thongbao;
-    BinhLuanAdapter binhLuanAdapter;
+    BinhLuanTBAdapter binhLuanAdapter;
 
     TextView Solike,Sodislike,socmt;
     Button btn_GuiBl;
@@ -79,7 +80,7 @@ public class BinhLuanActivity extends AppCompatActivity {
         thongbao = ThongBaoChiTietAdapter.thongBaoList.get(position);
         listBL = TrangChuFragment.database.LayBinhLuanTB(thongbao.getIDTB());
 
-        binhLuanAdapter = new BinhLuanAdapter(listBL);
+        binhLuanAdapter = new BinhLuanTBAdapter(listBL);
         rec_Binhluan.setAdapter(binhLuanAdapter);
         rec_Binhluan.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 

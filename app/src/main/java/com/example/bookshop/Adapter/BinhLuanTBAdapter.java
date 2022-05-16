@@ -32,7 +32,7 @@ public class BinhLuanTBAdapter extends RecyclerView.Adapter<BinhLuanTBAdapter.vi
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.binhluan,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.binhluantb,parent,false);
 
         return new viewholder(view);
     }
@@ -42,10 +42,10 @@ public class BinhLuanTBAdapter extends RecyclerView.Adapter<BinhLuanTBAdapter.vi
         BinhLuan binhLuan = listBL.get(holder.getAdapterPosition());
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(binhLuan.getHinhBL(),0,binhLuan.getHinhBL().length);
-        holder.img_Hinh_binhluan.setImageBitmap(bitmap);
-        holder.txt_NoiDung_binhluan.setText(binhLuan.getNoidungBL());
-        holder.txtV_ThoiGian_binhluan.setText(String.valueOf(binhLuan.getThoiGianBL()));
-        holder.txtV_Ten_chatbox.setText(TrangChuFragment.database.Layten( binhLuan.getTaiKhoanBL()));
+        holder.img_Hinh_tb.setImageBitmap(bitmap);
+        holder.txt_NoiDung_tb.setText(binhLuan.getNoidungBL());
+        holder.txtV_ThoiGian_tb.setText(String.valueOf(binhLuan.getThoiGianBL()));
+        holder.txtV_Ten_tb.setText(TrangChuFragment.database.Layten( binhLuan.getTaiKhoanBL()));
     }
 
     @Override
@@ -57,15 +57,15 @@ public class BinhLuanTBAdapter extends RecyclerView.Adapter<BinhLuanTBAdapter.vi
     }
 
     public class viewholder extends RecyclerView.ViewHolder{
-        CircleImageView img_Hinh_binhluan;
-        TextView txt_NoiDung_binhluan,txtV_ThoiGian_binhluan,txtV_Ten_chatbox;
+        CircleImageView img_Hinh_tb;
+        TextView txtV_Ten_tb,txt_NoiDung_tb,txtV_ThoiGian_tb;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            txtV_Ten_chatbox = itemView.findViewById(R.id.txtV_Ten_chatbox);
-            img_Hinh_binhluan = itemView.findViewById(R.id.img_Hinh_chatbox);
-            txt_NoiDung_binhluan = itemView.findViewById(R.id.txt_NoiDung_chatbox);
-            txtV_ThoiGian_binhluan = itemView.findViewById(R.id.txtV_ThoiGian_chatbox);
+            txtV_Ten_tb = itemView.findViewById(R.id.txtV_Ten_tb);
+            img_Hinh_tb = itemView.findViewById(R.id.img_Hinh_tb);
+            txt_NoiDung_tb = itemView.findViewById(R.id.txt_NoiDung_tb);
+            txtV_ThoiGian_tb = itemView.findViewById(R.id.txtV_ThoiGian_tb);
         }
     }
 }
