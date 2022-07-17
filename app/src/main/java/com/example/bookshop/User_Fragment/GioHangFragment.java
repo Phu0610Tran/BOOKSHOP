@@ -25,12 +25,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookshop.Adapter.CategoryAdapter;
 import com.example.bookshop.Adapter.GioHangAdapter;
+import com.example.bookshop.Data.Database;
 import com.example.bookshop.Models.Category;
 import com.example.bookshop.Models.GioHang;
-import com.example.bookshop.Data.Database;
+import com.example.bookshop.R;
 import com.example.bookshop.User_Activity.HomeActivity;
 import com.example.bookshop.User_Activity.LoginActivity;
-import com.example.bookshop.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.DecimalFormat;
